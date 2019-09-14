@@ -62,6 +62,26 @@ class AppointmentResource(
             )
         }
         appointment.user = userRepository.findByUserIsCurrentUser().orElse(null)
+        appointment.symptoms.forEach { it.user = appointment.user }
+        appointment.treatments.forEach {
+            it.user = appointment.user
+            if (it.visitedDoctors.isEmpty()) {
+                it.visitedDoctors = appointment.visitedDoctors
+            }
+        }
+        appointment.procedures.forEach {
+            it.user = appointment.user
+            if (it.visitedDoctors.isEmpty()) {
+                it.visitedDoctors = appointment.visitedDoctors
+            }}
+        appointment.examinationPackages.forEach {
+            it.user = appointment.user
+            if (it.visitedDoctors.isEmpty()) {
+                it.visitedDoctors = appointment.visitedDoctors
+            }
+            //todo iterate over it.examinations
+        }
+
         val result = appointmentRepository.save(appointment)
         return ResponseEntity.created(URI("/api/appointments/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -94,7 +114,7 @@ class AppointmentResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     appointment.id.toString()
+                    appointment.id.toString()
                 )
             )
             .body(result)

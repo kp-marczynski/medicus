@@ -1,0 +1,29 @@
+{
+  "medicusApp": {
+    "treatment": {
+      "home": {
+        "title": "Treatment",
+        "createLabel": "Dodaj Treatment",
+        "createOrEditLabel": "Dodaj lub edytuj: Treatment",
+        "notFound": "No Treatments found"
+      },
+      "created": "Utworzono nowy obiekt typu Treatment z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Treatment z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Treatment z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Treatment {{ id }}?"
+      },
+      "detail": {
+        "title": "Treatment"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "description": "Description",
+      "descriptionScan": "Description Scan",
+      "visitedDoctor": "Visited Doctor",
+      "user": "User",
+      "medicine": "Medicine",
+      "appointment": "Appointment"
+    }
+  }
+}

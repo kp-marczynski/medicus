@@ -1,0 +1,96 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="medicusApp.visitedDoctor.home.title">Visited Doctors</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-visited-doctor" [routerLink]="['/visited-doctor/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="medicusApp.visitedDoctor.home.createLabel">
+            Create a new Visited Doctor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="visitedDoctors?.length === 0">
+        <span jhiTranslate="medicusApp.visitedDoctor.home.notFound">No visitedDoctors found</span>
+    </div>
+    <div class="table-responsive" *ngIf="visitedDoctors?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="opinion"><span jhiTranslate="medicusApp.visitedDoctor.opinion">Opinion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="doctor.id"><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.visitedDoctor.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="procedure.id"><span jhiTranslate="medicusApp.visitedDoctor.procedure">Procedure</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="treatment.id"><span jhiTranslate="medicusApp.visitedDoctor.treatment">Treatment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="examinationPackage.id"><span jhiTranslate="medicusApp.visitedDoctor.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let visitedDoctor of visitedDoctors ;trackBy: trackId">
+                <td><a [routerLink]="['/visited-doctor', visitedDoctor.id, 'view' ]">{{visitedDoctor.id}}</a></td>
+                <td>{{visitedDoctor.opinion}}</td>
+                <td>
+                    <div *ngIf="visitedDoctor.doctor">
+                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view' ]" >{{visitedDoctor.doctor?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="visitedDoctor.appointment">
+                        <a [routerLink]="['/appointment', visitedDoctor.appointment?.id, 'view' ]" >{{visitedDoctor.appointment?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="visitedDoctor.procedure">
+                        <a [routerLink]="['/procedure', visitedDoctor.procedure?.id, 'view' ]" >{{visitedDoctor.procedure?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="visitedDoctor.treatment">
+                        <a [routerLink]="['/treatment', visitedDoctor.treatment?.id, 'view' ]" >{{visitedDoctor.treatment?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="visitedDoctor.examinationPackage">
+                        <a [routerLink]="['/examination-package', visitedDoctor.examinationPackage?.id, 'view' ]" >{{visitedDoctor.examinationPackage?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/visited-doctor', visitedDoctor.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/visited-doctor', visitedDoctor.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/visited-doctor', { outlets: { popup: visitedDoctor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div [hidden]="visitedDoctors?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

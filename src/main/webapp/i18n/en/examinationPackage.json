@@ -1,0 +1,28 @@
+{
+  "medicusApp": {
+    "examinationPackage": {
+      "home": {
+        "title": "Examination Packages",
+        "createLabel": "Create a new Examination Package",
+        "createOrEditLabel": "Create or edit a Examination Package",
+        "notFound": "No Examination Packages found"
+      },
+      "created": "A new Examination Package is created with identifier {{ param }}",
+      "updated": "A Examination Package is updated with identifier {{ param }}",
+      "deleted": "A Examination Package is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Examination Package {{ id }}?"
+      },
+      "detail": {
+        "title": "Examination Package"
+      },
+      "date": "Date",
+      "title": "Title",
+      "examinationPackageScan": "Examination Package Scan",
+      "visitedDoctor": "Visited Doctor",
+      "examination": "Examination",
+      "user": "User",
+      "appointment": "Appointment"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity VisitedDoctor.
+    -->
+    <changeSet id="20190914162408-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="doctor_id"
+                                 baseTableName="visited_doctor"
+                                 constraintName="fk_visited_doctor_doctor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doctor"/>
+
+        <addForeignKeyConstraint baseColumnNames="appointment_id"
+                                 baseTableName="visited_doctor"
+                                 constraintName="fk_visited_doctor_appointment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="appointment"/>
+
+        <addForeignKeyConstraint baseColumnNames="procedure_id"
+                                 baseTableName="visited_doctor"
+                                 constraintName="fk_visited_doctor_procedure_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="procedure"/>
+
+        <addForeignKeyConstraint baseColumnNames="treatment_id"
+                                 baseTableName="visited_doctor"
+                                 constraintName="fk_visited_doctor_treatment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="treatment"/>
+
+        <addForeignKeyConstraint baseColumnNames="examination_package_id"
+                                 baseTableName="visited_doctor"
+                                 constraintName="fk_visited_doctor_examination_package_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="examination_package"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,42 @@
+{
+    "name": "Doctor",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "specialization",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "doctor",
+            "relationshipName": "visitedDoctor"
+        }
+    ],
+    "changelogDate": "20190914162407",
+    "entityTableName": "doctor",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "clientRootFolder": "",
+    "applications": [
+        "Medicus"
+    ]
+}

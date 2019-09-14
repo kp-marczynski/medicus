@@ -1,0 +1,64 @@
+{
+    "name": "ExaminationPackage",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "examinationPackageScan",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "examinationPackage",
+            "relationshipName": "visitedDoctor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "examination",
+            "otherEntityRelationshipName": "examinationPackage",
+            "relationshipName": "examination",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "examinationPackage",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "appointment",
+            "otherEntityRelationshipName": "examinationPackage",
+            "relationshipName": "appointment",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190914162405",
+    "entityTableName": "examination_package",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "clientRootFolder": "",
+    "applications": [
+        "Medicus"
+    ]
+}

@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="appointment">
+            <h2><span jhiTranslate="medicusApp.appointment.detail.title">Appointment</span> {{appointment.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.appointment.date">Date</span></dt>
+                <dd>
+                    <span>{{appointment.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.appointment.appointmentType">Appointment Type</span></dt>
+                <dd>
+                    <span>{{appointment.appointmentType}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.appointment.description">Description</span></dt>
+                <dd>
+                    <span>{{appointment.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.appointment.descriptionScan">Description Scan</span></dt>
+                <dd>
+                    <div *ngIf="appointment.descriptionScan">
+                        <a (click)="openFile(appointment.descriptionScanContentType, appointment.descriptionScan)" jhiTranslate="entity.action.open">open</a>
+                        {{appointment.descriptionScanContentType}}, {{byteSize(appointment.descriptionScan)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.appointment.user">User</span></dt>
+                <dd>
+                    {{appointment.user?.id}}
+                </dd>
+                <dt><span jhiTranslate="medicusApp.appointment.treatment">Treatment</span></dt>
+                <dd>
+                    <span *ngFor="let treatment of appointment.treatments; let last = last">
+                        <a [routerLink]="['/treatment', treatment?.id, 'view' ]">{{treatment.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.appointment.symptom">Symptom</span></dt>
+                <dd>
+                    <span *ngFor="let symptom of appointment.symptoms; let last = last">
+                        <a [routerLink]="['/symptom', symptom?.id, 'view' ]">{{symptom.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/appointment', appointment.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

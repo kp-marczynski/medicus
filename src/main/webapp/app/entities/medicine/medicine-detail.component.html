@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="medicine">
+            <h2><span jhiTranslate="medicusApp.medicine.detail.title">Medicine</span> {{medicine.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.medicine.name">Name</span></dt>
+                <dd>
+                    <span>{{medicine.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.medicine.indication">Indication</span></dt>
+                <dd>
+                    <span>{{medicine.indication}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.medicine.leaflet">Leaflet</span></dt>
+                <dd>
+                    <div *ngIf="medicine.leaflet">
+                        <a (click)="openFile(medicine.leafletContentType, medicine.leaflet)" jhiTranslate="entity.action.open">open</a>
+                        {{medicine.leafletContentType}}, {{byteSize(medicine.leaflet)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.medicine.language">Language</span></dt>
+                <dd>
+                    <span>{{medicine.language}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/medicine', medicine.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

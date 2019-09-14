@@ -1,0 +1,26 @@
+{
+  "medicusApp": {
+    "examination": {
+      "home": {
+        "title": "Examinations",
+        "createLabel": "Create a new Examination",
+        "createOrEditLabel": "Create or edit a Examination",
+        "notFound": "No Examinations found"
+      },
+      "created": "A new Examination is created with identifier {{ param }}",
+      "updated": "A Examination is updated with identifier {{ param }}",
+      "deleted": "A Examination is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Examination {{ id }}?"
+      },
+      "detail": {
+        "title": "Examination"
+      },
+      "value": "Value",
+      "valueModificator": "Value Modificator",
+      "examinationType": "Examination Type",
+      "user": "User",
+      "examinationPackage": "Examination Package"
+    }
+  }
+}

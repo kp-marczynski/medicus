@@ -1,0 +1,138 @@
+
+application {
+    config {
+        baseName Medicus
+        packageName pl.marczynski.medicus
+
+        applicationType monolith
+        serverPort 8080
+
+        authenticationType jwt
+        buildTool gradle
+
+        databaseType sql
+        devDatabaseType h2Disk
+        prodDatabaseType postgresql
+        cacheProvider no
+        enableHibernateCache false
+        searchEngine false
+
+        enableTranslation true
+        nativeLanguage en
+        languages [en, pl]
+
+        useSass true
+        clientFramework angularX
+        //clientTheme flatly
+        //clientThemeVariant primary
+    }
+    entities *
+}
+
+entity ExaminationType {
+	name String required
+    unit String
+    minValue Double
+    maxValue Double
+    language String
+}
+
+@paginate(pager)
+entity Examination {
+	value Double required
+    valueModificator String
+}
+
+@paginate(pager)
+entity Procedure {
+	date LocalDate required
+	description TextBlob required
+    descriptionScan AnyBlob
+}
+
+@paginate(pager)
+entity Treatment {
+	startDate LocalDate required
+    endDate LocalDate
+    description TextBlob required
+    descriptionScan AnyBlob
+}
+
+entity Medicine {
+	name String required
+    indication TextBlob required
+  	leaflet AnyBlob
+    language String
+}
+
+@paginate(pager)
+entity OwnedMedicine {
+	doses Integer required
+    expirationDate LocalDate required
+}
+
+@paginate(pager)
+entity Appointment {
+	date LocalDate required
+    appointmentType String required
+    description TextBlob required
+    descriptionScan AnyBlob
+}
+
+@paginate(pager)
+entity ExaminationPackage {
+	date LocalDate required
+    title String required
+    examinationPackageScan AnyBlob
+}
+
+@paginate(pager)
+entity Symptom {
+	startDate LocalDate required
+    endDate LocalDate
+    description String required
+}
+
+@paginate(pager)
+entity Doctor {
+	name String required
+    specialization String required
+    language String
+}
+
+@paginate(pager)
+entity VisitedDoctor {
+	opinion TextBlob
+}
+
+relationship OneToMany {
+    Appointment to ExaminationPackage
+    Appointment to Procedure
+    Appointment to VisitedDoctor
+    Procedure to VisitedDoctor
+    Treatment to VisitedDoctor
+    ExaminationPackage to VisitedDoctor
+}
+
+relationship ManyToMany {
+	Appointment to Treatment
+    OwnedMedicine to Medicine
+    Treatment to Medicine
+    Appointment to Symptom
+}
+
+relationship ManyToOne {
+	Examination to ExaminationType
+    ExaminationPackage to Examination
+    VisitedDoctor to Doctor
+    
+    Appointment to User
+    ExaminationPackage to User
+    Examination to User
+    OwnedMedicine to User
+    Treatment to User
+    Procedure to User
+    Symptom to User
+}
+
+noFluentMethod *

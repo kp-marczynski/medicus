@@ -1,0 +1,27 @@
+{
+  "medicusApp": {
+    "medicine": {
+      "home": {
+        "title": "Medicine",
+        "createLabel": "Dodaj Medicine",
+        "createOrEditLabel": "Dodaj lub edytuj: Medicine",
+        "notFound": "No Medicines found"
+      },
+      "created": "Utworzono nowy obiekt typu Medicine z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Medicine z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Medicine z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Medicine {{ id }}?"
+      },
+      "detail": {
+        "title": "Medicine"
+      },
+      "name": "Name",
+      "indication": "Indication",
+      "leaflet": "Leaflet",
+      "language": "Language",
+      "ownedMedicine": "Owned Medicine",
+      "treatment": "Treatment"
+    }
+  }
+}

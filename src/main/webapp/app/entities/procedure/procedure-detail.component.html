@@ -1,0 +1,48 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="procedure">
+            <h2><span jhiTranslate="medicusApp.procedure.detail.title">Procedure</span> {{procedure.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.procedure.date">Date</span></dt>
+                <dd>
+                    <span>{{procedure.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.procedure.description">Description</span></dt>
+                <dd>
+                    <span>{{procedure.description}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span></dt>
+                <dd>
+                    <div *ngIf="procedure.descriptionScan">
+                        <a (click)="openFile(procedure.descriptionScanContentType, procedure.descriptionScan)" jhiTranslate="entity.action.open">open</a>
+                        {{procedure.descriptionScanContentType}}, {{byteSize(procedure.descriptionScan)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.procedure.user">User</span></dt>
+                <dd>
+                    {{procedure.user?.id}}
+                </dd>
+                <dt><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span></dt>
+                <dd>
+                    <div *ngIf="procedure.appointment">
+                        <a [routerLink]="['/appointment', procedure.appointment?.id, 'view']">{{procedure.appointment?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/procedure', procedure.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

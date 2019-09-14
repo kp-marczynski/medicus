@@ -1,0 +1,47 @@
+{
+    "name": "ExaminationType",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "unit",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "minValue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "maxValue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "language",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "examination",
+            "otherEntityRelationshipName": "examinationType",
+            "relationshipName": "examination"
+        }
+    ],
+    "changelogDate": "20190914162358",
+    "entityTableName": "examination_type",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "clientRootFolder": "",
+    "applications": [
+        "Medicus"
+    ]
+}

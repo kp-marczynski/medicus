@@ -1,0 +1,35 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="doctor">
+            <h2><span jhiTranslate="medicusApp.doctor.detail.title">Doctor</span> {{doctor.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.doctor.name">Name</span></dt>
+                <dd>
+                    <span>{{doctor.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.doctor.specialization">Specialization</span></dt>
+                <dd>
+                    <span>{{doctor.specialization}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.doctor.language">Language</span></dt>
+                <dd>
+                    <span>{{doctor.language}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/doctor', doctor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

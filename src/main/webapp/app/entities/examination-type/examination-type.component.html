@@ -1,0 +1,65 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="medicusApp.examinationType.home.title">Examination Types</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-examination-type" [routerLink]="['/examination-type/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="medicusApp.examinationType.home.createLabel">
+            Create a new Examination Type
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="examinationTypes?.length === 0">
+        <span jhiTranslate="medicusApp.examinationType.home.notFound">No examinationTypes found</span>
+    </div>
+    <div class="table-responsive" *ngIf="examinationTypes?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.name">Name</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.unit">Unit</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.minValue">Min Value</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.maxValue">Max Value</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.language">Language</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let examinationType of examinationTypes ;trackBy: trackId">
+                <td><a [routerLink]="['/examination-type', examinationType.id, 'view' ]">{{examinationType.id}}</a></td>
+                <td>{{examinationType.name}}</td>
+                <td>{{examinationType.unit}}</td>
+                <td>{{examinationType.minValue}}</td>
+                <td>{{examinationType.maxValue}}</td>
+                <td>{{examinationType.language}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/examination-type', examinationType.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/examination-type', examinationType.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/examination-type', { outlets: { popup: examinationType.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

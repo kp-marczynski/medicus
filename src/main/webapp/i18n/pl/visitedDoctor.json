@@ -1,0 +1,27 @@
+{
+  "medicusApp": {
+    "visitedDoctor": {
+      "home": {
+        "title": "Visited Doctor",
+        "createLabel": "Dodaj Visited Doctor",
+        "createOrEditLabel": "Dodaj lub edytuj: Visited Doctor",
+        "notFound": "No Visited Doctors found"
+      },
+      "created": "Utworzono nowy obiekt typu Visited Doctor z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Visited Doctor z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Visited Doctor z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Visited Doctor {{ id }}?"
+      },
+      "detail": {
+        "title": "Visited Doctor"
+      },
+      "opinion": "Opinion",
+      "doctor": "Doctor",
+      "appointment": "Appointment",
+      "procedure": "Procedure",
+      "treatment": "Treatment",
+      "examinationPackage": "Examination Package"
+    }
+  }
+}

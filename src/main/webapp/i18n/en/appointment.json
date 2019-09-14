@@ -1,0 +1,31 @@
+{
+  "medicusApp": {
+    "appointment": {
+      "home": {
+        "title": "Appointments",
+        "createLabel": "Create a new Appointment",
+        "createOrEditLabel": "Create or edit a Appointment",
+        "notFound": "No Appointments found"
+      },
+      "created": "A new Appointment is created with identifier {{ param }}",
+      "updated": "A Appointment is updated with identifier {{ param }}",
+      "deleted": "A Appointment is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Appointment {{ id }}?"
+      },
+      "detail": {
+        "title": "Appointment"
+      },
+      "date": "Date",
+      "appointmentType": "Appointment Type",
+      "description": "Description",
+      "descriptionScan": "Description Scan",
+      "examinationPackage": "Examination Package",
+      "procedure": "Procedure",
+      "visitedDoctor": "Visited Doctor",
+      "user": "User",
+      "treatment": "Treatment",
+      "symptom": "Symptom"
+    }
+  }
+}

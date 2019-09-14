@@ -1,0 +1,98 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-appointment-heading" jhiTranslate="medicusApp.appointment.home.createOrEditLabel">Create or edit a Appointment</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.appointment.date" for="field_date">Date</label>
+                    <div class="input-group">
+                        <input id="field_date" type="text" class="form-control" name="date" ngbDatepicker  #dateDp="ngbDatepicker" formControlName="date"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('date').invalid && (editForm.get('date').dirty || editForm.get('date').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('date').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.appointment.appointmentType" for="field_appointmentType">Appointment Type</label>
+                    <input type="text" class="form-control" name="appointmentType" id="field_appointmentType"
+                           formControlName="appointmentType"/>
+                    <div *ngIf="editForm.get('appointmentType').invalid && (editForm.get('appointmentType').dirty || editForm.get('appointmentType').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('appointmentType').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.appointment.description" for="field_description">Description</label>
+                    <textarea class="form-control" name="description" id="field_description"
+                              formControlName="description"></textarea>
+                    <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('description').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.appointment.descriptionScan" for="field_descriptionScan">Description Scan</label>
+                    <div>
+                        <div *ngIf="editForm.get('descriptionScan').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('descriptionScanContentType').value, editForm.get('descriptionScan').value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{editForm.get('descriptionScanContentType').value}}, {{byteSize(editForm.get('descriptionScan').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({descriptionScan: null});editForm.patchValue({descriptionScanContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon [icon]="'times'"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_descriptionScan" (change)="setFileData($event, 'descriptionScan', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="descriptionScan" id="field_descriptionScan"
+                           formControlName="descriptionScan"/>
+                    <input type="hidden" class="form-control" name="descriptionScanContentType" id="field_descriptionScanContentType"
+                           formControlName="descriptionScanContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.appointment.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="medicusApp.appointment.treatment" for="field_treatments">Treatment</label>
+                    <select class="form-control" id="field_treatments" multiple name="treatments" formControlName="treatments">
+                        <option [ngValue]="getSelected(editForm.get('treatments').value, treatmentOption)" *ngFor="let treatmentOption of treatments; trackBy: trackTreatmentById">{{treatmentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="medicusApp.appointment.symptom" for="field_symptoms">Symptom</label>
+                    <select class="form-control" id="field_symptoms" multiple name="symptoms" formControlName="symptoms">
+                        <option [ngValue]="getSelected(editForm.get('symptoms').value, symptomOption)" *ngFor="let symptomOption of symptoms; trackBy: trackSymptomById">{{symptomOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

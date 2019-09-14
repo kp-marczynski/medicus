@@ -1,0 +1,27 @@
+{
+  "medicusApp": {
+    "examinationType": {
+      "home": {
+        "title": "Examination Type",
+        "createLabel": "Dodaj Examination Type",
+        "createOrEditLabel": "Dodaj lub edytuj: Examination Type",
+        "notFound": "No Examination Types found"
+      },
+      "created": "Utworzono nowy obiekt typu Examination Type z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Examination Type z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Examination Type z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Examination Type {{ id }}?"
+      },
+      "detail": {
+        "title": "Examination Type"
+      },
+      "name": "Name",
+      "unit": "Unit",
+      "minValue": "Min Value",
+      "maxValue": "Max Value",
+      "language": "Language",
+      "examination": "Examination"
+    }
+  }
+}

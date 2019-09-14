@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="medicusApp.examinationPackage.home.title">Examination Packages</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-examination-package" [routerLink]="['/examination-package/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="medicusApp.examinationPackage.home.createLabel">
+            Create a new Examination Package
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="examinationPackages?.length === 0">
+        <span jhiTranslate="medicusApp.examinationPackage.home.notFound">No examinationPackages found</span>
+    </div>
+    <div class="table-responsive" *ngIf="examinationPackages?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="examinationPackageScan"><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="examination.id"><span jhiTranslate="medicusApp.examinationPackage.examination">Examination</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examinationPackage.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let examinationPackage of examinationPackages ;trackBy: trackId">
+                <td><a [routerLink]="['/examination-package', examinationPackage.id, 'view' ]">{{examinationPackage.id}}</a></td>
+                <td>{{examinationPackage.date | date:'mediumDate'}}</td>
+                <td>{{examinationPackage.title}}</td>
+                <td>
+                    <a *ngIf="examinationPackage.examinationPackageScan" (click)="openFile(examinationPackage.examinationPackageScanContentType, examinationPackage.examinationPackageScan)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="examinationPackage.examinationPackageScan">{{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}</span>
+                </td>
+                <td>
+                    <div *ngIf="examinationPackage.examination">
+                        <a [routerLink]="['/examination', examinationPackage.examination?.id, 'view' ]" >{{examinationPackage.examination?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    {{examinationPackage.user?.id}}
+                </td>
+                <td>
+                    <div *ngIf="examinationPackage.appointment">
+                        <a [routerLink]="['/appointment', examinationPackage.appointment?.id, 'view' ]" >{{examinationPackage.appointment?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/examination-package', examinationPackage.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/examination-package', examinationPackage.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/examination-package', { outlets: { popup: examinationPackage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div [hidden]="examinationPackages?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

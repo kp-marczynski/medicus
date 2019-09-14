@@ -1,0 +1,31 @@
+{
+  "medicusApp": {
+    "appointment": {
+      "home": {
+        "title": "Appointment",
+        "createLabel": "Dodaj Appointment",
+        "createOrEditLabel": "Dodaj lub edytuj: Appointment",
+        "notFound": "No Appointments found"
+      },
+      "created": "Utworzono nowy obiekt typu Appointment z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Appointment z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Appointment z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Appointment {{ id }}?"
+      },
+      "detail": {
+        "title": "Appointment"
+      },
+      "date": "Date",
+      "appointmentType": "Appointment Type",
+      "description": "Description",
+      "descriptionScan": "Description Scan",
+      "examinationPackage": "Examination Package",
+      "procedure": "Procedure",
+      "visitedDoctor": "Visited Doctor",
+      "user": "User",
+      "treatment": "Treatment",
+      "symptom": "Symptom"
+    }
+  }
+}

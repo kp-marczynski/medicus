@@ -1,0 +1,72 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="medicusApp.ownedMedicine.home.title">Owned Medicines</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-owned-medicine" [routerLink]="['/owned-medicine/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="medicusApp.ownedMedicine.home.createLabel">
+            Create a new Owned Medicine
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="ownedMedicines?.length === 0">
+        <span jhiTranslate="medicusApp.ownedMedicine.home.notFound">No ownedMedicines found</span>
+    </div>
+    <div class="table-responsive" *ngIf="ownedMedicines?.length > 0">
+        <table class="table table-striped" aria-describedby="page-heading">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="doses"><span jhiTranslate="medicusApp.ownedMedicine.doses">Doses</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="expirationDate"><span jhiTranslate="medicusApp.ownedMedicine.expirationDate">Expiration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.ownedMedicine.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let ownedMedicine of ownedMedicines ;trackBy: trackId">
+                <td><a [routerLink]="['/owned-medicine', ownedMedicine.id, 'view' ]">{{ownedMedicine.id}}</a></td>
+                <td>{{ownedMedicine.doses}}</td>
+                <td>{{ownedMedicine.expirationDate | date:'mediumDate'}}</td>
+                <td>
+                    {{ownedMedicine.user?.id}}
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/owned-medicine', ownedMedicine.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/owned-medicine', ownedMedicine.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/owned-medicine', { outlets: { popup: ownedMedicine.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- Pager is not implemented yet, so this is normal pagination instead -->
+    <div [hidden]="ownedMedicines?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

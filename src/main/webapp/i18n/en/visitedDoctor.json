@@ -1,0 +1,27 @@
+{
+  "medicusApp": {
+    "visitedDoctor": {
+      "home": {
+        "title": "Visited Doctors",
+        "createLabel": "Create a new Visited Doctor",
+        "createOrEditLabel": "Create or edit a Visited Doctor",
+        "notFound": "No Visited Doctors found"
+      },
+      "created": "A new Visited Doctor is created with identifier {{ param }}",
+      "updated": "A Visited Doctor is updated with identifier {{ param }}",
+      "deleted": "A Visited Doctor is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Visited Doctor {{ id }}?"
+      },
+      "detail": {
+        "title": "Visited Doctor"
+      },
+      "opinion": "Opinion",
+      "doctor": "Doctor",
+      "appointment": "Appointment",
+      "procedure": "Procedure",
+      "treatment": "Treatment",
+      "examinationPackage": "Examination Package"
+    }
+  }
+}

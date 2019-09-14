@@ -1,0 +1,86 @@
+{
+    "name": "Appointment",
+    "fields": [
+        {
+            "fieldName": "date",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "appointmentType",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "descriptionScan",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "examinationPackage",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "examinationPackage"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "procedure",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "procedure"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "visitedDoctor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "treatment",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "treatment",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "symptom",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "symptom",
+            "otherEntityField": "id",
+            "ownerSide": true
+        }
+    ],
+    "changelogDate": "20190914162404",
+    "entityTableName": "appointment",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "clientRootFolder": "",
+    "applications": [
+        "Medicus"
+    ]
+}

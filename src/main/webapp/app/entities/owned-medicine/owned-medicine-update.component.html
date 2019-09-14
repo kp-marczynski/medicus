@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-owned-medicine-heading" jhiTranslate="medicusApp.ownedMedicine.home.createOrEditLabel">Create or edit a Owned Medicine</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.ownedMedicine.doses" for="field_doses">Doses</label>
+                    <input type="number" class="form-control" name="doses" id="field_doses"
+                           formControlName="doses"/>
+                    <div *ngIf="editForm.get('doses').invalid && (editForm.get('doses').dirty || editForm.get('doses').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('doses').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('doses')?.errors?.number" jhiTranslate="entity.validation.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.ownedMedicine.expirationDate" for="field_expirationDate">Expiration Date</label>
+                    <div class="input-group">
+                        <input id="field_expirationDate" type="text" class="form-control" name="expirationDate" ngbDatepicker  #expirationDateDp="ngbDatepicker" formControlName="expirationDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="expirationDateDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('expirationDate').invalid && (editForm.get('expirationDate').dirty || editForm.get('expirationDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('expirationDate').errors.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.ownedMedicine.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="medicusApp.ownedMedicine.medicine" for="field_medicines">Medicine</label>
+                    <select class="form-control" id="field_medicines" multiple name="medicines" formControlName="medicines">
+                        <option [ngValue]="getSelected(editForm.get('medicines').value, medicineOption)" *ngFor="let medicineOption of medicines; trackBy: trackMedicineById">{{medicineOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

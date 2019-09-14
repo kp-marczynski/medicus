@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="examinationType">
+            <h2><span jhiTranslate="medicusApp.examinationType.detail.title">Examination Type</span> {{examinationType.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.examinationType.name">Name</span></dt>
+                <dd>
+                    <span>{{examinationType.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationType.unit">Unit</span></dt>
+                <dd>
+                    <span>{{examinationType.unit}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationType.minValue">Min Value</span></dt>
+                <dd>
+                    <span>{{examinationType.minValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationType.maxValue">Max Value</span></dt>
+                <dd>
+                    <span>{{examinationType.maxValue}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationType.language">Language</span></dt>
+                <dd>
+                    <span>{{examinationType.language}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/examination-type', examinationType.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

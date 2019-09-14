@@ -1,0 +1,64 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-visited-doctor-heading" jhiTranslate="medicusApp.visitedDoctor.home.createOrEditLabel">Create or edit a Visited Doctor</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.opinion" for="field_opinion">Opinion</label>
+                    <textarea class="form-control" name="opinion" id="field_opinion"
+                              formControlName="opinion"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.doctor" for="field_doctor">Doctor</label>
+                    <select class="form-control" id="field_doctor" name="doctor" formControlName="doctor">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="doctorOption.id === editForm.get('doctor').value?.id ? editForm.get('doctor').value : doctorOption" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.appointment" for="field_appointment">Appointment</label>
+                    <select class="form-control" id="field_appointment" name="appointment" formControlName="appointment">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="appointmentOption.id === editForm.get('appointment').value?.id ? editForm.get('appointment').value : appointmentOption" *ngFor="let appointmentOption of appointments; trackBy: trackAppointmentById">{{appointmentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.procedure" for="field_procedure">Procedure</label>
+                    <select class="form-control" id="field_procedure" name="procedure" formControlName="procedure">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="procedureOption.id === editForm.get('procedure').value?.id ? editForm.get('procedure').value : procedureOption" *ngFor="let procedureOption of procedures; trackBy: trackProcedureById">{{procedureOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.treatment" for="field_treatment">Treatment</label>
+                    <select class="form-control" id="field_treatment" name="treatment" formControlName="treatment">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="treatmentOption.id === editForm.get('treatment').value?.id ? editForm.get('treatment').value : treatmentOption" *ngFor="let treatmentOption of treatments; trackBy: trackTreatmentById">{{treatmentOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.examinationPackage" for="field_examinationPackage">Examination Package</label>
+                    <select class="form-control" id="field_examinationPackage" name="examinationPackage" formControlName="examinationPackage">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="examinationPackageOption.id === editForm.get('examinationPackage').value?.id ? editForm.get('examinationPackage').value : examinationPackageOption" *ngFor="let examinationPackageOption of examinationpackages; trackBy: trackExaminationPackageById">{{examinationPackageOption.id}}</option>
+                    </select>
+                </div>
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="visitedDoctor">
+            <h2><span jhiTranslate="medicusApp.visitedDoctor.detail.title">Visited Doctor</span> {{visitedDoctor.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.opinion">Opinion</span></dt>
+                <dd>
+                    <span>{{visitedDoctor.opinion}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span></dt>
+                <dd>
+                    <div *ngIf="visitedDoctor.doctor">
+                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view']">{{visitedDoctor.doctor?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.appointment">Appointment</span></dt>
+                <dd>
+                    <div *ngIf="visitedDoctor.appointment">
+                        <a [routerLink]="['/appointment', visitedDoctor.appointment?.id, 'view']">{{visitedDoctor.appointment?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.procedure">Procedure</span></dt>
+                <dd>
+                    <div *ngIf="visitedDoctor.procedure">
+                        <a [routerLink]="['/procedure', visitedDoctor.procedure?.id, 'view']">{{visitedDoctor.procedure?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.treatment">Treatment</span></dt>
+                <dd>
+                    <div *ngIf="visitedDoctor.treatment">
+                        <a [routerLink]="['/treatment', visitedDoctor.treatment?.id, 'view']">{{visitedDoctor.treatment?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.examinationPackage">Examination Package</span></dt>
+                <dd>
+                    <div *ngIf="visitedDoctor.examinationPackage">
+                        <a [routerLink]="['/examination-package', visitedDoctor.examinationPackage?.id, 'view']">{{visitedDoctor.examinationPackage?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/visited-doctor', visitedDoctor.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

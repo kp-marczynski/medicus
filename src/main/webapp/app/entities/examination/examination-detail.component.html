@@ -1,0 +1,41 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="examination">
+            <h2><span jhiTranslate="medicusApp.examination.detail.title">Examination</span> {{examination.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.examination.value">Value</span></dt>
+                <dd>
+                    <span>{{examination.value}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examination.valueModificator">Value Modificator</span></dt>
+                <dd>
+                    <span>{{examination.valueModificator}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span></dt>
+                <dd>
+                    <div *ngIf="examination.examinationType">
+                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view']">{{examination.examinationType?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examination.user">User</span></dt>
+                <dd>
+                    {{examination.user?.id}}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/examination', examination.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

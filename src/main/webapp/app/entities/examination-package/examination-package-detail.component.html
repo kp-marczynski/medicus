@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="examinationPackage">
+            <h2><span jhiTranslate="medicusApp.examinationPackage.detail.title">Examination Package</span> {{examinationPackage.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.examinationPackage.date">Date</span></dt>
+                <dd>
+                    <span>{{examinationPackage.date}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationPackage.title">Title</span></dt>
+                <dd>
+                    <span>{{examinationPackage.title}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span></dt>
+                <dd>
+                    <div *ngIf="examinationPackage.examinationPackageScan">
+                        <a (click)="openFile(examinationPackage.examinationPackageScanContentType, examinationPackage.examinationPackageScan)" jhiTranslate="entity.action.open">open</a>
+                        {{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationPackage.examination">Examination</span></dt>
+                <dd>
+                    <div *ngIf="examinationPackage.examination">
+                        <a [routerLink]="['/examination', examinationPackage.examination?.id, 'view']">{{examinationPackage.examination?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationPackage.user">User</span></dt>
+                <dd>
+                    {{examinationPackage.user?.id}}
+                </dd>
+                <dt><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span></dt>
+                <dd>
+                    <div *ngIf="examinationPackage.appointment">
+                        <a [routerLink]="['/appointment', examinationPackage.appointment?.id, 'view']">{{examinationPackage.appointment?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/examination-package', examinationPackage.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

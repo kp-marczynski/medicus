@@ -1,0 +1,58 @@
+{
+    "name": "VisitedDoctor",
+    "fields": [
+        {
+            "fieldName": "opinion",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "doctor",
+            "otherEntityRelationshipName": "visitedDoctor",
+            "relationshipName": "doctor",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "appointment",
+            "otherEntityRelationshipName": "visitedDoctor",
+            "relationshipName": "appointment",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "procedure",
+            "otherEntityRelationshipName": "visitedDoctor",
+            "relationshipName": "procedure",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "treatment",
+            "otherEntityRelationshipName": "visitedDoctor",
+            "relationshipName": "treatment",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "examinationPackage",
+            "otherEntityRelationshipName": "visitedDoctor",
+            "relationshipName": "examinationPackage",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190914162408",
+    "entityTableName": "visited_doctor",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "clientRootFolder": "",
+    "applications": [
+        "Medicus"
+    ]
+}

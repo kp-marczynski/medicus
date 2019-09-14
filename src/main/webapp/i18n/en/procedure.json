@@ -1,0 +1,27 @@
+{
+  "medicusApp": {
+    "procedure": {
+      "home": {
+        "title": "Procedures",
+        "createLabel": "Create a new Procedure",
+        "createOrEditLabel": "Create or edit a Procedure",
+        "notFound": "No Procedures found"
+      },
+      "created": "A new Procedure is created with identifier {{ param }}",
+      "updated": "A Procedure is updated with identifier {{ param }}",
+      "deleted": "A Procedure is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Procedure {{ id }}?"
+      },
+      "detail": {
+        "title": "Procedure"
+      },
+      "date": "Date",
+      "description": "Description",
+      "descriptionScan": "Description Scan",
+      "visitedDoctor": "Visited Doctor",
+      "user": "User",
+      "appointment": "Appointment"
+    }
+  }
+}

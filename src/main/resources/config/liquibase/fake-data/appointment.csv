@@ -1,0 +1,11 @@
+id;date;appointment_type;description;description_scan;description_scan_content_type
+1;2019-09-13;Macao Equatorial Guinea Vision-oriented;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+2;2019-09-14;Customer Human deposit;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+3;2019-09-14;cross-media;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+4;2019-09-13;Internal AI optical;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+5;2019-09-14;Unbranded Cheese Dynamic;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+6;2019-09-14;Tools Unbranded;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+7;2019-09-14;Home Gloves Latvia;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+8;2019-09-13;invoice Devolved;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+9;2019-09-13;Networked;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png
+10;2019-09-14;navigate;../fake-data/blob/hipster.txt;../fake-data/blob/hipster.png;image/png

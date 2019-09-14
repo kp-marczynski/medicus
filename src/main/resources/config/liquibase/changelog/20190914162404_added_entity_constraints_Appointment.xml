@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Appointment.
+    -->
+    <changeSet id="20190914162404-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="user_id"
+                                 baseTableName="appointment"
+                                 constraintName="fk_appointment_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="appointment_id"
+                                 baseTableName="appointment_treatment"
+                                 constraintName="fk_appointment_treatment_appointment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="appointment"/>
+
+        <addForeignKeyConstraint baseColumnNames="treatment_id"
+                                 baseTableName="appointment_treatment"
+                                 constraintName="fk_appointment_treatment_treatment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="treatment"/>
+        
+        <addForeignKeyConstraint baseColumnNames="appointment_id"
+                                 baseTableName="appointment_symptom"
+                                 constraintName="fk_appointment_symptom_appointment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="appointment"/>
+
+        <addForeignKeyConstraint baseColumnNames="symptom_id"
+                                 baseTableName="appointment_symptom"
+                                 constraintName="fk_appointment_symptom_symptom_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="symptom"/>
+        
+    </changeSet>
+</databaseChangeLog>

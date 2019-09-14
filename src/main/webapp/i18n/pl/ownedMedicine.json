@@ -1,0 +1,25 @@
+{
+  "medicusApp": {
+    "ownedMedicine": {
+      "home": {
+        "title": "Owned Medicine",
+        "createLabel": "Dodaj Owned Medicine",
+        "createOrEditLabel": "Dodaj lub edytuj: Owned Medicine",
+        "notFound": "No Owned Medicines found"
+      },
+      "created": "Utworzono nowy obiekt typu Owned Medicine z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Owned Medicine z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Owned Medicine z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Owned Medicine {{ id }}?"
+      },
+      "detail": {
+        "title": "Owned Medicine"
+      },
+      "doses": "Doses",
+      "expirationDate": "Expiration Date",
+      "user": "User",
+      "medicine": "Medicine"
+    }
+  }
+}

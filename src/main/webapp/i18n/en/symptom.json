@@ -1,0 +1,26 @@
+{
+  "medicusApp": {
+    "symptom": {
+      "home": {
+        "title": "Symptoms",
+        "createLabel": "Create a new Symptom",
+        "createOrEditLabel": "Create or edit a Symptom",
+        "notFound": "No Symptoms found"
+      },
+      "created": "A new Symptom is created with identifier {{ param }}",
+      "updated": "A Symptom is updated with identifier {{ param }}",
+      "deleted": "A Symptom is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Symptom {{ id }}?"
+      },
+      "detail": {
+        "title": "Symptom"
+      },
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "description": "Description",
+      "user": "User",
+      "appointment": "Appointment"
+    }
+  }
+}

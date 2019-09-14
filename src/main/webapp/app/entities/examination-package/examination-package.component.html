@@ -17,14 +17,13 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="examinationPackageScan"><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="examination.id"><span jhiTranslate="medicusApp.examinationPackage.examination">Examination</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examinationPackage.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="examinationPackageScan"><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examinationPackage.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -35,11 +34,6 @@
                 <td>
                     <a *ngIf="examinationPackage.examinationPackageScan" (click)="openFile(examinationPackage.examinationPackageScanContentType, examinationPackage.examinationPackageScan)" jhiTranslate="entity.action.open">open</a>
                     <span *ngIf="examinationPackage.examinationPackageScan">{{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}</span>
-                </td>
-                <td>
-                    <div *ngIf="examinationPackage.examination">
-                        <a [routerLink]="['/examination', examinationPackage.examination?.id, 'view' ]" >{{examinationPackage.examination?.id}}</a>
-                    </div>
                 </td>
                 <td>
                     {{examinationPackage.user?.id}}

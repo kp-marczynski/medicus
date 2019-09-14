@@ -80,7 +80,7 @@ class ExaminationTypeResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     examinationType.id.toString()
+                    examinationType.id.toString()
                 )
             )
             .body(result)

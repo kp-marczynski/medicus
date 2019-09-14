@@ -8,7 +8,7 @@ export interface IExamination {
   valueModificator?: string;
   examinationType?: IExaminationType;
   user?: IUser;
-  examinationPackages?: IExaminationPackage[];
+  examinationPackage?: IExaminationPackage;
 }
 
 export class Examination implements IExamination {
@@ -18,6 +18,6 @@ export class Examination implements IExamination {
     public valueModificator?: string,
     public examinationType?: IExaminationType,
     public user?: IUser,
-    public examinationPackages?: IExaminationPackage[]
+    public examinationPackage?: IExaminationPackage
   ) {}
 }

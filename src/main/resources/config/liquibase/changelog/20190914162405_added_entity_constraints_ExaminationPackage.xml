@@ -6,13 +6,7 @@
     <!--
         Added the constraints for entity ExaminationPackage.
     -->
-    <changeSet id="20190914162405-2" author="jhipster">
-        
-        <addForeignKeyConstraint baseColumnNames="examination_id"
-                                 baseTableName="examination_package"
-                                 constraintName="fk_examination_package_examination_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="examination"/>
+    <changeSet id="20190914220058-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="examination_package"

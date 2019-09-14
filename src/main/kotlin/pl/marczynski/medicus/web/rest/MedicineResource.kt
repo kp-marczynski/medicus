@@ -80,7 +80,7 @@ class MedicineResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     medicine.id.toString()
+                    medicine.id.toString()
                 )
             )
             .body(result)

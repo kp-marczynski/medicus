@@ -29,11 +29,10 @@
             "relationshipName": "visitedDoctor"
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "one-to-many",
             "otherEntityName": "examination",
             "otherEntityRelationshipName": "examinationPackage",
-            "relationshipName": "examination",
-            "otherEntityField": "id"
+            "relationshipName": "examination"
         },
         {
             "relationshipType": "many-to-one",
@@ -50,7 +49,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190914162405",
+    "changelogDate": "20190914220058",
     "entityTableName": "examination_package",
     "dto": "no",
     "pagination": "pager",

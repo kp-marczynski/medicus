@@ -92,7 +92,7 @@ class SymptomResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     symptom.id.toString()
+                    symptom.id.toString()
                 )
             )
             .body(result)

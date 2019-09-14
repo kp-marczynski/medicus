@@ -17,11 +17,12 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="doses"><span jhiTranslate="medicusApp.ownedMedicine.doses">Doses</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="expirationDate"><span jhiTranslate="medicusApp.ownedMedicine.expirationDate">Expiration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.ownedMedicine.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="doses"><span jhiTranslate="medicusApp.ownedMedicine.doses">Doses</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="expirationDate"><span jhiTranslate="medicusApp.ownedMedicine.expirationDate">Expiration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="medicine.id"><span jhiTranslate="medicusApp.ownedMedicine.medicine">Medicine</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.ownedMedicine.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -29,6 +30,11 @@
                 <td><a [routerLink]="['/owned-medicine', ownedMedicine.id, 'view' ]">{{ownedMedicine.id}}</a></td>
                 <td>{{ownedMedicine.doses}}</td>
                 <td>{{ownedMedicine.expirationDate | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="ownedMedicine.medicine">
+                        <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view' ]" >{{ownedMedicine.medicine?.id}}</a>
+                    </div>
+                </td>
                 <td>
                     {{ownedMedicine.user?.id}}
                 </td>

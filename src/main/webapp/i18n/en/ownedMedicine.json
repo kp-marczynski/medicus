@@ -18,8 +18,8 @@
       },
       "doses": "Doses",
       "expirationDate": "Expiration Date",
-      "user": "User",
-      "medicine": "Medicine"
+      "medicine": "Medicine",
+      "user": "User"
     }
   }
 }

@@ -20,12 +20,6 @@
                         {{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}
                     </div>
                 </dd>
-                <dt><span jhiTranslate="medicusApp.examinationPackage.examination">Examination</span></dt>
-                <dd>
-                    <div *ngIf="examinationPackage.examination">
-                        <a [routerLink]="['/examination', examinationPackage.examination?.id, 'view']">{{examinationPackage.examination?.id}}</a>
-                    </div>
-                </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.user">User</span></dt>
                 <dd>
                     {{examinationPackage.user?.id}}

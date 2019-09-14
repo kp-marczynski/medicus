@@ -11,6 +11,8 @@ import { IVisitedDoctor, VisitedDoctor } from 'app/shared/model/visited-doctor.m
 import { VisitedDoctorService } from './visited-doctor.service';
 import { IDoctor } from 'app/shared/model/doctor.model';
 import { DoctorService } from 'app/entities/doctor/doctor.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 import { IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 import { IProcedure } from 'app/shared/model/procedure.model';
@@ -29,6 +31,8 @@ export class VisitedDoctorUpdateComponent implements OnInit {
 
   doctors: IDoctor[];
 
+  users: IUser[];
+
   appointments: IAppointment[];
 
   procedures: IProcedure[];
@@ -41,6 +45,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
     id: [],
     opinion: [],
     doctor: [],
+    user: [],
     appointment: [],
     procedure: [],
     treatment: [],
@@ -52,6 +57,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
     protected jhiAlertService: JhiAlertService,
     protected visitedDoctorService: VisitedDoctorService,
     protected doctorService: DoctorService,
+    protected userService: UserService,
     protected appointmentService: AppointmentService,
     protected procedureService: ProcedureService,
     protected treatmentService: TreatmentService,
@@ -72,6 +78,13 @@ export class VisitedDoctorUpdateComponent implements OnInit {
         map((response: HttpResponse<IDoctor[]>) => response.body)
       )
       .subscribe((res: IDoctor[]) => (this.doctors = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.userService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.appointmentService
       .query()
       .pipe(
@@ -107,6 +120,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
       id: visitedDoctor.id,
       opinion: visitedDoctor.opinion,
       doctor: visitedDoctor.doctor,
+      user: visitedDoctor.user,
       appointment: visitedDoctor.appointment,
       procedure: visitedDoctor.procedure,
       treatment: visitedDoctor.treatment,
@@ -167,6 +181,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       opinion: this.editForm.get(['opinion']).value,
       doctor: this.editForm.get(['doctor']).value,
+      user: this.editForm.get(['user']).value,
       appointment: this.editForm.get(['appointment']).value,
       procedure: this.editForm.get(['procedure']).value,
       treatment: this.editForm.get(['treatment']).value,
@@ -191,6 +206,10 @@ export class VisitedDoctorUpdateComponent implements OnInit {
   }
 
   trackDoctorById(index: number, item: IDoctor) {
+    return item.id;
+  }
+
+  trackUserById(index: number, item: IUser) {
     return item.id;
   }
 

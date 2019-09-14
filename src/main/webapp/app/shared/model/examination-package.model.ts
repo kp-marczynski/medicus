@@ -11,7 +11,7 @@ export interface IExaminationPackage {
   examinationPackageScanContentType?: string;
   examinationPackageScan?: any;
   visitedDoctors?: IVisitedDoctor[];
-  examination?: IExamination;
+  examinations?: IExamination[];
   user?: IUser;
   appointment?: IAppointment;
 }
@@ -24,7 +24,7 @@ export class ExaminationPackage implements IExaminationPackage {
     public examinationPackageScanContentType?: string,
     public examinationPackageScan?: any,
     public visitedDoctors?: IVisitedDoctor[],
-    public examination?: IExamination,
+    public examinations?: IExamination[],
     public user?: IUser,
     public appointment?: IAppointment
   ) {}

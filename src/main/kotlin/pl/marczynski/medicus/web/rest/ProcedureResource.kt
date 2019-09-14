@@ -92,7 +92,7 @@ class ProcedureResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     procedure.id.toString()
+                    procedure.id.toString()
                 )
             )
             .body(result)

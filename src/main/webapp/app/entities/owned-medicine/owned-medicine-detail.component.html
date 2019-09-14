@@ -13,15 +13,15 @@
                 <dd>
                     <span>{{ownedMedicine.expirationDate}}</span>
                 </dd>
+                <dt><span jhiTranslate="medicusApp.ownedMedicine.medicine">Medicine</span></dt>
+                <dd>
+                    <div *ngIf="ownedMedicine.medicine">
+                        <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view']">{{ownedMedicine.medicine?.id}}</a>
+                    </div>
+                </dd>
                 <dt><span jhiTranslate="medicusApp.ownedMedicine.user">User</span></dt>
                 <dd>
                     {{ownedMedicine.user?.id}}
-                </dd>
-                <dt><span jhiTranslate="medicusApp.ownedMedicine.medicine">Medicine</span></dt>
-                <dd>
-                    <span *ngFor="let medicine of ownedMedicine.medicines; let last = last">
-                        <a [routerLink]="['/medicine', medicine?.id, 'view' ]">{{medicine.id}}</a>{{last ? '' : ', '}}
-                    </span>
                 </dd>
             </dl>
 

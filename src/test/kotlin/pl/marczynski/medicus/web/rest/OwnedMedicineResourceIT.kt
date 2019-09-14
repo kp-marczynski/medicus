@@ -9,11 +9,9 @@ import kotlin.test.assertNotNull
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
-import org.springframework.data.domain.PageImpl
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver
 import org.springframework.http.MediaType
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
@@ -27,10 +25,6 @@ import java.time.ZoneId
 
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.Matchers.hasItem
-import org.mockito.ArgumentMatchers.any
-import org.mockito.Mockito.`when`
-import org.mockito.Mockito.times
-import org.mockito.Mockito.verify
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -49,9 +43,6 @@ class OwnedMedicineResourceIT {
 
     @Autowired
     private lateinit var ownedMedicineRepository: OwnedMedicineRepository
-
-    @Mock
-    private lateinit var ownedMedicineRepositoryMock: OwnedMedicineRepository
 
     @Autowired
     private lateinit var jacksonMessageConverter: MappingJackson2HttpMessageConverter
@@ -180,39 +171,6 @@ class OwnedMedicineResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(ownedMedicine.id?.toInt())))
             .andExpect(jsonPath("$.[*].doses").value(hasItem(DEFAULT_DOSES)))
             .andExpect(jsonPath("$.[*].expirationDate").value(hasItem(DEFAULT_EXPIRATION_DATE.toString())))
-    }
-
-    @Suppress("unchecked")
-    fun getAllOwnedMedicinesWithEagerRelationshipsIsEnabled() {
-        val ownedMedicineResource = OwnedMedicineResource(ownedMedicineRepositoryMock)
-        `when`(ownedMedicineRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(PageImpl(mutableListOf()))
-
-        val restOwnedMedicineMockMvc = MockMvcBuilders.standaloneSetup(ownedMedicineResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build()
-
-        restOwnedMedicineMockMvc.perform(get("/api/owned-medicines?eagerload=true"))
-            .andExpect(status().isOk)
-
-        verify(ownedMedicineRepositoryMock, times(1)).findAllWithEagerRelationships(any())
-    }
-
-    @Suppress("unchecked")
-    fun getAllOwnedMedicinesWithEagerRelationshipsIsNotEnabled() {
-        val ownedMedicineResource = OwnedMedicineResource(ownedMedicineRepositoryMock)
-        `when`(ownedMedicineRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(PageImpl(mutableListOf()))
-        val restOwnedMedicineMockMvc = MockMvcBuilders.standaloneSetup(ownedMedicineResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build()
-
-        restOwnedMedicineMockMvc.perform(get("/api/owned-medicines?eagerload=true"))
-            .andExpect(status().isOk)
-
-        verify(ownedMedicineRepositoryMock, times(1)).findAllWithEagerRelationships(any())
     }
 
     @Test

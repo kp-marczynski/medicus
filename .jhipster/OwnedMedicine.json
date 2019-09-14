@@ -19,21 +19,20 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "medicine",
+            "otherEntityRelationshipName": "ownedMedicine",
+            "relationshipName": "medicine",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "ownedMedicine",
             "relationshipName": "user",
             "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-many",
-            "otherEntityName": "medicine",
-            "otherEntityRelationshipName": "ownedMedicine",
-            "relationshipName": "medicine",
-            "otherEntityField": "id",
-            "ownerSide": true
         }
     ],
-    "changelogDate": "20190914162403",
+    "changelogDate": "20190914220056",
     "entityTableName": "owned_medicine",
     "dto": "no",
     "pagination": "pager",

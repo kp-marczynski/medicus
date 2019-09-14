@@ -28,12 +28,10 @@
     ],
     "relationships": [
         {
-            "relationshipType": "many-to-many",
+            "relationshipType": "one-to-many",
             "otherEntityName": "ownedMedicine",
             "otherEntityRelationshipName": "medicine",
-            "relationshipName": "ownedMedicine",
-            "otherEntityField": "id",
-            "ownerSide": false
+            "relationshipName": "ownedMedicine"
         },
         {
             "relationshipType": "many-to-many",
@@ -44,7 +42,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190914162402",
+    "changelogDate": "20190914220055",
     "entityTableName": "medicine",
     "dto": "no",
     "pagination": "no",

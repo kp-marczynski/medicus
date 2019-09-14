@@ -7,7 +7,7 @@
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                           readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.examination.value" for="field_value">Value</label>
@@ -16,10 +16,10 @@
                     <div *ngIf="editForm.get('value').invalid && (editForm.get('value').dirty || editForm.get('value').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('value').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                         <small class="form-text text-danger"
-                            [hidden]="!editForm.get('value')?.errors?.number" jhiTranslate="entity.validation.number">
+                               [hidden]="!editForm.get('value')?.errors?.number" jhiTranslate="entity.validation.number">
                             This field should be a number.
                         </small>
                     </div>
@@ -42,6 +42,13 @@
                     <select class="form-control" id="field_user" name="user" formControlName="user">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.examination.examinationPackage" for="field_examinationPackage">Examination Package</label>
+                    <select class="form-control" id="field_examinationPackage" name="examinationPackage" formControlName="examinationPackage">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="examinationPackageOption.id === editForm.get('examinationPackage').value?.id ? editForm.get('examinationPackage').value : examinationPackageOption" *ngFor="let examinationPackageOption of examinationpackages; trackBy: trackExaminationPackageById">{{examinationPackageOption.id}}</option>
                     </select>
                 </div>
             </div>

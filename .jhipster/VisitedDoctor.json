@@ -17,6 +17,13 @@
         },
         {
             "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "visitedDoctor",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
             "otherEntityName": "appointment",
             "otherEntityRelationshipName": "visitedDoctor",
             "relationshipName": "appointment",
@@ -44,7 +51,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190914162408",
+    "changelogDate": "20190914220101",
     "entityTableName": "visited_doctor",
     "dto": "no",
     "pagination": "pager",

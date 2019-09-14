@@ -92,7 +92,7 @@ class ExaminationPackageResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     examinationPackage.id.toString()
+                    examinationPackage.id.toString()
                 )
             )
             .body(result)

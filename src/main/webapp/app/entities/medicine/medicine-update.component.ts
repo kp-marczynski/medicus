@@ -9,8 +9,6 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IMedicine, Medicine } from 'app/shared/model/medicine.model';
 import { MedicineService } from './medicine.service';
-import { IOwnedMedicine } from 'app/shared/model/owned-medicine.model';
-import { OwnedMedicineService } from 'app/entities/owned-medicine/owned-medicine.service';
 import { ITreatment } from 'app/shared/model/treatment.model';
 import { TreatmentService } from 'app/entities/treatment/treatment.service';
 
@@ -20,8 +18,6 @@ import { TreatmentService } from 'app/entities/treatment/treatment.service';
 })
 export class MedicineUpdateComponent implements OnInit {
   isSaving: boolean;
-
-  ownedmedicines: IOwnedMedicine[];
 
   treatments: ITreatment[];
 
@@ -38,7 +34,6 @@ export class MedicineUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected medicineService: MedicineService,
-    protected ownedMedicineService: OwnedMedicineService,
     protected treatmentService: TreatmentService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -49,13 +44,6 @@ export class MedicineUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ medicine }) => {
       this.updateForm(medicine);
     });
-    this.ownedMedicineService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IOwnedMedicine[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IOwnedMedicine[]>) => response.body)
-      )
-      .subscribe((res: IOwnedMedicine[]) => (this.ownedmedicines = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.treatmentService
       .query()
       .pipe(
@@ -149,10 +137,6 @@ export class MedicineUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackOwnedMedicineById(index: number, item: IOwnedMedicine) {
-    return item.id;
   }
 
   trackTreatmentById(index: number, item: ITreatment) {

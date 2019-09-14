@@ -47,9 +47,8 @@ class ExaminationPackage(
     @OneToMany(mappedBy = "examinationPackage")
     var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
 
-    @ManyToOne
-    @JsonIgnoreProperties("examinationPackages")
-    var examination: Examination? = null,
+    @OneToMany(mappedBy = "examinationPackage")
+    var examinations: MutableSet<Examination> = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("examinationPackages")

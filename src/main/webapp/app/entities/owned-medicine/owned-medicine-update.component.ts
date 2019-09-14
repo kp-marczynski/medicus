@@ -10,10 +10,10 @@ import * as moment from 'moment';
 import { JhiAlertService } from 'ng-jhipster';
 import { IOwnedMedicine, OwnedMedicine } from 'app/shared/model/owned-medicine.model';
 import { OwnedMedicineService } from './owned-medicine.service';
-import { IUser } from 'app/core/user/user.model';
-import { UserService } from 'app/core/user/user.service';
 import { IMedicine } from 'app/shared/model/medicine.model';
 import { MedicineService } from 'app/entities/medicine/medicine.service';
+import { IUser } from 'app/core/user/user.model';
+import { UserService } from 'app/core/user/user.service';
 
 @Component({
   selector: 'jhi-owned-medicine-update',
@@ -22,24 +22,24 @@ import { MedicineService } from 'app/entities/medicine/medicine.service';
 export class OwnedMedicineUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  users: IUser[];
-
   medicines: IMedicine[];
+
+  users: IUser[];
   expirationDateDp: any;
 
   editForm = this.fb.group({
     id: [],
     doses: [null, [Validators.required]],
     expirationDate: [null, [Validators.required]],
-    user: [],
-    medicines: []
+    medicine: [],
+    user: []
   });
 
   constructor(
     protected jhiAlertService: JhiAlertService,
     protected ownedMedicineService: OwnedMedicineService,
-    protected userService: UserService,
     protected medicineService: MedicineService,
+    protected userService: UserService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -49,13 +49,6 @@ export class OwnedMedicineUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ ownedMedicine }) => {
       this.updateForm(ownedMedicine);
     });
-    this.userService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IUser[]>) => response.body)
-      )
-      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.medicineService
       .query()
       .pipe(
@@ -63,6 +56,13 @@ export class OwnedMedicineUpdateComponent implements OnInit {
         map((response: HttpResponse<IMedicine[]>) => response.body)
       )
       .subscribe((res: IMedicine[]) => (this.medicines = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.userService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IUser[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IUser[]>) => response.body)
+      )
+      .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(ownedMedicine: IOwnedMedicine) {
@@ -70,8 +70,8 @@ export class OwnedMedicineUpdateComponent implements OnInit {
       id: ownedMedicine.id,
       doses: ownedMedicine.doses,
       expirationDate: ownedMedicine.expirationDate,
-      user: ownedMedicine.user,
-      medicines: ownedMedicine.medicines
+      medicine: ownedMedicine.medicine,
+      user: ownedMedicine.user
     });
   }
 
@@ -95,8 +95,8 @@ export class OwnedMedicineUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       doses: this.editForm.get(['doses']).value,
       expirationDate: this.editForm.get(['expirationDate']).value,
-      user: this.editForm.get(['user']).value,
-      medicines: this.editForm.get(['medicines']).value
+      medicine: this.editForm.get(['medicine']).value,
+      user: this.editForm.get(['user']).value
     };
   }
 
@@ -116,22 +116,11 @@ export class OwnedMedicineUpdateComponent implements OnInit {
     this.jhiAlertService.error(errorMessage, null, null);
   }
 
-  trackUserById(index: number, item: IUser) {
-    return item.id;
-  }
-
   trackMedicineById(index: number, item: IMedicine) {
     return item.id;
   }
 
-  getSelected(selectedVals: any[], option: any) {
-    if (selectedVals) {
-      for (let i = 0; i < selectedVals.length; i++) {
-        if (option.id === selectedVals[i].id) {
-          return selectedVals[i];
-        }
-      }
-    }
-    return option;
+  trackUserById(index: number, item: IUser) {
+    return item.id;
   }
 }

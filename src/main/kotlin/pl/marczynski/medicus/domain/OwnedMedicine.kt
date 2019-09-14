@@ -7,9 +7,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
@@ -40,13 +37,11 @@ class OwnedMedicine(
 
     @ManyToOne
     @JsonIgnoreProperties("ownedMedicines")
-    var user: User? = null,
+    var medicine: Medicine? = null,
 
-    @ManyToMany
-    @JoinTable(name = "owned_medicine_medicine",
-        joinColumns = [JoinColumn(name = "owned_medicine_id", referencedColumnName = "id")],
-        inverseJoinColumns = [JoinColumn(name = "medicine_id", referencedColumnName = "id")])
-    var medicines: MutableSet<Medicine> = mutableSetOf()
+    @ManyToOne
+    @JsonIgnoreProperties("ownedMedicines")
+    var user: User? = null
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {

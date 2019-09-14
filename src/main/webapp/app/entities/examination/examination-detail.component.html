@@ -23,6 +23,12 @@
                 <dd>
                     {{examination.user?.id}}
                 </dd>
+                <dt><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span></dt>
+                <dd>
+                    <div *ngIf="examination.examinationPackage">
+                        <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view']">{{examination.examinationPackage?.id}}</a>
+                    </div>
+                </dd>
             </dl>
 
             <button type="submit"

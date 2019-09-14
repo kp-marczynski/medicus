@@ -29,13 +29,14 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "examinationPackage",
             "otherEntityRelationshipName": "examination",
-            "relationshipName": "examinationPackage"
+            "relationshipName": "examinationPackage",
+            "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190914162359",
+    "changelogDate": "20190914220052",
     "entityTableName": "examination",
     "dto": "no",
     "pagination": "pager",

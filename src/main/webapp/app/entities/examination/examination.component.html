@@ -17,12 +17,13 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="value"><span jhiTranslate="medicusApp.examination.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="valueModificator"><span jhiTranslate="medicusApp.examination.valueModificator">Value Modificator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="examinationType.id"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examination.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th></th>
+                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="value"><span jhiTranslate="medicusApp.examination.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="valueModificator"><span jhiTranslate="medicusApp.examination.valueModificator">Value Modificator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="examinationType.id"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examination.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="examinationPackage.id"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -37,6 +38,11 @@
                 </td>
                 <td>
                     {{examination.user?.id}}
+                </td>
+                <td>
+                    <div *ngIf="examination.examinationPackage">
+                        <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view' ]" >{{examination.examinationPackage?.id}}</a>
+                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

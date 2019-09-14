@@ -6,8 +6,8 @@
     <!--
         Added the constraints for entity Treatment.
     -->
-    <changeSet id="20190914162401-2" author="jhipster">
-        
+    <changeSet id="20190914220054-2" author="jhipster">
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="treatment"
                                  constraintName="fk_treatment_user_id"
@@ -25,6 +25,6 @@
                                  constraintName="fk_treatment_medicine_medicine_id"
                                  referencedColumnNames="id"
                                  referencedTableName="medicine"/>
-        
+
     </changeSet>
 </databaseChangeLog>

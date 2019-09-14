@@ -1,13 +1,13 @@
 import { Moment } from 'moment';
-import { IUser } from 'app/core/user/user.model';
 import { IMedicine } from 'app/shared/model/medicine.model';
+import { IUser } from 'app/core/user/user.model';
 
 export interface IOwnedMedicine {
   id?: number;
   doses?: number;
   expirationDate?: Moment;
+  medicine?: IMedicine;
   user?: IUser;
-  medicines?: IMedicine[];
 }
 
 export class OwnedMedicine implements IOwnedMedicine {
@@ -15,7 +15,7 @@ export class OwnedMedicine implements IOwnedMedicine {
     public id?: number,
     public doses?: number,
     public expirationDate?: Moment,
-    public user?: IUser,
-    public medicines?: IMedicine[]
+    public medicine?: IMedicine,
+    public user?: IUser
   ) {}
 }

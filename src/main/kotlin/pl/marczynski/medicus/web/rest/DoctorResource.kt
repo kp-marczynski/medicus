@@ -83,7 +83,7 @@ class DoctorResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     doctor.id.toString()
+                    doctor.id.toString()
                 )
             )
             .body(result)

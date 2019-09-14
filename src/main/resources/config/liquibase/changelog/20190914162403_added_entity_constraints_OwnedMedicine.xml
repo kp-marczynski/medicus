@@ -6,25 +6,19 @@
     <!--
         Added the constraints for entity OwnedMedicine.
     -->
-    <changeSet id="20190914162403-2" author="jhipster">
-        
+    <changeSet id="20190914220056-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="medicine_id"
+                                 baseTableName="owned_medicine"
+                                 constraintName="fk_owned_medicine_medicine_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="medicine"/>
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="owned_medicine"
                                  constraintName="fk_owned_medicine_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
 
-        <addForeignKeyConstraint baseColumnNames="owned_medicine_id"
-                                 baseTableName="owned_medicine_medicine"
-                                 constraintName="fk_owned_medicine_medicine_owned_medicine_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="owned_medicine"/>
-
-        <addForeignKeyConstraint baseColumnNames="medicine_id"
-                                 baseTableName="owned_medicine_medicine"
-                                 constraintName="fk_owned_medicine_medicine_medicine_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="medicine"/>
-        
     </changeSet>
 </databaseChangeLog>

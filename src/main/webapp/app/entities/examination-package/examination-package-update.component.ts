@@ -10,8 +10,6 @@ import * as moment from 'moment';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IExaminationPackage, ExaminationPackage } from 'app/shared/model/examination-package.model';
 import { ExaminationPackageService } from './examination-package.service';
-import { IExamination } from 'app/shared/model/examination.model';
-import { ExaminationService } from 'app/entities/examination/examination.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IAppointment } from 'app/shared/model/appointment.model';
@@ -24,8 +22,6 @@ import { AppointmentService } from 'app/entities/appointment/appointment.service
 export class ExaminationPackageUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  examinations: IExamination[];
-
   users: IUser[];
 
   appointments: IAppointment[];
@@ -37,7 +33,6 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     title: [null, [Validators.required]],
     examinationPackageScan: [],
     examinationPackageScanContentType: [],
-    examination: [],
     user: [],
     appointment: []
   });
@@ -46,7 +41,6 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected examinationPackageService: ExaminationPackageService,
-    protected examinationService: ExaminationService,
     protected userService: UserService,
     protected appointmentService: AppointmentService,
     protected activatedRoute: ActivatedRoute,
@@ -58,13 +52,6 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ examinationPackage }) => {
       this.updateForm(examinationPackage);
     });
-    this.examinationService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IExamination[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IExamination[]>) => response.body)
-      )
-      .subscribe((res: IExamination[]) => (this.examinations = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.userService
       .query()
       .pipe(
@@ -88,7 +75,6 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       title: examinationPackage.title,
       examinationPackageScan: examinationPackage.examinationPackageScan,
       examinationPackageScanContentType: examinationPackage.examinationPackageScanContentType,
-      examination: examinationPackage.examination,
       user: examinationPackage.user,
       appointment: examinationPackage.appointment
     });
@@ -149,7 +135,6 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       title: this.editForm.get(['title']).value,
       examinationPackageScanContentType: this.editForm.get(['examinationPackageScanContentType']).value,
       examinationPackageScan: this.editForm.get(['examinationPackageScan']).value,
-      examination: this.editForm.get(['examination']).value,
       user: this.editForm.get(['user']).value,
       appointment: this.editForm.get(['appointment']).value
     };
@@ -169,10 +154,6 @@ export class ExaminationPackageUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackExaminationById(index: number, item: IExamination) {
-    return item.id;
   }
 
   trackUserById(index: number, item: IUser) {

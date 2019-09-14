@@ -28,13 +28,17 @@ class VisitedDoctor(
     var id: Long? = null,
 
     @Lob
-        @Type(type = "org.hibernate.type.TextType")
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "opinion")
     var opinion: String? = null,
 
     @ManyToOne
     @JsonIgnoreProperties("visitedDoctors")
     var doctor: Doctor? = null,
+
+    @ManyToOne
+    @JsonIgnoreProperties("visitedDoctors")
+    var user: User? = null,
 
     @ManyToOne
     @JsonIgnoreProperties("visitedDoctors")

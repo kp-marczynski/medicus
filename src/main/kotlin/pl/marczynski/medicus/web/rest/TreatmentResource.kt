@@ -94,7 +94,7 @@ class TreatmentResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     treatment.id.toString()
+                    treatment.id.toString()
                 )
             )
             .body(result)

@@ -7,7 +7,7 @@
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                           readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.opinion" for="field_opinion">Opinion</label>
@@ -20,6 +20,13 @@
                     <select class="form-control" id="field_doctor" name="doctor" formControlName="doctor">
                         <option [ngValue]="null"></option>
                         <option [ngValue]="doctorOption.id === editForm.get('doctor').value?.id ? editForm.get('doctor').value : doctorOption" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.user" for="field_user">User</label>
+                    <select class="form-control" id="field_user" name="user" formControlName="user">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
                     </select>
                 </div>
                 <div class="form-group">

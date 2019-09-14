@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -33,7 +34,8 @@ private const val ENTITY_NAME = "symptom"
 @RestController
 @RequestMapping("/api")
 class SymptomResource(
-    private val symptomRepository: SymptomRepository
+    private val symptomRepository: SymptomRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -57,6 +59,7 @@ class SymptomResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        symptom.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = symptomRepository.save(symptom)
         return ResponseEntity.created(URI("/api/symptoms/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -77,6 +80,12 @@ class SymptomResource(
         log.debug("REST request to update Symptom : {}", symptom)
         if (symptom.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!symptomRepository.checkUserRightsById(symptom.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = symptomRepository.save(symptom)
         return ResponseEntity.ok()
@@ -116,6 +125,12 @@ class SymptomResource(
     @GetMapping("/symptoms/{id}")
     fun getSymptom(@PathVariable id: Long): ResponseEntity<Symptom> {
         log.debug("REST request to get Symptom : {}", id)
+        if (!symptomRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val symptom = symptomRepository.findById(id)
         return ResponseUtil.wrapOrNotFound(symptom)
     }
@@ -129,7 +144,12 @@ class SymptomResource(
     @DeleteMapping("/symptoms/{id}")
     fun deleteSymptom(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete Symptom : {}", id)
-
+        if (!symptomRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         symptomRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -33,7 +34,8 @@ private const val ENTITY_NAME = "examination"
 @RestController
 @RequestMapping("/api")
 class ExaminationResource(
-    private val examinationRepository: ExaminationRepository
+    private val examinationRepository: ExaminationRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -57,6 +59,7 @@ class ExaminationResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        examination.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = examinationRepository.save(examination)
         return ResponseEntity.created(URI("/api/examinations/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -77,6 +80,12 @@ class ExaminationResource(
         log.debug("REST request to update Examination : {}", examination)
         if (examination.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!examinationRepository.checkUserRightsById(examination.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = examinationRepository.save(examination)
         return ResponseEntity.ok()
@@ -116,6 +125,12 @@ class ExaminationResource(
     @GetMapping("/examinations/{id}")
     fun getExamination(@PathVariable id: Long): ResponseEntity<Examination> {
         log.debug("REST request to get Examination : {}", id)
+        if (!examinationRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val examination = examinationRepository.findById(id)
         return ResponseUtil.wrapOrNotFound(examination)
     }
@@ -129,7 +144,12 @@ class ExaminationResource(
     @DeleteMapping("/examinations/{id}")
     fun deleteExamination(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete Examination : {}", id)
-
+        if (!examinationRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         examinationRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

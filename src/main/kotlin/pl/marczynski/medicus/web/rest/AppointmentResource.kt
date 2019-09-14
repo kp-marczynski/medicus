@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -35,7 +36,8 @@ private const val ENTITY_NAME = "appointment"
 @RestController
 @RequestMapping("/api")
 class AppointmentResource(
-    private val appointmentRepository: AppointmentRepository
+    private val appointmentRepository: AppointmentRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -59,6 +61,7 @@ class AppointmentResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        appointment.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = appointmentRepository.save(appointment)
         return ResponseEntity.created(URI("/api/appointments/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -79,6 +82,12 @@ class AppointmentResource(
         log.debug("REST request to update Appointment : {}", appointment)
         if (appointment.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!appointmentRepository.checkUserRightsById(appointment.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = appointmentRepository.save(appointment)
         return ResponseEntity.ok()
@@ -123,6 +132,12 @@ class AppointmentResource(
     @GetMapping("/appointments/{id}")
     fun getAppointment(@PathVariable id: Long): ResponseEntity<Appointment> {
         log.debug("REST request to get Appointment : {}", id)
+        if (!appointmentRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val appointment = appointmentRepository.findOneWithEagerRelationships(id)
         return ResponseUtil.wrapOrNotFound(appointment)
     }
@@ -136,7 +151,12 @@ class AppointmentResource(
     @DeleteMapping("/appointments/{id}")
     fun deleteAppointment(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete Appointment : {}", id)
-
+        if (!appointmentRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         appointmentRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

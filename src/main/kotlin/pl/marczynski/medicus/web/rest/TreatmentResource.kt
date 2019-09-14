@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -35,7 +36,8 @@ private const val ENTITY_NAME = "treatment"
 @RestController
 @RequestMapping("/api")
 class TreatmentResource(
-    private val treatmentRepository: TreatmentRepository
+    private val treatmentRepository: TreatmentRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -59,6 +61,7 @@ class TreatmentResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        treatment.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = treatmentRepository.save(treatment)
         return ResponseEntity.created(URI("/api/treatments/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -79,6 +82,12 @@ class TreatmentResource(
         log.debug("REST request to update Treatment : {}", treatment)
         if (treatment.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!treatmentRepository.checkUserRightsById(treatment.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = treatmentRepository.save(treatment)
         return ResponseEntity.ok()
@@ -123,6 +132,12 @@ class TreatmentResource(
     @GetMapping("/treatments/{id}")
     fun getTreatment(@PathVariable id: Long): ResponseEntity<Treatment> {
         log.debug("REST request to get Treatment : {}", id)
+        if (!treatmentRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val treatment = treatmentRepository.findOneWithEagerRelationships(id)
         return ResponseUtil.wrapOrNotFound(treatment)
     }
@@ -136,7 +151,12 @@ class TreatmentResource(
     @DeleteMapping("/treatments/{id}")
     fun deleteTreatment(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete Treatment : {}", id)
-
+        if (!treatmentRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         treatmentRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

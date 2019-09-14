@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -33,7 +34,8 @@ private const val ENTITY_NAME = "procedure"
 @RestController
 @RequestMapping("/api")
 class ProcedureResource(
-    private val procedureRepository: ProcedureRepository
+    private val procedureRepository: ProcedureRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -57,6 +59,7 @@ class ProcedureResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        procedure.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = procedureRepository.save(procedure)
         return ResponseEntity.created(URI("/api/procedures/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -77,6 +80,12 @@ class ProcedureResource(
         log.debug("REST request to update Procedure : {}", procedure)
         if (procedure.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!procedureRepository.checkUserRightsById(procedure.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = procedureRepository.save(procedure)
         return ResponseEntity.ok()
@@ -116,6 +125,12 @@ class ProcedureResource(
     @GetMapping("/procedures/{id}")
     fun getProcedure(@PathVariable id: Long): ResponseEntity<Procedure> {
         log.debug("REST request to get Procedure : {}", id)
+        if (!procedureRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val procedure = procedureRepository.findById(id)
         return ResponseUtil.wrapOrNotFound(procedure)
     }
@@ -129,7 +144,12 @@ class ProcedureResource(
     @DeleteMapping("/procedures/{id}")
     fun deleteProcedure(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete Procedure : {}", id)
-
+        if (!procedureRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         procedureRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

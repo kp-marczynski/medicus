@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-md-6">
         <div *ngIf="treatment">
             <h2><span jhiTranslate="medicusApp.treatment.detail.title">Treatment</span> {{treatment.id}}</h2>
             <hr>
@@ -48,5 +48,8 @@
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
+    </div>
+    <div class="col-md-6" *ngIf="treatment.descriptionScan">
+        <jhi-file-viewer [data]="treatment.descriptionScan" [contentType]="treatment.descriptionScanContentType"></jhi-file-viewer>
     </div>
 </div>

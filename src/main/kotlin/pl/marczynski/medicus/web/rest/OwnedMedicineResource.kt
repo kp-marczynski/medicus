@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -35,7 +36,8 @@ private const val ENTITY_NAME = "ownedMedicine"
 @RestController
 @RequestMapping("/api")
 class OwnedMedicineResource(
-    private val ownedMedicineRepository: OwnedMedicineRepository
+    private val ownedMedicineRepository: OwnedMedicineRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -59,6 +61,7 @@ class OwnedMedicineResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        ownedMedicine.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = ownedMedicineRepository.save(ownedMedicine)
         return ResponseEntity.created(URI("/api/owned-medicines/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -79,6 +82,12 @@ class OwnedMedicineResource(
         log.debug("REST request to update OwnedMedicine : {}", ownedMedicine)
         if (ownedMedicine.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!ownedMedicineRepository.checkUserRightsById(ownedMedicine.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = ownedMedicineRepository.save(ownedMedicine)
         return ResponseEntity.ok()
@@ -123,6 +132,12 @@ class OwnedMedicineResource(
     @GetMapping("/owned-medicines/{id}")
     fun getOwnedMedicine(@PathVariable id: Long): ResponseEntity<OwnedMedicine> {
         log.debug("REST request to get OwnedMedicine : {}", id)
+        if (!ownedMedicineRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val ownedMedicine = ownedMedicineRepository.findOneWithEagerRelationships(id)
         return ResponseUtil.wrapOrNotFound(ownedMedicine)
     }
@@ -136,7 +151,12 @@ class OwnedMedicineResource(
     @DeleteMapping("/owned-medicines/{id}")
     fun deleteOwnedMedicine(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete OwnedMedicine : {}", id)
-
+        if (!ownedMedicineRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         ownedMedicineRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

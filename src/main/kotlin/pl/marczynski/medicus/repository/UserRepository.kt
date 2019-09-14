@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.data.jpa.repository.EntityGraph
 import org.springframework.data.jpa.repository.JpaRepository
+import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 
 import java.util.Optional
@@ -27,6 +28,9 @@ interface UserRepository : JpaRepository<User, Long> {
     fun findOneByEmailIgnoreCase(email: String?): Optional<User>
 
     fun findOneByLogin(login: String): Optional<User>
+
+    @Query("select user from User user where user.login = ?#{principal.username}")
+    fun findByUserIsCurrentUser(): Optional<User>
 
     @EntityGraph(attributePaths = ["authorities"])
     fun findOneWithAuthoritiesById(id: Long): Optional<User>

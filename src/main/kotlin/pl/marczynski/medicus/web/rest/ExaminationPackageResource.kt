@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -33,7 +34,8 @@ private const val ENTITY_NAME = "examinationPackage"
 @RestController
 @RequestMapping("/api")
 class ExaminationPackageResource(
-    private val examinationPackageRepository: ExaminationPackageRepository
+    private val examinationPackageRepository: ExaminationPackageRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -57,6 +59,7 @@ class ExaminationPackageResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        examinationPackage.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = examinationPackageRepository.save(examinationPackage)
         return ResponseEntity.created(URI("/api/examination-packages/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -77,6 +80,12 @@ class ExaminationPackageResource(
         log.debug("REST request to update ExaminationPackage : {}", examinationPackage)
         if (examinationPackage.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!examinationPackageRepository.checkUserRightsById(examinationPackage.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = examinationPackageRepository.save(examinationPackage)
         return ResponseEntity.ok()
@@ -116,6 +125,12 @@ class ExaminationPackageResource(
     @GetMapping("/examination-packages/{id}")
     fun getExaminationPackage(@PathVariable id: Long): ResponseEntity<ExaminationPackage> {
         log.debug("REST request to get ExaminationPackage : {}", id)
+        if (!examinationPackageRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val examinationPackage = examinationPackageRepository.findById(id)
         return ResponseUtil.wrapOrNotFound(examinationPackage)
     }
@@ -129,7 +144,12 @@ class ExaminationPackageResource(
     @DeleteMapping("/examination-packages/{id}")
     fun deleteExaminationPackage(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete ExaminationPackage : {}", id)
-
+        if (!examinationPackageRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         examinationPackageRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

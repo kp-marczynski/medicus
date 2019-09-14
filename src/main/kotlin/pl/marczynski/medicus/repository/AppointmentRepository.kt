@@ -19,15 +19,24 @@ interface AppointmentRepository : JpaRepository<Appointment, Long> {
     @Query("select appointment from Appointment appointment where appointment.user.login = ?#{principal.username}")
     fun findByUserIsCurrentUser(): MutableList<Appointment>
 
+    @Query("select case when count(res)> 0 then true else false end from Appointment res where res.id = :id and res.user.login = ?#{principal.username}")
+    fun checkUserRightsById(@Param("id") id: Long): Boolean
+
     @Query(
-        value = "select distinct appointment from Appointment appointment left join fetch appointment.treatments left join fetch appointment.symptoms",
-        countQuery = "select count(distinct appointment) from Appointment appointment"
+        value = "select distinct appointment from Appointment appointment left join fetch appointment.treatments left join fetch appointment.symptoms where appointment.user.login = ?#{principal.username}",
+        countQuery = "select count(distinct appointment) from Appointment appointment where appointment.user.login = ?#{principal.username}"
     )
     fun findAllWithEagerRelationships(pageable: Pageable): Page<Appointment>
 
-    @Query(value = "select distinct appointment from Appointment appointment left join fetch appointment.treatments left join fetch appointment.symptoms")
+    @Query(value = "select distinct appointment from Appointment appointment left join fetch appointment.treatments left join fetch appointment.symptoms where appointment.user.login = ?#{principal.username}")
     fun findAllWithEagerRelationships(): MutableList<Appointment>
 
     @Query("select appointment from Appointment appointment left join fetch appointment.treatments left join fetch appointment.symptoms where appointment.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Appointment>
+
+    @Query(
+        value = "select distinct res from Appointment res where res.user.login = ?#{principal.username}",
+        countQuery = "select count(distinct res) from Appointment res where res.user.login = ?#{principal.username}"
+    )
+    override fun findAll(pageable: Pageable): Page<Appointment>
 }

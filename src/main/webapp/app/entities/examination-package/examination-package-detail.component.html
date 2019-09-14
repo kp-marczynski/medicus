@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-8">
+    <div class="col-md-6">
         <div *ngIf="examinationPackage">
             <h2><span jhiTranslate="medicusApp.examinationPackage.detail.title">Examination Package</span> {{examinationPackage.id}}</h2>
             <hr>
@@ -50,5 +50,8 @@
                 <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
             </button>
         </div>
+    </div>
+    <div class="col-md-6" *ngIf="examinationPackage.examinationPackageScan">
+        <jhi-file-viewer [data]="examinationPackage.examinationPackageScan" [contentType]="examinationPackage.examinationPackageScanContentType"></jhi-file-viewer>
     </div>
 </div>

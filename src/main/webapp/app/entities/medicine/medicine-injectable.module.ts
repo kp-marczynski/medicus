@@ -3,15 +3,22 @@ import { RouterModule } from '@angular/router';
 
 import { MedicusSharedModule } from 'app/shared/shared.module';
 import { MedicineComponent } from './medicine.component';
+import { MedicineDetailComponent } from './medicine-detail.component';
 import { MedicineUpdateComponent } from './medicine-update.component';
 import { MedicineDeletePopupComponent, MedicineDeleteDialogComponent } from './medicine-delete-dialog.component';
-import { medicineRoute, medicinePopupRoute } from './medicine.route';
-import {MedicusMedicineInjectableModule} from "app/entities/medicine/medicine-injectable.module";
-
-const ENTITY_STATES = [...medicineRoute, ...medicinePopupRoute];
 
 @NgModule({
-  imports: [MedicusSharedModule, RouterModule.forChild(ENTITY_STATES), MedicusMedicineInjectableModule],
+  imports: [MedicusSharedModule, RouterModule],
+  declarations: [
+    MedicineComponent,
+    MedicineDetailComponent,
+    MedicineUpdateComponent,
+    MedicineDeleteDialogComponent,
+    MedicineDeletePopupComponent
+  ],
+  exports: [
+    MedicineComponent
+  ],
   entryComponents: [MedicineComponent, MedicineUpdateComponent, MedicineDeleteDialogComponent, MedicineDeletePopupComponent]
 })
-export class MedicusMedicineModule {}
+export class MedicusMedicineInjectableModule {}

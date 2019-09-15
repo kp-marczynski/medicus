@@ -7,11 +7,12 @@ import { TreatmentDetailComponent } from './treatment-detail.component';
 import { TreatmentUpdateComponent } from './treatment-update.component';
 import { TreatmentDeletePopupComponent, TreatmentDeleteDialogComponent } from './treatment-delete-dialog.component';
 import { treatmentRoute, treatmentPopupRoute } from './treatment.route';
+import {MedicusMedicineInjectableModule} from "app/entities/medicine/medicine-injectable.module";
 
 const ENTITY_STATES = [...treatmentRoute, ...treatmentPopupRoute];
 
 @NgModule({
-  imports: [MedicusSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [MedicusSharedModule, RouterModule.forChild(ENTITY_STATES), MedicusMedicineInjectableModule],
   declarations: [
     TreatmentComponent,
     TreatmentDetailComponent,

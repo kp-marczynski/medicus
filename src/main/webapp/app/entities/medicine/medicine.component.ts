@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Subscription } from 'rxjs';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -14,7 +14,7 @@ import { MedicineService } from './medicine.service';
   templateUrl: './medicine.component.html'
 })
 export class MedicineComponent implements OnInit, OnDestroy {
-  medicines: IMedicine[];
+  @Input() medicines: IMedicine[];
   currentAccount: any;
   eventSubscriber: Subscription;
 

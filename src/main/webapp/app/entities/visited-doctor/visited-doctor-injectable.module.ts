@@ -7,12 +7,19 @@ import { VisitedDoctorDetailComponent } from './visited-doctor-detail.component'
 import { VisitedDoctorUpdateComponent } from './visited-doctor-update.component';
 import { VisitedDoctorDeletePopupComponent, VisitedDoctorDeleteDialogComponent } from './visited-doctor-delete-dialog.component';
 import { visitedDoctorRoute, visitedDoctorPopupRoute } from './visited-doctor.route';
-import {MedicusVisitedDoctorInjectableModule} from "app/entities/visited-doctor/visited-doctor-injectable.module";
-
-const ENTITY_STATES = [...visitedDoctorRoute, ...visitedDoctorPopupRoute];
 
 @NgModule({
-  imports: [MedicusSharedModule, RouterModule.forChild(ENTITY_STATES), MedicusVisitedDoctorInjectableModule],
+  imports: [MedicusSharedModule, RouterModule],
+  declarations: [
+    VisitedDoctorComponent,
+    VisitedDoctorDetailComponent,
+    VisitedDoctorUpdateComponent,
+    VisitedDoctorDeleteDialogComponent,
+    VisitedDoctorDeletePopupComponent
+  ],
+  exports: [
+    VisitedDoctorComponent
+  ],
   entryComponents: [
     VisitedDoctorComponent,
     VisitedDoctorUpdateComponent,
@@ -20,4 +27,4 @@ const ENTITY_STATES = [...visitedDoctorRoute, ...visitedDoctorPopupRoute];
     VisitedDoctorDeletePopupComponent
   ]
 })
-export class MedicusVisitedDoctorModule {}
+export class MedicusVisitedDoctorInjectableModule {}

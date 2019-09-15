@@ -1,19 +1,20 @@
-import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
-import { Subscription } from 'rxjs';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
+import {HttpErrorResponse, HttpResponse} from '@angular/common/http';
+import {Subscription} from 'rxjs';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiAlertService, JhiDataUtils } from 'ng-jhipster';
+import {filter, map} from 'rxjs/operators';
+import {JhiEventManager, JhiAlertService, JhiDataUtils} from 'ng-jhipster';
 
-import { IMedicine } from 'app/shared/model/medicine.model';
-import { AccountService } from 'app/core/auth/account.service';
-import { MedicineService } from './medicine.service';
+import {IMedicine} from 'app/shared/model/medicine.model';
+import {AccountService} from 'app/core/auth/account.service';
+import {MedicineService} from './medicine.service';
 
 @Component({
   selector: 'jhi-medicine',
   templateUrl: './medicine.component.html'
 })
 export class MedicineComponent implements OnInit, OnDestroy {
+  standaloneView: boolean;
   @Input() medicines: IMedicine[];
   currentAccount: any;
   eventSubscriber: Subscription;
@@ -24,7 +25,8 @@ export class MedicineComponent implements OnInit, OnDestroy {
     protected dataUtils: JhiDataUtils,
     protected eventManager: JhiEventManager,
     protected accountService: AccountService
-  ) {}
+  ) {
+  }
 
   loadAll() {
     this.medicineService
@@ -42,7 +44,12 @@ export class MedicineComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadAll();
+    if (!this.medicines || this.medicines.length === 0) {
+      this.standaloneView = true;
+      this.loadAll();
+    } else {
+      this.standaloneView = false;
+    }
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });

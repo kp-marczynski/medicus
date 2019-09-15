@@ -10,11 +10,13 @@ import {
   ExaminationPackageDeleteDialogComponent
 } from './examination-package-delete-dialog.component';
 import { examinationPackageRoute, examinationPackagePopupRoute } from './examination-package.route';
+import {MedicusExaminationInjectableModule} from "app/entities/examination/examination-injectable.module";
+import {MedicusVisitedDoctorInjectableModule} from "app/entities/visited-doctor/visited-doctor-injectable.module";
 
 const ENTITY_STATES = [...examinationPackageRoute, ...examinationPackagePopupRoute];
 
 @NgModule({
-  imports: [MedicusSharedModule, RouterModule.forChild(ENTITY_STATES)],
+  imports: [MedicusSharedModule, RouterModule.forChild(ENTITY_STATES), MedicusExaminationInjectableModule, MedicusVisitedDoctorInjectableModule],
   declarations: [
     ExaminationPackageComponent,
     ExaminationPackageDetailComponent,

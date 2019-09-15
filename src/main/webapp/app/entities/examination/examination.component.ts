@@ -1,16 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import {Component, OnInit, OnDestroy, Input} from '@angular/core';
+import {HttpErrorResponse, HttpHeaders, HttpResponse} from '@angular/common/http';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { filter, map } from 'rxjs/operators';
-import { JhiEventManager, JhiParseLinks, JhiAlertService } from 'ng-jhipster';
+import {filter, map} from 'rxjs/operators';
+import {JhiEventManager, JhiParseLinks, JhiAlertService} from 'ng-jhipster';
 
-import { IExamination } from 'app/shared/model/examination.model';
-import { AccountService } from 'app/core/auth/account.service';
+import {IExamination} from 'app/shared/model/examination.model';
+import {AccountService} from 'app/core/auth/account.service';
 
-import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
-import { ExaminationService } from './examination.service';
+import {ITEMS_PER_PAGE} from 'app/shared/constants/pagination.constants';
+import {ExaminationService} from './examination.service';
 
 @Component({
   selector: 'jhi-examination',
@@ -18,7 +18,8 @@ import { ExaminationService } from './examination.service';
 })
 export class ExaminationComponent implements OnInit, OnDestroy {
   currentAccount: any;
-  examinations: IExamination[];
+  standaloneView: boolean;
+  @Input() examinations: IExamination[];
   error: any;
   success: any;
   eventSubscriber: Subscription;
@@ -42,12 +43,21 @@ export class ExaminationComponent implements OnInit, OnDestroy {
   ) {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
-      this.page = data.pagingParams.page;
-      this.previousPage = data.pagingParams.page;
-      this.reverse = data.pagingParams.ascending;
-      this.predicate = data.pagingParams.predicate;
-    });
-  }
+      if (data.pagingParams) {
+        this.standaloneView = true;
+        this.page = data.pagingParams.page;
+        this.previousPage = data.pagingParams.page;
+        this.reverse = data.pagingParams.ascending;
+        this.predicate = data.pagingParams.predicate;
+      } else {
+        this.standaloneView = false;
+        this.page = 1;
+        this.previousPage = 1;
+        this.reverse = true;
+        this.predicate = 'id';
+      }
+    })
+  };
 
   loadAll() {
     this.examinationService
@@ -93,7 +103,9 @@ export class ExaminationComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.loadAll();
+    if (this.standaloneView) {
+      this.loadAll();
+    }
     this.accountService.identity().then(account => {
       this.currentAccount = account;
     });

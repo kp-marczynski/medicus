@@ -112,20 +112,20 @@ relationship OneToMany {
     Procedure to VisitedDoctor
     Treatment to VisitedDoctor
     ExaminationPackage to VisitedDoctor
+    ExaminationPackage to Examination
 }
 
 relationship ManyToMany {
 	Appointment to Treatment
-    OwnedMedicine to Medicine
     Treatment to Medicine
     Appointment to Symptom
 }
 
 relationship ManyToOne {
 	Examination to ExaminationType
-    ExaminationPackage to Examination
     VisitedDoctor to Doctor
-    
+    OwnedMedicine to Medicine
+
     Appointment to User
     ExaminationPackage to User
     Examination to User
@@ -133,6 +133,7 @@ relationship ManyToOne {
     Treatment to User
     Procedure to User
     Symptom to User
+    VisitedDoctor to User
 }
 
 noFluentMethod *

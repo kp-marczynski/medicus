@@ -31,10 +31,16 @@ export class FileViewerComponent implements OnInit, AfterViewInit {
       type: contentType
     });
     const file = window.URL.createObjectURL(blob);
-    const iframe = document.getElementById("iframe") as HTMLIFrameElement;
+    const iframe = document.getElementById("iframe") as HTMLObjectElement;
+    const href = document.getElementById("alternative-href") as HTMLLinkElement;
     if (iframe) {
-      iframe.src = file;
-      iframe.height = (iframe.offsetWidth * 3 / 2).toString();
+      iframe.data = file;
+      href.href = file;
+      iframe.height = (
+        500 > iframe.offsetWidth
+        ? 500
+        : iframe.offsetWidth
+      ).toString();
     }
   }
 }

@@ -58,7 +58,7 @@ class ExaminationPackage(
     @JoinTable(name = "examination_package_visited_doctor",
         joinColumns = [JoinColumn(name = "examination_package_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
+    var visitedDoctors: MutableSet<VisitedDoctor>? = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("examinationPackages")

@@ -54,10 +54,10 @@ class Appointment(
     var descriptionScanContentType: String? = null,
 
     @OneToMany(mappedBy = "appointment")
-    var examinationPackages: MutableSet<ExaminationPackage> = mutableSetOf(),
+    var examinationPackages: MutableSet<ExaminationPackage>? = mutableSetOf(),
 
     @OneToMany(mappedBy = "appointment")
-    var procedures: MutableSet<Procedure> = mutableSetOf(),
+    var procedures: MutableSet<Procedure>? = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("appointments")
@@ -67,19 +67,19 @@ class Appointment(
     @JoinTable(name = "appointment_treatment",
         joinColumns = [JoinColumn(name = "appointment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "treatment_id", referencedColumnName = "id")])
-    var treatments: MutableSet<Treatment> = mutableSetOf(),
+    var treatments: MutableSet<Treatment>? = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(name = "appointment_symptom",
         joinColumns = [JoinColumn(name = "appointment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "symptom_id", referencedColumnName = "id")])
-    var symptoms: MutableSet<Symptom> = mutableSetOf(),
+    var symptoms: MutableSet<Symptom>? = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(name = "appointment_visited_doctor",
         joinColumns = [JoinColumn(name = "appointment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf()
+    var visitedDoctors: MutableSet<VisitedDoctor>? = mutableSetOf()
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {

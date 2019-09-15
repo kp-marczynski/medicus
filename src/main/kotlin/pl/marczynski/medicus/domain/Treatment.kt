@@ -60,13 +60,13 @@ class Treatment(
     @JoinTable(name = "treatment_medicine",
         joinColumns = [JoinColumn(name = "treatment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "medicine_id", referencedColumnName = "id")])
-    var medicines: MutableSet<Medicine> = mutableSetOf(),
+    var medicines: MutableSet<Medicine>? = mutableSetOf(),
 
     @ManyToMany
     @JoinTable(name = "treatment_visited_doctor",
         joinColumns = [JoinColumn(name = "treatment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
+    var visitedDoctors: MutableSet<VisitedDoctor>? = mutableSetOf(),
 
     @ManyToMany(mappedBy = "treatments")
     @JsonIgnore

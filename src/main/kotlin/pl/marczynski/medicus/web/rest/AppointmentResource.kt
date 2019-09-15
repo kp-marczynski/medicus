@@ -62,22 +62,22 @@ class AppointmentResource(
             )
         }
         appointment.user = userRepository.findByUserIsCurrentUser().orElse(null)
-        appointment.symptoms.forEach { it.user = appointment.user }
-        appointment.treatments.forEach {
+        appointment.symptoms?.forEach { it.user = appointment.user }
+        appointment.treatments?.forEach {
             it.user = appointment.user
-            if (it.visitedDoctors.isEmpty()) {
-                it.visitedDoctors = appointment.visitedDoctors
-            }
+//            if (it.visitedDoctors.isEmpty()) {
+//                it.visitedDoctors = appointment.visitedDoctors
+//            }
         }
-        appointment.procedures.forEach {
+        appointment.procedures?.forEach {
             it.user = appointment.user
-            if (it.visitedDoctors.isEmpty()) {
-                it.visitedDoctors = appointment.visitedDoctors
-            }
+//            if (it.visitedDoctors.isEmpty()) {
+//                it.visitedDoctors = appointment.visitedDoctors
+//            }
         }
-        appointment.examinationPackages.forEach {
+        appointment.examinationPackages?.forEach {
             it.user = appointment.user
-            if (it.visitedDoctors.isEmpty()) {
+            if (it.visitedDoctors.isNullOrEmpty()) {
                 it.visitedDoctors = appointment.visitedDoctors
             }
             // todo iterate over it.examinations

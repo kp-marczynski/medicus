@@ -5,7 +5,6 @@ import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
-import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -38,10 +37,7 @@ class ExaminationType(
     var maxValue: Double? = null,
 
     @Column(name = "language")
-    var language: String? = null,
-
-    @OneToMany(mappedBy = "examinationType")
-    var examinations: MutableSet<Examination> = mutableSetOf()
+    var language: String? = null
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {

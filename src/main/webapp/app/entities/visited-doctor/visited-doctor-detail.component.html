@@ -19,30 +19,6 @@
                 <dd>
                     {{visitedDoctor.user?.id}}
                 </dd>
-                <dt><span jhiTranslate="medicusApp.visitedDoctor.appointment">Appointment</span></dt>
-                <dd>
-                    <div *ngIf="visitedDoctor.appointment">
-                        <a [routerLink]="['/appointment', visitedDoctor.appointment?.id, 'view']">{{visitedDoctor.appointment?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="medicusApp.visitedDoctor.procedure">Procedure</span></dt>
-                <dd>
-                    <div *ngIf="visitedDoctor.procedure">
-                        <a [routerLink]="['/procedure', visitedDoctor.procedure?.id, 'view']">{{visitedDoctor.procedure?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="medicusApp.visitedDoctor.treatment">Treatment</span></dt>
-                <dd>
-                    <div *ngIf="visitedDoctor.treatment">
-                        <a [routerLink]="['/treatment', visitedDoctor.treatment?.id, 'view']">{{visitedDoctor.treatment?.id}}</a>
-                    </div>
-                </dd>
-                <dt><span jhiTranslate="medicusApp.visitedDoctor.examinationPackage">Examination Package</span></dt>
-                <dd>
-                    <div *ngIf="visitedDoctor.examinationPackage">
-                        <a [routerLink]="['/examination-package', visitedDoctor.examinationPackage?.id, 'view']">{{visitedDoctor.examinationPackage?.id}}</a>
-                    </div>
-                </dd>
             </dl>
 
             <button type="submit"

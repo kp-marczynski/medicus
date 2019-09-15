@@ -76,6 +76,12 @@
                         <option [ngValue]="getSelected(editForm.get('medicines').value, medicineOption)" *ngFor="let medicineOption of medicines; trackBy: trackMedicineById">{{medicineOption.id}}</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label jhiTranslate="medicusApp.treatment.visitedDoctor" for="field_visitedDoctors">Visited Doctor</label>
+                    <select class="form-control" id="field_visitedDoctors" multiple name="visitedDoctors" formControlName="visitedDoctors">
+                        <option [ngValue]="getSelected(editForm.get('visitedDoctors').value, visitedDoctorOption)" *ngFor="let visitedDoctorOption of visiteddoctors; trackBy: trackVisitedDoctorById">{{visitedDoctorOption.id}}</option>
+                    </select>
+                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

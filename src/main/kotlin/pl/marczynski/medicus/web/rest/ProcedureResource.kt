@@ -9,17 +9,11 @@ import io.github.jhipster.web.util.PaginationUtil
 import io.github.jhipster.web.util.ResponseUtil
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
+import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
@@ -103,15 +97,20 @@ class ProcedureResource(
      *
 
      * @param pageable the pagination information.
-
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the [ResponseEntity] with status `200 (OK)` and the list of procedures in body.
      */
     @GetMapping("/procedures")
     fun getAllProcedures(
-        pageable: Pageable
+        pageable: Pageable,
+        @RequestParam(required = false, defaultValue = "false") eagerload: Boolean
     ): ResponseEntity<MutableList<Procedure>> {
         log.debug("REST request to get a page of Procedures")
-        val page = procedureRepository.findAll(pageable)
+        val page: Page<Procedure> = if (eagerload) {
+            procedureRepository.findAllWithEagerRelationships(pageable)
+        } else {
+            procedureRepository.findAll(pageable)
+        }
         val headers = PaginationUtil.generatePaginationHttpHeaders(ServletUriComponentsBuilder.fromCurrentRequest(), page)
         return ResponseEntity.ok().headers(headers).body(page.content)
     }
@@ -131,7 +130,7 @@ class ProcedureResource(
                 ENTITY_NAME, "notowner"
             )
         }
-        val procedure = procedureRepository.findById(id)
+        val procedure = procedureRepository.findOneWithEagerRelationships(id)
         return ResponseUtil.wrapOrNotFound(procedure)
     }
 

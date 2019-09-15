@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity Appointment.
     -->
-    <changeSet id="20190914220057-2" author="jhipster">
+    <changeSet id="20190915094531-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="appointment"
@@ -37,6 +37,18 @@
                                  constraintName="fk_appointment_symptom_symptom_id"
                                  referencedColumnNames="id"
                                  referencedTableName="symptom"/>
+
+        <addForeignKeyConstraint baseColumnNames="appointment_id"
+                                 baseTableName="appointment_visited_doctor"
+                                 constraintName="fk_appointment_visited_doctor_appointment_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="appointment"/>
+
+        <addForeignKeyConstraint baseColumnNames="visited_doctor_id"
+                                 baseTableName="appointment_visited_doctor"
+                                 constraintName="fk_appointment_visited_doctor_visited_doctor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="visited_doctor"/>
 
     </changeSet>
 </databaseChangeLog>

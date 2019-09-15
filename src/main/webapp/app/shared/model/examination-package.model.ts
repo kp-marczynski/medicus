@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
-import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IExamination } from 'app/shared/model/examination.model';
 import { IUser } from 'app/core/user/user.model';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IAppointment } from 'app/shared/model/appointment.model';
 
 export interface IExaminationPackage {
@@ -10,9 +10,9 @@ export interface IExaminationPackage {
   title?: string;
   examinationPackageScanContentType?: string;
   examinationPackageScan?: any;
-  visitedDoctors?: IVisitedDoctor[];
   examinations?: IExamination[];
   user?: IUser;
+  visitedDoctors?: IVisitedDoctor[];
   appointment?: IAppointment;
 }
 
@@ -23,9 +23,9 @@ export class ExaminationPackage implements IExaminationPackage {
     public title?: string,
     public examinationPackageScanContentType?: string,
     public examinationPackageScan?: any,
-    public visitedDoctors?: IVisitedDoctor[],
     public examinations?: IExamination[],
     public user?: IUser,
+    public visitedDoctors?: IVisitedDoctor[],
     public appointment?: IAppointment
   ) {}
 }

@@ -43,12 +43,6 @@
             "relationshipName": "procedure"
         },
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "visitedDoctor",
-            "otherEntityRelationshipName": "appointment",
-            "relationshipName": "visitedDoctor"
-        },
-        {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "appointment",
@@ -70,9 +64,17 @@
             "relationshipName": "symptom",
             "otherEntityField": "id",
             "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "appointment",
+            "relationshipName": "visitedDoctor",
+            "otherEntityField": "id",
+            "ownerSide": true
         }
     ],
-    "changelogDate": "20190914162404",
+    "changelogDate": "20190915094531",
     "entityTableName": "appointment",
     "dto": "no",
     "pagination": "pager",

@@ -1,10 +1,10 @@
 import { Moment } from 'moment';
 import { IExaminationPackage } from 'app/shared/model/examination-package.model';
 import { IProcedure } from 'app/shared/model/procedure.model';
-import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IUser } from 'app/core/user/user.model';
 import { ITreatment } from 'app/shared/model/treatment.model';
 import { ISymptom } from 'app/shared/model/symptom.model';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 
 export interface IAppointment {
   id?: number;
@@ -15,10 +15,10 @@ export interface IAppointment {
   descriptionScan?: any;
   examinationPackages?: IExaminationPackage[];
   procedures?: IProcedure[];
-  visitedDoctors?: IVisitedDoctor[];
   user?: IUser;
   treatments?: ITreatment[];
   symptoms?: ISymptom[];
+  visitedDoctors?: IVisitedDoctor[];
 }
 
 export class Appointment implements IAppointment {
@@ -31,9 +31,9 @@ export class Appointment implements IAppointment {
     public descriptionScan?: any,
     public examinationPackages?: IExaminationPackage[],
     public procedures?: IProcedure[],
-    public visitedDoctors?: IVisitedDoctor[],
     public user?: IUser,
     public treatments?: ITreatment[],
-    public symptoms?: ISymptom[]
+    public symptoms?: ISymptom[],
+    public visitedDoctors?: IVisitedDoctor[]
   ) {}
 }

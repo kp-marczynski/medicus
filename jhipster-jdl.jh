@@ -108,10 +108,6 @@ entity VisitedDoctor {
 relationship OneToMany {
     Appointment to ExaminationPackage
     Appointment to Procedure
-    Appointment to VisitedDoctor
-    Procedure to VisitedDoctor
-    Treatment to VisitedDoctor
-    ExaminationPackage to VisitedDoctor
     ExaminationPackage to Examination
 }
 
@@ -119,6 +115,10 @@ relationship ManyToMany {
 	Appointment to Treatment
     Treatment to Medicine
     Appointment to Symptom
+    Appointment to VisitedDoctor
+    Procedure to VisitedDoctor
+    Treatment to VisitedDoctor
+    ExaminationPackage to VisitedDoctor
 }
 
 relationship ManyToOne {

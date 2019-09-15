@@ -14,6 +14,8 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IMedicine } from 'app/shared/model/medicine.model';
 import { MedicineService } from 'app/entities/medicine/medicine.service';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
+import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
 import { IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 
@@ -28,6 +30,8 @@ export class TreatmentUpdateComponent implements OnInit {
 
   medicines: IMedicine[];
 
+  visiteddoctors: IVisitedDoctor[];
+
   appointments: IAppointment[];
   startDateDp: any;
   endDateDp: any;
@@ -40,7 +44,8 @@ export class TreatmentUpdateComponent implements OnInit {
     descriptionScan: [],
     descriptionScanContentType: [],
     user: [],
-    medicines: []
+    medicines: [],
+    visitedDoctors: []
   });
 
   constructor(
@@ -49,6 +54,7 @@ export class TreatmentUpdateComponent implements OnInit {
     protected treatmentService: TreatmentService,
     protected userService: UserService,
     protected medicineService: MedicineService,
+    protected visitedDoctorService: VisitedDoctorService,
     protected appointmentService: AppointmentService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -73,6 +79,13 @@ export class TreatmentUpdateComponent implements OnInit {
         map((response: HttpResponse<IMedicine[]>) => response.body)
       )
       .subscribe((res: IMedicine[]) => (this.medicines = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.visitedDoctorService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IVisitedDoctor[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IVisitedDoctor[]>) => response.body)
+      )
+      .subscribe((res: IVisitedDoctor[]) => (this.visiteddoctors = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.appointmentService
       .query()
       .pipe(
@@ -91,7 +104,8 @@ export class TreatmentUpdateComponent implements OnInit {
       descriptionScan: treatment.descriptionScan,
       descriptionScanContentType: treatment.descriptionScanContentType,
       user: treatment.user,
-      medicines: treatment.medicines
+      medicines: treatment.medicines,
+      visitedDoctors: treatment.visitedDoctors
     });
   }
 
@@ -152,7 +166,8 @@ export class TreatmentUpdateComponent implements OnInit {
       descriptionScanContentType: this.editForm.get(['descriptionScanContentType']).value,
       descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
-      medicines: this.editForm.get(['medicines']).value
+      medicines: this.editForm.get(['medicines']).value,
+      visitedDoctors: this.editForm.get(['visitedDoctors']).value
     };
   }
 
@@ -177,6 +192,10 @@ export class TreatmentUpdateComponent implements OnInit {
   }
 
   trackMedicineById(index: number, item: IMedicine) {
+    return item.id;
+  }
+
+  trackVisitedDoctorById(index: number, item: IVisitedDoctor) {
     return item.id;
   }
 

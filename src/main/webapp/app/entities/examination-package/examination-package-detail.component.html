@@ -24,6 +24,12 @@
                 <dd>
                     {{examinationPackage.user?.id}}
                 </dd>
+                <dt><span jhiTranslate="medicusApp.examinationPackage.visitedDoctor">Visited Doctor</span></dt>
+                <dd>
+                    <span *ngFor="let visitedDoctor of examinationPackage.visitedDoctors; let last = last">
+                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span></dt>
                 <dd>
                     <div *ngIf="examinationPackage.appointment">

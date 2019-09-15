@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity Examination.
     -->
-    <changeSet id="20190914220052-2" author="jhipster">
+    <changeSet id="20190915094526-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="examination_type_id"
                                  baseTableName="examination"

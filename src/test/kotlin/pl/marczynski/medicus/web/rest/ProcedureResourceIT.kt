@@ -9,9 +9,11 @@ import kotlin.test.assertNotNull
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver
 import org.springframework.http.MediaType
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
@@ -26,6 +28,10 @@ import java.time.ZoneId
 
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.Matchers.hasItem
+import org.mockito.ArgumentMatchers.any
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -44,6 +50,9 @@ class ProcedureResourceIT {
 
     @Autowired
     private lateinit var procedureRepository: ProcedureRepository
+
+    @Mock
+    private lateinit var procedureRepositoryMock: ProcedureRepository
 
     @Autowired
     private lateinit var jacksonMessageConverter: MappingJackson2HttpMessageConverter
@@ -157,6 +166,39 @@ class ProcedureResourceIT {
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].descriptionScanContentType").value(hasItem(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].descriptionScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN))))
+    }
+
+    @Suppress("unchecked")
+    fun getAllProceduresWithEagerRelationshipsIsEnabled() {
+        val procedureResource = ProcedureResource(procedureRepositoryMock)
+        `when`(procedureRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(PageImpl(mutableListOf()))
+
+        val restProcedureMockMvc = MockMvcBuilders.standaloneSetup(procedureResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build()
+
+        restProcedureMockMvc.perform(get("/api/procedures?eagerload=true"))
+            .andExpect(status().isOk)
+
+        verify(procedureRepositoryMock, times(1)).findAllWithEagerRelationships(any())
+    }
+
+    @Suppress("unchecked")
+    fun getAllProceduresWithEagerRelationshipsIsNotEnabled() {
+        val procedureResource = ProcedureResource(procedureRepositoryMock)
+        `when`(procedureRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(PageImpl(mutableListOf()))
+        val restProcedureMockMvc = MockMvcBuilders.standaloneSetup(procedureResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build()
+
+        restProcedureMockMvc.perform(get("/api/procedures?eagerload=true"))
+            .andExpect(status().isOk)
+
+        verify(procedureRepositoryMock, times(1)).findAllWithEagerRelationships(any())
     }
 
     @Test

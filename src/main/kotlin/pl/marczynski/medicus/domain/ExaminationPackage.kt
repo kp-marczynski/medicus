@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Lob
+import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
@@ -45,14 +48,17 @@ class ExaminationPackage(
     var examinationPackageScanContentType: String? = null,
 
     @OneToMany(mappedBy = "examinationPackage")
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
-
-    @OneToMany(mappedBy = "examinationPackage")
     var examinations: MutableSet<Examination> = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("examinationPackages")
     var user: User? = null,
+
+    @ManyToMany
+    @JoinTable(name = "examination_package_visited_doctor",
+        joinColumns = [JoinColumn(name = "examination_package_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
+    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("examinationPackages")

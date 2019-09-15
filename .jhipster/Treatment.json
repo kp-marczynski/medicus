@@ -28,12 +28,6 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "visitedDoctor",
-            "otherEntityRelationshipName": "treatment",
-            "relationshipName": "visitedDoctor"
-        },
-        {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "treatment",
@@ -50,6 +44,14 @@
         },
         {
             "relationshipType": "many-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "treatment",
+            "relationshipName": "visitedDoctor",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-many",
             "otherEntityName": "appointment",
             "otherEntityRelationshipName": "treatment",
             "relationshipName": "appointment",
@@ -57,7 +59,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190914162401",
+    "changelogDate": "20190915094528",
     "entityTableName": "treatment",
     "dto": "no",
     "pagination": "pager",

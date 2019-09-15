@@ -9,8 +9,10 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Lob
+import javax.persistence.JoinColumn
+import javax.persistence.JoinTable
+import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -35,7 +37,7 @@ class Procedure(
     var date: LocalDate? = null,
 
     @Lob
-        @Type(type = "org.hibernate.type.TextType")
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "description", nullable = false)
     var description: String? = null,
 
@@ -46,12 +48,15 @@ class Procedure(
     @Column(name = "description_scan_content_type")
     var descriptionScanContentType: String? = null,
 
-    @OneToMany(mappedBy = "procedure")
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
-
     @ManyToOne
     @JsonIgnoreProperties("procedures")
     var user: User? = null,
+
+    @ManyToMany
+    @JoinTable(name = "procedure_visited_doctor",
+        joinColumns = [JoinColumn(name = "procedure_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
+    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("procedures")

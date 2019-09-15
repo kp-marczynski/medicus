@@ -6,13 +6,25 @@
     <!--
         Added the constraints for entity ExaminationPackage.
     -->
-    <changeSet id="20190914220058-2" author="jhipster">
+    <changeSet id="20190915094532-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="examination_package"
                                  constraintName="fk_examination_package_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="examination_package_id"
+                                 baseTableName="examination_package_visited_doctor"
+                                 constraintName="fk_examination_package_visited_doctor_examination_package_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="examination_package"/>
+
+        <addForeignKeyConstraint baseColumnNames="visited_doctor_id"
+                                 baseTableName="examination_package_visited_doctor"
+                                 constraintName="fk_examination_package_visited_doctor_visited_doctor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="visited_doctor"/>
 
         <addForeignKeyConstraint baseColumnNames="appointment_id"
                                  baseTableName="examination_package"

@@ -28,7 +28,7 @@
             "relationshipName": "visitedDoctor"
         }
     ],
-    "changelogDate": "20190914162407",
+    "changelogDate": "20190915094534",
     "entityTableName": "doctor",
     "dto": "no",
     "pagination": "pager",

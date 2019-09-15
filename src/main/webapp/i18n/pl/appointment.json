@@ -22,10 +22,10 @@
       "descriptionScan": "Description Scan",
       "examinationPackage": "Examination Package",
       "procedure": "Procedure",
-      "visitedDoctor": "Visited Doctor",
       "user": "User",
       "treatment": "Treatment",
-      "symptom": "Symptom"
+      "symptom": "Symptom",
+      "visitedDoctor": "Visited Doctor"
     }
   }
 }

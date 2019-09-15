@@ -10,10 +10,10 @@ export interface IVisitedDoctor {
   opinion?: any;
   doctor?: IDoctor;
   user?: IUser;
-  appointment?: IAppointment;
-  procedure?: IProcedure;
-  treatment?: ITreatment;
-  examinationPackage?: IExaminationPackage;
+  appointments?: IAppointment[];
+  procedures?: IProcedure[];
+  treatments?: ITreatment[];
+  examinationPackages?: IExaminationPackage[];
 }
 
 export class VisitedDoctor implements IVisitedDoctor {
@@ -22,9 +22,9 @@ export class VisitedDoctor implements IVisitedDoctor {
     public opinion?: any,
     public doctor?: IDoctor,
     public user?: IUser,
-    public appointment?: IAppointment,
-    public procedure?: IProcedure,
-    public treatment?: ITreatment,
-    public examinationPackage?: IExaminationPackage
+    public appointments?: IAppointment[],
+    public procedures?: IProcedure[],
+    public treatments?: ITreatment[],
+    public examinationPackages?: IExaminationPackage[]
   ) {}
 }

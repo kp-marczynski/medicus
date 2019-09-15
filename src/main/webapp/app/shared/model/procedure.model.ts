@@ -1,6 +1,6 @@
 import { Moment } from 'moment';
-import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IUser } from 'app/core/user/user.model';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IAppointment } from 'app/shared/model/appointment.model';
 
 export interface IProcedure {
@@ -9,8 +9,8 @@ export interface IProcedure {
   description?: any;
   descriptionScanContentType?: string;
   descriptionScan?: any;
-  visitedDoctors?: IVisitedDoctor[];
   user?: IUser;
+  visitedDoctors?: IVisitedDoctor[];
   appointment?: IAppointment;
 }
 
@@ -21,8 +21,8 @@ export class Procedure implements IProcedure {
     public description?: any,
     public descriptionScanContentType?: string,
     public descriptionScan?: any,
-    public visitedDoctors?: IVisitedDoctor[],
     public user?: IUser,
+    public visitedDoctors?: IVisitedDoctor[],
     public appointment?: IAppointment
   ) {}
 }

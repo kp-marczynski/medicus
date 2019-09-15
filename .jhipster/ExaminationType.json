@@ -33,7 +33,7 @@
             "relationshipName": "examination"
         }
     ],
-    "changelogDate": "20190914162358",
+    "changelogDate": "20190915094525",
     "entityTableName": "examination_type",
     "dto": "no",
     "pagination": "no",

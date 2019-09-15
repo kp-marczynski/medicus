@@ -14,7 +14,6 @@ import javax.persistence.JoinColumn
 import javax.persistence.JoinTable
 import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -42,7 +41,7 @@ class Treatment(
     var endDate: LocalDate? = null,
 
     @Lob
-        @Type(type = "org.hibernate.type.TextType")
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "description", nullable = false)
     var description: String? = null,
 
@@ -53,9 +52,6 @@ class Treatment(
     @Column(name = "description_scan_content_type")
     var descriptionScanContentType: String? = null,
 
-    @OneToMany(mappedBy = "treatment")
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
-
     @ManyToOne
     @JsonIgnoreProperties("treatments")
     var user: User? = null,
@@ -65,6 +61,12 @@ class Treatment(
         joinColumns = [JoinColumn(name = "treatment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "medicine_id", referencedColumnName = "id")])
     var medicines: MutableSet<Medicine> = mutableSetOf(),
+
+    @ManyToMany
+    @JoinTable(name = "treatment_visited_doctor",
+        joinColumns = [JoinColumn(name = "treatment_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
+    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
 
     @ManyToMany(mappedBy = "treatments")
     @JsonIgnore

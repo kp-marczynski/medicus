@@ -16,6 +16,8 @@ import { ITreatment } from 'app/shared/model/treatment.model';
 import { TreatmentService } from 'app/entities/treatment/treatment.service';
 import { ISymptom } from 'app/shared/model/symptom.model';
 import { SymptomService } from 'app/entities/symptom/symptom.service';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
+import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
 
 @Component({
   selector: 'jhi-appointment-update',
@@ -29,6 +31,8 @@ export class AppointmentUpdateComponent implements OnInit {
   treatments: ITreatment[];
 
   symptoms: ISymptom[];
+
+  visiteddoctors: IVisitedDoctor[];
   dateDp: any;
 
   editForm = this.fb.group({
@@ -40,7 +44,8 @@ export class AppointmentUpdateComponent implements OnInit {
     descriptionScanContentType: [],
     user: [],
     treatments: [],
-    symptoms: []
+    symptoms: [],
+    visitedDoctors: []
   });
 
   constructor(
@@ -50,6 +55,7 @@ export class AppointmentUpdateComponent implements OnInit {
     protected userService: UserService,
     protected treatmentService: TreatmentService,
     protected symptomService: SymptomService,
+    protected visitedDoctorService: VisitedDoctorService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
   ) {}
@@ -80,6 +86,13 @@ export class AppointmentUpdateComponent implements OnInit {
         map((response: HttpResponse<ISymptom[]>) => response.body)
       )
       .subscribe((res: ISymptom[]) => (this.symptoms = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.visitedDoctorService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IVisitedDoctor[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IVisitedDoctor[]>) => response.body)
+      )
+      .subscribe((res: IVisitedDoctor[]) => (this.visiteddoctors = res), (res: HttpErrorResponse) => this.onError(res.message));
   }
 
   updateForm(appointment: IAppointment) {
@@ -92,7 +105,8 @@ export class AppointmentUpdateComponent implements OnInit {
       descriptionScanContentType: appointment.descriptionScanContentType,
       user: appointment.user,
       treatments: appointment.treatments,
-      symptoms: appointment.symptoms
+      symptoms: appointment.symptoms,
+      visitedDoctors: appointment.visitedDoctors
     });
   }
 
@@ -154,7 +168,8 @@ export class AppointmentUpdateComponent implements OnInit {
       descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
       treatments: this.editForm.get(['treatments']).value,
-      symptoms: this.editForm.get(['symptoms']).value
+      symptoms: this.editForm.get(['symptoms']).value,
+      visitedDoctors: this.editForm.get(['visitedDoctors']).value
     };
   }
 
@@ -183,6 +198,10 @@ export class AppointmentUpdateComponent implements OnInit {
   }
 
   trackSymptomById(index: number, item: ISymptom) {
+    return item.id;
+  }
+
+  trackVisitedDoctorById(index: number, item: IVisitedDoctor) {
     return item.id;
   }
 

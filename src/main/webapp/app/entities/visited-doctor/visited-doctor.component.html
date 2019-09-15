@@ -17,15 +17,11 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="opinion"><span jhiTranslate="medicusApp.visitedDoctor.opinion">Opinion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="doctor.id"><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.visitedDoctor.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.visitedDoctor.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="procedure.id"><span jhiTranslate="medicusApp.visitedDoctor.procedure">Procedure</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="treatment.id"><span jhiTranslate="medicusApp.visitedDoctor.treatment">Treatment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="examinationPackage.id"><span jhiTranslate="medicusApp.visitedDoctor.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th></th>
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="opinion"><span jhiTranslate="medicusApp.visitedDoctor.opinion">Opinion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="doctor.id"><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.visitedDoctor.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
             </tr>
             </thead>
             <tbody>
@@ -39,26 +35,6 @@
                 </td>
                 <td>
                     {{visitedDoctor.user?.id}}
-                </td>
-                <td>
-                    <div *ngIf="visitedDoctor.appointment">
-                        <a [routerLink]="['/appointment', visitedDoctor.appointment?.id, 'view' ]" >{{visitedDoctor.appointment?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="visitedDoctor.procedure">
-                        <a [routerLink]="['/procedure', visitedDoctor.procedure?.id, 'view' ]" >{{visitedDoctor.procedure?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="visitedDoctor.treatment">
-                        <a [routerLink]="['/treatment', visitedDoctor.treatment?.id, 'view' ]" >{{visitedDoctor.treatment?.id}}</a>
-                    </div>
-                </td>
-                <td>
-                    <div *ngIf="visitedDoctor.examinationPackage">
-                        <a [routerLink]="['/examination-package', visitedDoctor.examinationPackage?.id, 'view' ]" >{{visitedDoctor.examinationPackage?.id}}</a>
-                    </div>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

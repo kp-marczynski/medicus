@@ -19,8 +19,8 @@
       "date": "Date",
       "description": "Description",
       "descriptionScan": "Description Scan",
-      "visitedDoctor": "Visited Doctor",
       "user": "User",
+      "visitedDoctor": "Visited Doctor",
       "appointment": "Appointment"
     }
   }

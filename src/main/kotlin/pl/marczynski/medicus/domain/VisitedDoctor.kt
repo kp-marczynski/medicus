@@ -1,5 +1,6 @@
 package pl.marczynski.medicus.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Type
 
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Lob
+import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
@@ -40,21 +42,21 @@ class VisitedDoctor(
     @JsonIgnoreProperties("visitedDoctors")
     var user: User? = null,
 
-    @ManyToOne
-    @JsonIgnoreProperties("visitedDoctors")
-    var appointment: Appointment? = null,
+    @ManyToMany(mappedBy = "visitedDoctors")
+    @JsonIgnore
+    var appointments: MutableSet<Appointment> = mutableSetOf(),
 
-    @ManyToOne
-    @JsonIgnoreProperties("visitedDoctors")
-    var procedure: Procedure? = null,
+    @ManyToMany(mappedBy = "visitedDoctors")
+    @JsonIgnore
+    var procedures: MutableSet<Procedure> = mutableSetOf(),
 
-    @ManyToOne
-    @JsonIgnoreProperties("visitedDoctors")
-    var treatment: Treatment? = null,
+    @ManyToMany(mappedBy = "visitedDoctors")
+    @JsonIgnore
+    var treatments: MutableSet<Treatment> = mutableSetOf(),
 
-    @ManyToOne
-    @JsonIgnoreProperties("visitedDoctors")
-    var examinationPackage: ExaminationPackage? = null
+    @ManyToMany(mappedBy = "visitedDoctors")
+    @JsonIgnore
+    var examinationPackages: MutableSet<ExaminationPackage> = mutableSetOf()
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {

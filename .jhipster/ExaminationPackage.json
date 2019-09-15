@@ -24,12 +24,6 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "visitedDoctor",
-            "otherEntityRelationshipName": "examinationPackage",
-            "relationshipName": "visitedDoctor"
-        },
-        {
-            "relationshipType": "one-to-many",
             "otherEntityName": "examination",
             "otherEntityRelationshipName": "examinationPackage",
             "relationshipName": "examination"
@@ -42,6 +36,14 @@
             "otherEntityField": "id"
         },
         {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "examinationPackage",
+            "relationshipName": "visitedDoctor",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
             "relationshipType": "many-to-one",
             "otherEntityName": "appointment",
             "otherEntityRelationshipName": "examinationPackage",
@@ -49,7 +51,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190914220058",
+    "changelogDate": "20190915094532",
     "entityTableName": "examination_package",
     "dto": "no",
     "pagination": "pager",

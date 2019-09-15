@@ -20,15 +20,15 @@ interface TreatmentRepository : JpaRepository<Treatment, Long> {
     fun findByUserIsCurrentUser(): MutableList<Treatment>
 
     @Query(
-        value = "select distinct treatment from Treatment treatment left join fetch treatment.medicines where treatment.user.login = ?#{principal.username}",
+        value = "select distinct treatment from Treatment treatment left join fetch treatment.visitedDoctors left join fetch treatment.medicines where treatment.user.login = ?#{principal.username}",
         countQuery = "select count(distinct treatment) from Treatment treatment where treatment.user.login = ?#{principal.username}"
     )
     fun findAllWithEagerRelationships(pageable: Pageable): Page<Treatment>
 
-    @Query(value = "select distinct treatment from Treatment treatment left join fetch treatment.medicines where treatment.user.login = ?#{principal.username}")
+    @Query(value = "select distinct treatment from Treatment treatment left join fetch treatment.visitedDoctors left join fetch treatment.medicines where treatment.user.login = ?#{principal.username}")
     fun findAllWithEagerRelationships(): MutableList<Treatment>
 
-    @Query("select treatment from Treatment treatment left join fetch treatment.medicines where treatment.id =:id")
+    @Query("select treatment from Treatment treatment left join fetch treatment.visitedDoctors left join fetch treatment.medicines where treatment.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Treatment>
 
     @Query("select case when count(res)> 0 then true else false end from Treatment res where res.id = :id and res.user.login = ?#{principal.username}")

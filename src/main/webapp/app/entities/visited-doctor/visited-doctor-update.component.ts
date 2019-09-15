@@ -45,11 +45,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
     id: [],
     opinion: [],
     doctor: [],
-    user: [],
-    appointment: [],
-    procedure: [],
-    treatment: [],
-    examinationPackage: []
+    user: []
   });
 
   constructor(
@@ -120,11 +116,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
       id: visitedDoctor.id,
       opinion: visitedDoctor.opinion,
       doctor: visitedDoctor.doctor,
-      user: visitedDoctor.user,
-      appointment: visitedDoctor.appointment,
-      procedure: visitedDoctor.procedure,
-      treatment: visitedDoctor.treatment,
-      examinationPackage: visitedDoctor.examinationPackage
+      user: visitedDoctor.user
     });
   }
 
@@ -181,11 +173,7 @@ export class VisitedDoctorUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       opinion: this.editForm.get(['opinion']).value,
       doctor: this.editForm.get(['doctor']).value,
-      user: this.editForm.get(['user']).value,
-      appointment: this.editForm.get(['appointment']).value,
-      procedure: this.editForm.get(['procedure']).value,
-      treatment: this.editForm.get(['treatment']).value,
-      examinationPackage: this.editForm.get(['examinationPackage']).value
+      user: this.editForm.get(['user']).value
     };
   }
 
@@ -227,5 +215,16 @@ export class VisitedDoctorUpdateComponent implements OnInit {
 
   trackExaminationPackageById(index: number, item: IExaminationPackage) {
     return item.id;
+  }
+
+  getSelected(selectedVals: any[], option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

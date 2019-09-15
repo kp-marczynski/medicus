@@ -42,7 +42,7 @@ class Appointment(
     var appointmentType: String? = null,
 
     @Lob
-        @Type(type = "org.hibernate.type.TextType")
+    @Type(type = "org.hibernate.type.TextType")
     @Column(name = "description", nullable = false)
     var description: String? = null,
 
@@ -59,9 +59,6 @@ class Appointment(
     @OneToMany(mappedBy = "appointment")
     var procedures: MutableSet<Procedure> = mutableSetOf(),
 
-    @OneToMany(mappedBy = "appointment")
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
-
     @ManyToOne
     @JsonIgnoreProperties("appointments")
     var user: User? = null,
@@ -76,7 +73,13 @@ class Appointment(
     @JoinTable(name = "appointment_symptom",
         joinColumns = [JoinColumn(name = "appointment_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "symptom_id", referencedColumnName = "id")])
-    var symptoms: MutableSet<Symptom> = mutableSetOf()
+    var symptoms: MutableSet<Symptom> = mutableSetOf(),
+
+    @ManyToMany
+    @JoinTable(name = "appointment_visited_doctor",
+        joinColumns = [JoinColumn(name = "appointment_id", referencedColumnName = "id")],
+        inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
+    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf()
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {

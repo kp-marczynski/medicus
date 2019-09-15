@@ -7,7 +7,7 @@
                 <div class="form-group" [hidden]="!editForm.get('id').value">
                     <label for="id" jhiTranslate="global.field.id">ID</label>
                     <input type="text" class="form-control" id="id" name="id" formControlName="id"
-                        readonly />
+                           readonly />
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.appointment.date" for="field_date">Date</label>
@@ -20,7 +20,7 @@
                     <div *ngIf="editForm.get('date').invalid && (editForm.get('date').dirty || editForm.get('date').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('date').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                     </div>
                 </div>
@@ -31,7 +31,7 @@
                     <div *ngIf="editForm.get('appointmentType').invalid && (editForm.get('appointmentType').dirty || editForm.get('appointmentType').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('appointmentType').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                     <div *ngIf="editForm.get('description').invalid && (editForm.get('description').dirty || editForm.get('description').touched)">
                         <small class="form-text text-danger"
                                *ngIf="editForm.get('description').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
+                            This field is required.
                         </small>
                     </div>
                 </div>
@@ -82,6 +82,12 @@
                     <label jhiTranslate="medicusApp.appointment.symptom" for="field_symptoms">Symptom</label>
                     <select class="form-control" id="field_symptoms" multiple name="symptoms" formControlName="symptoms">
                         <option [ngValue]="getSelected(editForm.get('symptoms').value, symptomOption)" *ngFor="let symptomOption of symptoms; trackBy: trackSymptomById">{{symptomOption.id}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label jhiTranslate="medicusApp.appointment.visitedDoctor" for="field_visitedDoctors">Visited Doctor</label>
+                    <select class="form-control" id="field_visitedDoctors" multiple name="visitedDoctors" formControlName="visitedDoctors">
+                        <option [ngValue]="getSelected(editForm.get('visitedDoctors').value, visitedDoctorOption)" *ngFor="let visitedDoctorOption of visiteddoctors; trackBy: trackVisitedDoctorById">{{visitedDoctorOption.id}}</option>
                     </select>
                 </div>
             </div>

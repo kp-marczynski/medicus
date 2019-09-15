@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity VisitedDoctor.
     -->
-    <changeSet id="20190914220101-2" author="jhipster">
+    <changeSet id="20190915094535-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="doctor_id"
                                  baseTableName="visited_doctor"
@@ -19,30 +19,6 @@
                                  constraintName="fk_visited_doctor_user_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_user"/>
-
-        <addForeignKeyConstraint baseColumnNames="appointment_id"
-                                 baseTableName="visited_doctor"
-                                 constraintName="fk_visited_doctor_appointment_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="appointment"/>
-
-        <addForeignKeyConstraint baseColumnNames="procedure_id"
-                                 baseTableName="visited_doctor"
-                                 constraintName="fk_visited_doctor_procedure_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="procedure"/>
-
-        <addForeignKeyConstraint baseColumnNames="treatment_id"
-                                 baseTableName="visited_doctor"
-                                 constraintName="fk_visited_doctor_treatment_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="treatment"/>
-
-        <addForeignKeyConstraint baseColumnNames="examination_package_id"
-                                 baseTableName="visited_doctor"
-                                 constraintName="fk_visited_doctor_examination_package_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="examination_package"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -9,9 +9,11 @@ import kotlin.test.assertNotNull
 
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.Mock
 import org.mockito.MockitoAnnotations
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.data.domain.PageImpl
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver
 import org.springframework.http.MediaType
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter
@@ -26,6 +28,10 @@ import java.time.ZoneId
 
 import org.assertj.core.api.Assertions.assertThat
 import org.hamcrest.Matchers.hasItem
+import org.mockito.ArgumentMatchers.any
+import org.mockito.Mockito.`when`
+import org.mockito.Mockito.times
+import org.mockito.Mockito.verify
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post
@@ -44,6 +50,9 @@ class ExaminationPackageResourceIT {
 
     @Autowired
     private lateinit var examinationPackageRepository: ExaminationPackageRepository
+
+    @Mock
+    private lateinit var examinationPackageRepositoryMock: ExaminationPackageRepository
 
     @Autowired
     private lateinit var jacksonMessageConverter: MappingJackson2HttpMessageConverter
@@ -176,6 +185,39 @@ class ExaminationPackageResourceIT {
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].examinationPackageScanContentType").value(hasItem(DEFAULT_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].examinationPackageScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_EXAMINATION_PACKAGE_SCAN))))
+    }
+
+    @Suppress("unchecked")
+    fun getAllExaminationPackagesWithEagerRelationshipsIsEnabled() {
+        val examinationPackageResource = ExaminationPackageResource(examinationPackageRepositoryMock)
+        `when`(examinationPackageRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(PageImpl(mutableListOf()))
+
+        val restExaminationPackageMockMvc = MockMvcBuilders.standaloneSetup(examinationPackageResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build()
+
+        restExaminationPackageMockMvc.perform(get("/api/examination-packages?eagerload=true"))
+            .andExpect(status().isOk)
+
+        verify(examinationPackageRepositoryMock, times(1)).findAllWithEagerRelationships(any())
+    }
+
+    @Suppress("unchecked")
+    fun getAllExaminationPackagesWithEagerRelationshipsIsNotEnabled() {
+        val examinationPackageResource = ExaminationPackageResource(examinationPackageRepositoryMock)
+        `when`(examinationPackageRepositoryMock.findAllWithEagerRelationships(any())).thenReturn(PageImpl(mutableListOf()))
+        val restExaminationPackageMockMvc = MockMvcBuilders.standaloneSetup(examinationPackageResource)
+            .setCustomArgumentResolvers(pageableArgumentResolver)
+            .setControllerAdvice(exceptionTranslator)
+            .setConversionService(createFormattingConversionService())
+            .setMessageConverters(jacksonMessageConverter).build()
+
+        restExaminationPackageMockMvc.perform(get("/api/examination-packages?eagerload=true"))
+            .andExpect(status().isOk)
+
+        verify(examinationPackageRepositoryMock, times(1)).findAllWithEagerRelationships(any())
     }
 
     @Test

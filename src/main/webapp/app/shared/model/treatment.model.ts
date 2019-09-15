@@ -1,7 +1,7 @@
 import { Moment } from 'moment';
-import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IUser } from 'app/core/user/user.model';
 import { IMedicine } from 'app/shared/model/medicine.model';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { IAppointment } from 'app/shared/model/appointment.model';
 
 export interface ITreatment {
@@ -11,9 +11,9 @@ export interface ITreatment {
   description?: any;
   descriptionScanContentType?: string;
   descriptionScan?: any;
-  visitedDoctors?: IVisitedDoctor[];
   user?: IUser;
   medicines?: IMedicine[];
+  visitedDoctors?: IVisitedDoctor[];
   appointments?: IAppointment[];
 }
 
@@ -25,9 +25,9 @@ export class Treatment implements ITreatment {
     public description?: any,
     public descriptionScanContentType?: string,
     public descriptionScan?: any,
-    public visitedDoctors?: IVisitedDoctor[],
     public user?: IUser,
     public medicines?: IMedicine[],
+    public visitedDoctors?: IVisitedDoctor[],
     public appointments?: IAppointment[]
   ) {}
 }

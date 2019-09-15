@@ -20,9 +20,9 @@
       "endDate": "End Date",
       "description": "Description",
       "descriptionScan": "Description Scan",
-      "visitedDoctor": "Visited Doctor",
       "user": "User",
       "medicine": "Medicine",
+      "visitedDoctor": "Visited Doctor",
       "appointment": "Appointment"
     }
   }

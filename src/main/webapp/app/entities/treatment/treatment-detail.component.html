@@ -34,6 +34,12 @@
                         <a [routerLink]="['/medicine', medicine?.id, 'view' ]">{{medicine.id}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
+                <dt><span jhiTranslate="medicusApp.treatment.visitedDoctor">Visited Doctor</span></dt>
+                <dd>
+                    <span *ngFor="let visitedDoctor of treatment.visitedDoctors; let last = last">
+                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.id}}</a>{{last ? '' : ', '}}
+                    </span>
+                </dd>
             </dl>
 
             <button type="submit"

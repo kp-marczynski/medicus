@@ -24,17 +24,19 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "visitedDoctor",
-            "otherEntityRelationshipName": "procedure",
-            "relationshipName": "visitedDoctor"
-        },
-        {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
             "otherEntityRelationshipName": "procedure",
             "relationshipName": "user",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "visitedDoctor",
+            "otherEntityRelationshipName": "procedure",
+            "relationshipName": "visitedDoctor",
+            "otherEntityField": "id",
+            "ownerSide": true
         },
         {
             "relationshipType": "many-to-one",
@@ -44,7 +46,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190914162400",
+    "changelogDate": "20190915094527",
     "entityTableName": "procedure",
     "dto": "no",
     "pagination": "pager",

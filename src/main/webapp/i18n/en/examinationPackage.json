@@ -19,9 +19,9 @@
       "date": "Date",
       "title": "Title",
       "examinationPackageScan": "Examination Package Scan",
-      "visitedDoctor": "Visited Doctor",
       "examination": "Examination",
       "user": "User",
+      "visitedDoctor": "Visited Doctor",
       "appointment": "Appointment"
     }
   }

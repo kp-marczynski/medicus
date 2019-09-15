@@ -37,7 +37,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190914162406",
+    "changelogDate": "20190915094533",
     "entityTableName": "symptom",
     "dto": "no",
     "pagination": "pager",

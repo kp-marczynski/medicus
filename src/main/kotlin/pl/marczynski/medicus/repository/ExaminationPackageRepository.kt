@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
+import java.util.*
 
 /**
  * Spring Data  repository for the [ExaminationPackage] entity.
@@ -26,4 +27,16 @@ interface ExaminationPackageRepository : JpaRepository<ExaminationPackage, Long>
         countQuery = "select count(distinct res) from ExaminationPackage res where res.user.login = ?#{principal.username}"
     )
     override fun findAll(pageable: Pageable): Page<ExaminationPackage>
+
+    @Query(
+        value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.visitedDoctors where res.user.login = ?#{principal.username}",
+        countQuery = "select count(distinct examinationPackage) from ExaminationPackage examinationPackage where res.user.login = ?#{principal.username}"
+    )
+    fun findAllWithEagerRelationships(pageable: Pageable): Page<ExaminationPackage>
+
+    @Query(value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.visitedDoctors where res.user.login = ?#{principal.username}")
+    fun findAllWithEagerRelationships(): MutableList<ExaminationPackage>
+
+    @Query("select examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.visitedDoctors where examinationPackage.id =:id")
+    fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<ExaminationPackage>
 }

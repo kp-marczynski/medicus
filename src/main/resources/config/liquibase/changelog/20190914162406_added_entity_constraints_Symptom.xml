@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity Symptom.
     -->
-    <changeSet id="20190914220059-2" author="jhipster">
+    <changeSet id="20190915094533-2" author="jhipster">
 
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="symptom"

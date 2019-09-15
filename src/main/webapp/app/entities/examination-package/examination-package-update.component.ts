@@ -12,6 +12,8 @@ import { IExaminationPackage, ExaminationPackage } from 'app/shared/model/examin
 import { ExaminationPackageService } from './examination-package.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
+import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
+import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
 import { IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 
@@ -24,6 +26,8 @@ export class ExaminationPackageUpdateComponent implements OnInit {
 
   users: IUser[];
 
+  visiteddoctors: IVisitedDoctor[];
+
   appointments: IAppointment[];
   dateDp: any;
 
@@ -34,6 +38,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     examinationPackageScan: [],
     examinationPackageScanContentType: [],
     user: [],
+    visitedDoctors: [],
     appointment: []
   });
 
@@ -42,6 +47,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     protected jhiAlertService: JhiAlertService,
     protected examinationPackageService: ExaminationPackageService,
     protected userService: UserService,
+    protected visitedDoctorService: VisitedDoctorService,
     protected appointmentService: AppointmentService,
     protected activatedRoute: ActivatedRoute,
     private fb: FormBuilder
@@ -59,6 +65,13 @@ export class ExaminationPackageUpdateComponent implements OnInit {
         map((response: HttpResponse<IUser[]>) => response.body)
       )
       .subscribe((res: IUser[]) => (this.users = res), (res: HttpErrorResponse) => this.onError(res.message));
+    this.visitedDoctorService
+      .query()
+      .pipe(
+        filter((mayBeOk: HttpResponse<IVisitedDoctor[]>) => mayBeOk.ok),
+        map((response: HttpResponse<IVisitedDoctor[]>) => response.body)
+      )
+      .subscribe((res: IVisitedDoctor[]) => (this.visiteddoctors = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.appointmentService
       .query()
       .pipe(
@@ -76,6 +89,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScan: examinationPackage.examinationPackageScan,
       examinationPackageScanContentType: examinationPackage.examinationPackageScanContentType,
       user: examinationPackage.user,
+      visitedDoctors: examinationPackage.visitedDoctors,
       appointment: examinationPackage.appointment
     });
   }
@@ -136,6 +150,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScanContentType: this.editForm.get(['examinationPackageScanContentType']).value,
       examinationPackageScan: this.editForm.get(['examinationPackageScan']).value,
       user: this.editForm.get(['user']).value,
+      visitedDoctors: this.editForm.get(['visitedDoctors']).value,
       appointment: this.editForm.get(['appointment']).value
     };
   }
@@ -160,7 +175,22 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     return item.id;
   }
 
+  trackVisitedDoctorById(index: number, item: IVisitedDoctor) {
+    return item.id;
+  }
+
   trackAppointmentById(index: number, item: IAppointment) {
     return item.id;
+  }
+
+  getSelected(selectedVals: any[], option: any) {
+    if (selectedVals) {
+      for (let i = 0; i < selectedVals.length; i++) {
+        if (option.id === selectedVals[i].id) {
+          return selectedVals[i];
+        }
+      }
+    }
+    return option;
   }
 }

@@ -23,35 +23,39 @@
             "otherEntityField": "id"
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "appointment",
             "otherEntityRelationshipName": "visitedDoctor",
             "relationshipName": "appointment",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "procedure",
             "otherEntityRelationshipName": "visitedDoctor",
             "relationshipName": "procedure",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "treatment",
             "otherEntityRelationshipName": "visitedDoctor",
             "relationshipName": "treatment",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         },
         {
-            "relationshipType": "many-to-one",
+            "relationshipType": "many-to-many",
             "otherEntityName": "examinationPackage",
             "otherEntityRelationshipName": "visitedDoctor",
             "relationshipName": "examinationPackage",
-            "otherEntityField": "id"
+            "otherEntityField": "id",
+            "ownerSide": false
         }
     ],
-    "changelogDate": "20190914220101",
+    "changelogDate": "20190915094535",
     "entityTableName": "visited_doctor",
     "dto": "no",
     "pagination": "pager",

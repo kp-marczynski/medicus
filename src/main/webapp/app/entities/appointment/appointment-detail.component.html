@@ -24,10 +24,6 @@
                         {{appointment.descriptionScanContentType}}, {{byteSize(appointment.descriptionScan)}}
                     </div>
                 </dd>
-                <dt><span jhiTranslate="medicusApp.appointment.user">User</span></dt>
-                <dd>
-                    {{appointment.user?.id}}
-                </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.treatment">Treatment</span></dt>
                 <dd>
                     <span *ngFor="let treatment of appointment.treatments; let last = last">

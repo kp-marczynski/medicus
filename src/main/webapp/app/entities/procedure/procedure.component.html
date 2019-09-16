@@ -21,8 +21,7 @@
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.procedure.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.procedure.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.procedure.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="appointment"><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -36,11 +35,8 @@
                     <span *ngIf="procedure.descriptionScan">{{procedure.descriptionScanContentType}}, {{byteSize(procedure.descriptionScan)}}</span>
                 </td>
                 <td>
-                    {{procedure.user?.id}}
-                </td>
-                <td>
                     <div *ngIf="procedure.appointment">
-                        <a [routerLink]="['/appointment', procedure.appointment?.id, 'view' ]" >{{procedure.appointment?.id}}</a>
+                        <a [routerLink]="['/appointment', procedure.appointment, 'view' ]" >{{procedure.appointment}}</a>
                     </div>
                 </td>
                 <td class="text-right">

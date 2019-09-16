@@ -21,7 +21,6 @@
             <th jhiSortBy="startDate"><span jhiTranslate="medicusApp.symptom.startDate">Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="endDate"><span jhiTranslate="medicusApp.symptom.endDate">End Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.symptom.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.symptom.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -31,9 +30,6 @@
                 <td>{{symptom.startDate | date:'mediumDate'}}</td>
                 <td>{{symptom.endDate | date:'mediumDate'}}</td>
                 <td>{{symptom.description}}</td>
-                <td>
-                    {{symptom.user?.id}}
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

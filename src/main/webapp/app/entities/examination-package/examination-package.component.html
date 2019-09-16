@@ -21,8 +21,7 @@
                 <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationPackageScan"><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examinationPackage.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="appointment.id"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="appointment"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
             </tr>
             </thead>
@@ -36,11 +35,8 @@
                     <span *ngIf="examinationPackage.examinationPackageScan">{{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}</span>
                 </td>
                 <td>
-                    {{examinationPackage.user?.id}}
-                </td>
-                <td>
                     <div *ngIf="examinationPackage.appointment">
-                        <a [routerLink]="['/appointment', examinationPackage.appointment?.id, 'view' ]" >{{examinationPackage.appointment?.id}}</a>
+                        <a [routerLink]="['/appointment', examinationPackage.appointment, 'view' ]" >{{examinationPackage.appointment}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -23,15 +23,15 @@ interface AppointmentRepository : JpaRepository<Appointment, Long> {
     fun checkUserRightsById(@Param("id") id: Long): Boolean
 
     @Query(
-        value = "select distinct appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms where appointment.user.login = ?#{principal.username}",
+        value = "select distinct appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms left join fetch appointment.procedures left join fetch appointment.examinationPackages where appointment.user.login = ?#{principal.username}",
         countQuery = "select count(distinct appointment) from Appointment appointment where appointment.user.login = ?#{principal.username}"
     )
     fun findAllWithEagerRelationships(pageable: Pageable): Page<Appointment>
 
-    @Query(value = "select distinct appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms where appointment.user.login = ?#{principal.username}")
+    @Query(value = "select distinct appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms left join fetch appointment.procedures left join fetch appointment.examinationPackages where appointment.user.login = ?#{principal.username}")
     fun findAllWithEagerRelationships(): MutableList<Appointment>
 
-    @Query("select appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms where appointment.id =:id")
+    @Query("select appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms left join fetch appointment.procedures left join fetch appointment.examinationPackages where appointment.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Appointment>
 
     @Query(

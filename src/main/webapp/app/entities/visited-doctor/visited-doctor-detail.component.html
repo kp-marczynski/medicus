@@ -15,10 +15,6 @@
                         <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view']">{{visitedDoctor.doctor?.id}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="medicusApp.visitedDoctor.user">User</span></dt>
-                <dd>
-                    {{visitedDoctor.user?.id}}
-                </dd>
             </dl>
 
             <button type="submit"

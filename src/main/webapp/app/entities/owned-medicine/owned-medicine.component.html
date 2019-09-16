@@ -21,7 +21,6 @@
                 <th jhiSortBy="doses"><span jhiTranslate="medicusApp.ownedMedicine.doses">Doses</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="expirationDate"><span jhiTranslate="medicusApp.ownedMedicine.expirationDate">Expiration Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="medicine.id"><span jhiTranslate="medicusApp.ownedMedicine.medicine">Medicine</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.ownedMedicine.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
             </tr>
             </thead>
@@ -34,9 +33,6 @@
                     <div *ngIf="ownedMedicine.medicine">
                         <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view' ]" >{{ownedMedicine.medicine?.id}}</a>
                     </div>
-                </td>
-                <td>
-                    {{ownedMedicine.user?.id}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

@@ -14,7 +14,7 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
-import { IAppointment } from 'app/shared/model/appointment.model';
+import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 
 @Component({
@@ -90,7 +90,7 @@ export class ProcedureUpdateComponent implements OnInit {
       descriptionScanContentType: procedure.descriptionScanContentType,
       user: procedure.user,
       visitedDoctors: procedure.visitedDoctors,
-      appointment: procedure.appointment
+      appointment: procedure.appointment ? new Appointment(procedure.appointment) : procedure.appointment
     });
   }
 
@@ -151,7 +151,7 @@ export class ProcedureUpdateComponent implements OnInit {
       descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
       visitedDoctors: this.editForm.get(['visitedDoctors']).value,
-      appointment: this.editForm.get(['appointment']).value
+      appointment: this.editForm.get(['appointment']).value.id
     };
   }
 

@@ -14,7 +14,7 @@ import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
-import { IAppointment } from 'app/shared/model/appointment.model';
+import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 
 @Component({
@@ -90,7 +90,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScanContentType: examinationPackage.examinationPackageScanContentType,
       user: examinationPackage.user,
       visitedDoctors: examinationPackage.visitedDoctors,
-      appointment: examinationPackage.appointment
+      appointment: examinationPackage.appointment ? new Appointment(examinationPackage.appointment) : examinationPackage.appointment
     });
   }
 
@@ -151,7 +151,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScan: this.editForm.get(['examinationPackageScan']).value,
       user: this.editForm.get(['user']).value,
       visitedDoctors: this.editForm.get(['visitedDoctors']).value,
-      appointment: this.editForm.get(['appointment']).value
+      appointment: this.editForm.get(['appointment']).value.id
     };
   }
 

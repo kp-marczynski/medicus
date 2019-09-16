@@ -47,13 +47,6 @@
                         <option [ngValue]="medicineOption.id === editForm.get('medicine').value?.id ? editForm.get('medicine').value : medicineOption" *ngFor="let medicineOption of medicines; trackBy: trackMedicineById">{{medicineOption.id}}</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="medicusApp.ownedMedicine.user" for="field_user">User</label>
-                    <select class="form-control" id="field_user" name="user" formControlName="user">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="userOption.id === editForm.get('user').value?.id ? editForm.get('user').value : userOption" *ngFor="let userOption of users; trackBy: trackUserById">{{userOption.id}}</option>
-                    </select>
-                </div>
             </div>
             <div>
                 <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">

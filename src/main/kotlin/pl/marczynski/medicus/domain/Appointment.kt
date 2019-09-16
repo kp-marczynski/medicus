@@ -3,23 +3,11 @@ package pl.marczynski.medicus.domain
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Type
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Lob
-import javax.persistence.JoinColumn
-import javax.persistence.JoinTable
-import javax.persistence.ManyToMany
-import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
-import javax.persistence.SequenceGenerator
-import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 import java.io.Serializable
 import java.time.LocalDate
+import javax.persistence.*
 
 /**
  * A Appointment.
@@ -53,10 +41,14 @@ class Appointment(
     @Column(name = "description_scan_content_type")
     var descriptionScanContentType: String? = null,
 
-    @OneToMany(mappedBy = "appointment")
+//    @OneToMany(mappedBy = "appointment", fetch = FetchType.EAGER)
+    @OneToMany
+    @JoinColumn(name = "appointment_id", nullable = true)
     var examinationPackages: MutableSet<ExaminationPackage>? = mutableSetOf(),
 
-    @OneToMany(mappedBy = "appointment")
+//    @OneToMany(mappedBy = "appointment", fetch = FetchType.EAGER)
+    @OneToMany
+    @JoinColumn(name = "appointment_id", nullable = true)
     var procedures: MutableSet<Procedure>? = mutableSetOf(),
 
     @ManyToOne

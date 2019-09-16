@@ -22,7 +22,6 @@
             <th jhiSortBy="appointmentType"><span jhiTranslate="medicusApp.appointment.appointmentType">Appointment Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.appointment.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.appointment.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.appointment.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -35,9 +34,6 @@
                 <td>
                     <a *ngIf="appointment.descriptionScan" (click)="openFile(appointment.descriptionScanContentType, appointment.descriptionScan)" jhiTranslate="entity.action.open">open</a>
                     <span *ngIf="appointment.descriptionScan">{{appointment.descriptionScanContentType}}, {{byteSize(appointment.descriptionScan)}}</span>
-                </td>
-                <td>
-                    {{appointment.user?.id}}
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

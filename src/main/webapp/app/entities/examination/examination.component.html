@@ -21,7 +21,6 @@
                 <th jhiSortBy="value"><span jhiTranslate="medicusApp.examination.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="valueModificator"><span jhiTranslate="medicusApp.examination.valueModificator">Value Modificator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationType.id"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="user.id"><span jhiTranslate="medicusApp.examination.user">User</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationPackage.id"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
             </tr>
@@ -35,9 +34,6 @@
                     <div *ngIf="examination.examinationType">
                         <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view' ]" >{{examination.examinationType?.id}}</a>
                     </div>
-                </td>
-                <td>
-                    {{examination.user?.id}}
                 </td>
                 <td>
                     <div *ngIf="examination.examinationPackage">

@@ -19,10 +19,6 @@
                         <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view']">{{examination.examinationType?.id}}</a>
                     </div>
                 </dd>
-                <dt><span jhiTranslate="medicusApp.examination.user">User</span></dt>
-                <dd>
-                    {{examination.user?.id}}
-                </dd>
                 <dt><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span></dt>
                 <dd>
                     <div *ngIf="examination.examinationPackage">

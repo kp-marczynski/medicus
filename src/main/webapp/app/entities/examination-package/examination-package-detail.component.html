@@ -20,10 +20,6 @@
                         {{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}
                     </div>
                 </dd>
-                <dt><span jhiTranslate="medicusApp.examinationPackage.user">User</span></dt>
-                <dd>
-                    {{examinationPackage.user?.id}}
-                </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
                     <span *ngFor="let visitedDoctor of examinationPackage.visitedDoctors; let last = last">
@@ -33,7 +29,7 @@
                 <dt><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span></dt>
                 <dd>
                     <div *ngIf="examinationPackage.appointment">
-                        <a [routerLink]="['/appointment', examinationPackage.appointment?.id, 'view']">{{examinationPackage.appointment?.id}}</a>
+                        <a [routerLink]="['/appointment', examinationPackage.appointment, 'view']">{{examinationPackage.appointment}}</a>
                     </div>
                 </dd>
             </dl>

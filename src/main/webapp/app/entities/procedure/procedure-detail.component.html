@@ -20,10 +20,6 @@
                         {{procedure.descriptionScanContentType}}, {{byteSize(procedure.descriptionScan)}}
                     </div>
                 </dd>
-                <dt><span jhiTranslate="medicusApp.procedure.user">User</span></dt>
-                <dd>
-                    {{procedure.user?.id}}
-                </dd>
                 <dt><span jhiTranslate="medicusApp.procedure.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
                     <span *ngFor="let visitedDoctor of procedure.visitedDoctors; let last = last">
@@ -33,7 +29,7 @@
                 <dt><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span></dt>
                 <dd>
                     <div *ngIf="procedure.appointment">
-                        <a [routerLink]="['/appointment', procedure.appointment?.id, 'view']">{{procedure.appointment?.id}}</a>
+                        <a [routerLink]="['/appointment', procedure.appointment, 'view']">{{procedure.appointment}}</a>
                     </div>
                 </dd>
             </dl>

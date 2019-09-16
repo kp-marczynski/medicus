@@ -3,11 +3,10 @@ import { RouterModule } from '@angular/router';
 
 import { MedicusSharedModule } from 'app/shared/shared.module';
 import { VisitedDoctorComponent } from './visited-doctor.component';
-import { VisitedDoctorDetailComponent } from './visited-doctor-detail.component';
 import { VisitedDoctorUpdateComponent } from './visited-doctor-update.component';
 import { VisitedDoctorDeletePopupComponent, VisitedDoctorDeleteDialogComponent } from './visited-doctor-delete-dialog.component';
 import { visitedDoctorRoute, visitedDoctorPopupRoute } from './visited-doctor.route';
-import {MedicusVisitedDoctorInjectableModule} from "app/entities/visited-doctor/visited-doctor-injectable.module";
+import { MedicusVisitedDoctorInjectableModule } from 'app/entities/visited-doctor/visited-doctor-injectable.module';
 
 const ENTITY_STATES = [...visitedDoctorRoute, ...visitedDoctorPopupRoute];
 

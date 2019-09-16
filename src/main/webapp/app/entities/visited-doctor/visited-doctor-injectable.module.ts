@@ -6,7 +6,6 @@ import { VisitedDoctorComponent } from './visited-doctor.component';
 import { VisitedDoctorDetailComponent } from './visited-doctor-detail.component';
 import { VisitedDoctorUpdateComponent } from './visited-doctor-update.component';
 import { VisitedDoctorDeletePopupComponent, VisitedDoctorDeleteDialogComponent } from './visited-doctor-delete-dialog.component';
-import { visitedDoctorRoute, visitedDoctorPopupRoute } from './visited-doctor.route';
 
 @NgModule({
   imports: [MedicusSharedModule, RouterModule],
@@ -17,9 +16,7 @@ import { visitedDoctorRoute, visitedDoctorPopupRoute } from './visited-doctor.ro
     VisitedDoctorDeleteDialogComponent,
     VisitedDoctorDeletePopupComponent
   ],
-  exports: [
-    VisitedDoctorComponent
-  ],
+  exports: [VisitedDoctorComponent],
   entryComponents: [
     VisitedDoctorComponent,
     VisitedDoctorUpdateComponent,

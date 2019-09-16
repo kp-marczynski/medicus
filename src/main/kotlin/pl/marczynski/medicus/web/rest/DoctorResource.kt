@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -33,7 +34,8 @@ private const val ENTITY_NAME = "doctor"
 @RestController
 @RequestMapping("/api")
 class DoctorResource(
-    private val doctorRepository: DoctorRepository
+    private val doctorRepository: DoctorRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -57,6 +59,7 @@ class DoctorResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        doctor.language = userRepository.getCurrentUserLanguage().orElse(null)
         val result = doctorRepository.save(doctor)
         return ResponseEntity.created(URI("/api/doctors/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))

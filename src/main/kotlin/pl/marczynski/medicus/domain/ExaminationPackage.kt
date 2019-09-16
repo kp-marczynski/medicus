@@ -35,7 +35,7 @@ class ExaminationPackage(
     @Column(name = "examination_package_scan_content_type")
     var examinationPackageScanContentType: String? = null,
 
-    @OneToMany(mappedBy = "examinationPackage")
+    @OneToMany(mappedBy = "examinationPackage", fetch = FetchType.EAGER)
     var examinations: MutableSet<Examination>? = mutableSetOf(),
 
     @ManyToOne

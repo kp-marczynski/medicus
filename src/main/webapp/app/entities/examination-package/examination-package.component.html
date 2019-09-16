@@ -21,7 +21,8 @@
                 <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationPackageScan"><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="appointment"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th *ngIf="standaloneView" jhiSortBy="appointment"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th><span jhiTranslate="medicusApp.examinationPackage.examination">Examinations</span></th>
                 <th></th>
             </tr>
             </thead>
@@ -34,10 +35,24 @@
                     <a *ngIf="examinationPackage.examinationPackageScan" (click)="openFile(examinationPackage.examinationPackageScanContentType, examinationPackage.examinationPackageScan)" jhiTranslate="entity.action.open">open</a>
                     <span *ngIf="examinationPackage.examinationPackageScan">{{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}</span>
                 </td>
-                <td>
+                <td *ngIf="standaloneView">
                     <div *ngIf="examinationPackage.appointment">
                         <a [routerLink]="['/appointment', examinationPackage.appointment.id, 'view' ]" >{{examinationPackage.appointment.date | date:'mediumDate'}} - {{examinationPackage.appointment.appointmentType}}</a>
                     </div>
+                </td>
+                <td>
+                    <table class="table table-borderless">
+                        <tr *ngFor="let examination of examinationPackage.examinations"
+                            [ngClass]="{
+                            'table-danger': examination.examinationType.minValue && examination.value < examination.examinationType.minValue || examination.examinationType.maxValue && examination.value > examination.examinationType.maxValue,
+                            'table-success': examination.examinationType.minValue && examination.examinationType.maxValue && examination.value >= examination.examinationType.minValue && examination.value <= examination.examinationType.maxValue
+                                                || examination.examinationType.minValue && !examination.examinationType.maxValue && examination.value >= examination.examinationType.minValue
+                                                || !examination.examinationType.minValue && examination.examinationType.maxValue && examination.value <= examination.examinationType.maxValue
+                            }">
+                            <td>{{examination.examinationType.name}}</td>
+                            <td>{{examination.value}} {{examination.examinationType.unit}}</td>
+                        </tr>
+                    </table>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

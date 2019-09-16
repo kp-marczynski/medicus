@@ -22,9 +22,11 @@
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
-                    <span *ngFor="let visitedDoctor of examinationPackage.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <ul>
+                        <li *ngFor="let visitedDoctor of examinationPackage.visitedDoctors; let last = last">
+                            <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
+                        </li>
+                    </ul>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span></dt>
                 <dd>
@@ -51,5 +53,5 @@
         <jhi-file-viewer [data]="examinationPackage.examinationPackageScan" [contentType]="examinationPackage.examinationPackageScanContentType"></jhi-file-viewer>
     </div>
 </div>
-<jhi-visited-doctor [visitedDoctors]="examinationPackage.visitedDoctors"></jhi-visited-doctor>
+<!--<jhi-visited-doctor [visitedDoctors]="examinationPackage.visitedDoctors"></jhi-visited-doctor>-->
 <jhi-examination [examinations]="examinationPackage.examinations"></jhi-examination>

@@ -20,20 +20,27 @@
 <!--                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                 <th jhiSortBy="value"><span jhiTranslate="medicusApp.examination.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationType.name"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="examinationPackage.date"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th *ngIf="standaloneView" jhiSortBy="examinationPackage.date"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let examination of examinations ;trackBy: trackId">
+            <tr *ngFor="let examination of examinations ;trackBy: trackId"
+                [ngClass]="{
+                            'table-danger': examination.examinationType.minValue && examination.value < examination.examinationType.minValue || examination.examinationType.maxValue && examination.value > examination.examinationType.maxValue,
+                            'table-success': examination.examinationType.minValue && examination.examinationType.maxValue && examination.value >= examination.examinationType.minValue && examination.value <= examination.examinationType.maxValue
+                                                || examination.examinationType.minValue && !examination.examinationType.maxValue && examination.value >= examination.examinationType.minValue
+                                                || !examination.examinationType.minValue && examination.examinationType.maxValue && examination.value <= examination.examinationType.maxValue
+                            }">
 <!--                <td><a [routerLink]="['/examination', examination.id, 'view' ]">{{examination.id}}</a></td>-->
                 <td>{{examination.valueModificator}} {{examination.value}}</td>
                 <td>
-                    <div *ngIf="examination.examinationType">
-                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view' ]" >{{examination.examinationType?.name}}</a>
-                    </div>
+
+<!--                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view' ]" >{{examination.examinationType?.name}}</a>-->
+                        <span>{{examination.examinationType.name}}</span>
+                        <span>{{examination.value}} {{examination.examinationType.unit}}</span>
                 </td>
-                <td>
+                <td *ngIf="standaloneView">
                     <div *ngIf="examination.examinationPackage">
                         <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view' ]" >{{examination.examinationPackage?.date | date:'mediumDate'}} - {{examination.examinationPackage?.title}}</a>
                     </div>

@@ -9,7 +9,7 @@ import {
   ExaminationPackageDeletePopupComponent
 } from './examination-package-delete-dialog.component';
 import {examinationPackagePopupRoute, examinationPackageRoute} from './examination-package.route';
-import {MedicusExaminationPackageInjectableModule} from "app/entities/examination-package/examination-package-injectable.module";
+import {MedicusExaminationPackageInjectableModule} from "app/entities/examination-package/examination-package.injectable-module";
 
 const ENTITY_STATES = [...examinationPackageRoute, ...examinationPackagePopupRoute];
 

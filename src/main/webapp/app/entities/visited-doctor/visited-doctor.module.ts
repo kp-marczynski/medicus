@@ -6,7 +6,7 @@ import { VisitedDoctorComponent } from './visited-doctor.component';
 import { VisitedDoctorUpdateComponent } from './visited-doctor-update.component';
 import { VisitedDoctorDeletePopupComponent, VisitedDoctorDeleteDialogComponent } from './visited-doctor-delete-dialog.component';
 import { visitedDoctorRoute, visitedDoctorPopupRoute } from './visited-doctor.route';
-import { MedicusVisitedDoctorInjectableModule } from 'app/entities/visited-doctor/visited-doctor-injectable.module';
+import { MedicusVisitedDoctorInjectableModule } from 'app/entities/visited-doctor/visited-doctor.injectable-module';
 
 const ENTITY_STATES = [...visitedDoctorRoute, ...visitedDoctorPopupRoute];
 

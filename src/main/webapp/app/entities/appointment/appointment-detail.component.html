@@ -27,20 +27,24 @@
                 <dt><span jhiTranslate="medicusApp.appointment.treatment">Treatment</span></dt>
                 <dd>
                     <span *ngFor="let treatment of appointment.treatments; let last = last">
-                        <a [routerLink]="['/treatment', treatment?.id, 'view' ]">{{treatment.startDate | date:'mediumDate'}} - {{treatment.description}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/treatment', treatment?.id, 'view' ]">{{treatment.startDate | date:'mediumDate'}} - {{treatment.description}}</a>
                     </span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.symptom">Symptom</span></dt>
                 <dd>
-                    <span *ngFor="let symptom of appointment.symptoms; let last = last">
-                        <a [routerLink]="['/symptom', symptom?.id, 'view' ]">{{symptom.startDate | date:'mediumDate'}} - {{symptom.description}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <ul>
+                        <li *ngFor="let symptom of appointment.symptoms; let last = last">
+                            <a [routerLink]="['/symptom', symptom?.id, 'view' ]">{{symptom.startDate | date:'mediumDate'}} - {{symptom.description}}</a>
+                        </li>
+                    </ul>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
-                    <span *ngFor="let visitedDoctor of appointment.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <ul>
+                        <li *ngFor="let visitedDoctor of appointment.visitedDoctors; let last = last">
+                            <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
+                        </li>
+                    </ul>
                 </dd>
             </dl>
 
@@ -61,8 +65,8 @@
         <jhi-file-viewer [data]="appointment.descriptionScan" [contentType]="appointment.descriptionScanContentType"></jhi-file-viewer>
     </div>
 </div>
-<jhi-visited-doctor [visitedDoctors]="appointment.visitedDoctors"></jhi-visited-doctor>
+<!--<jhi-visited-doctor [visitedDoctors]="appointment.visitedDoctors"></jhi-visited-doctor>-->
 <jhi-examination-package [examinationPackages]="appointment.examinationPackages"></jhi-examination-package>
 <jhi-procedure [procedures]="appointment.procedures"></jhi-procedure>
 <jhi-treatment [treatments]="appointment.treatments"></jhi-treatment>
-<jhi-symptom [symptoms]="appointment.symptoms"></jhi-symptom>
+<!--<jhi-symptom [symptoms]="appointment.symptoms"></jhi-symptom>-->

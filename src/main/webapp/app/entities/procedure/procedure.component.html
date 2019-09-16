@@ -21,7 +21,7 @@
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.procedure.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.procedure.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="appointment"><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th *ngIf="standaloneView" jhiSortBy="appointment"><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
@@ -34,7 +34,7 @@
                     <a *ngIf="procedure.descriptionScan" (click)="openFile(procedure.descriptionScanContentType, procedure.descriptionScan)" jhiTranslate="entity.action.open">open</a>
                     <span *ngIf="procedure.descriptionScan">{{procedure.descriptionScanContentType}}, {{byteSize(procedure.descriptionScan)}}</span>
                 </td>
-                <td>
+                <td *ngIf="standaloneView">
                     <div *ngIf="procedure.appointment">
                         <a [routerLink]="['/appointment', procedure.appointment.id, 'view' ]" >{{procedure.appointment.date | date:'mediumDate'}} - {{procedure.appointment.appointmentType}}</a>
                     </div>

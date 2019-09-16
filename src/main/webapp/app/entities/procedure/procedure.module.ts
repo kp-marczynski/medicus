@@ -6,7 +6,7 @@ import {ProcedureComponent} from './procedure.component';
 import {ProcedureUpdateComponent} from './procedure-update.component';
 import {ProcedureDeleteDialogComponent, ProcedureDeletePopupComponent} from './procedure-delete-dialog.component';
 import {procedurePopupRoute, procedureRoute} from './procedure.route';
-import {MedicusProcedureInjectableModule} from "app/entities/procedure/procedure-injectable.module";
+import {MedicusProcedureInjectableModule} from "app/entities/procedure/procedure.injectable-module";
 
 const ENTITY_STATES = [...procedureRoute, ...procedurePopupRoute];
 

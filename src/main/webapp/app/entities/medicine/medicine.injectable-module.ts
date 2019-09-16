@@ -18,7 +18,6 @@ import { MedicineDeletePopupComponent, MedicineDeleteDialogComponent } from './m
   ],
   exports: [
     MedicineComponent
-  ],
-  entryComponents: [MedicineComponent, MedicineUpdateComponent, MedicineDeleteDialogComponent, MedicineDeletePopupComponent]
+  ]
 })
 export class MedicusMedicineInjectableModule {}

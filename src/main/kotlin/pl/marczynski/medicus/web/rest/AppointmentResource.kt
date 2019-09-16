@@ -65,22 +65,15 @@ class AppointmentResource(
         appointment.symptoms?.forEach { it.user = appointment.user }
         appointment.treatments?.forEach {
             it.user = appointment.user
-//            if (it.visitedDoctors.isEmpty()) {
-//                it.visitedDoctors = appointment.visitedDoctors
-//            }
         }
         appointment.procedures?.forEach {
             it.user = appointment.user
-//            if (it.visitedDoctors.isEmpty()) {
-//                it.visitedDoctors = appointment.visitedDoctors
-//            }
         }
         appointment.examinationPackages?.forEach {
             it.user = appointment.user
             if (it.visitedDoctors.isNullOrEmpty()) {
                 it.visitedDoctors = appointment.visitedDoctors
             }
-            // todo iterate over it.examinations
         }
 
         val result = appointmentRepository.save(appointment)

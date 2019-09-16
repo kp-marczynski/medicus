@@ -16,12 +16,6 @@ import { VisitedDoctorDeletePopupComponent, VisitedDoctorDeleteDialogComponent }
     VisitedDoctorDeleteDialogComponent,
     VisitedDoctorDeletePopupComponent
   ],
-  exports: [VisitedDoctorComponent],
-  entryComponents: [
-    VisitedDoctorComponent,
-    VisitedDoctorUpdateComponent,
-    VisitedDoctorDeleteDialogComponent,
-    VisitedDoctorDeletePopupComponent
-  ]
+  exports: [VisitedDoctorComponent]
 })
 export class MedicusVisitedDoctorInjectableModule {}

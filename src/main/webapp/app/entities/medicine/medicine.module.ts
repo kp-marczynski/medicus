@@ -6,7 +6,7 @@ import { MedicineComponent } from './medicine.component';
 import { MedicineUpdateComponent } from './medicine-update.component';
 import { MedicineDeletePopupComponent, MedicineDeleteDialogComponent } from './medicine-delete-dialog.component';
 import { medicineRoute, medicinePopupRoute } from './medicine.route';
-import {MedicusMedicineInjectableModule} from "app/entities/medicine/medicine-injectable.module";
+import {MedicusMedicineInjectableModule} from "app/entities/medicine/medicine.injectable-module";
 
 const ENTITY_STATES = [...medicineRoute, ...medicinePopupRoute];
 

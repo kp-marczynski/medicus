@@ -129,4 +129,8 @@ export class OwnedMedicineComponent implements OnInit, OnDestroy {
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
   }
+
+  getDate() {
+    return new Date();
+  }
 }

@@ -144,6 +144,9 @@ export class ExaminationPackageUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const examinationPackage = this.createFromForm();
+    if (examinationPackage.appointment) {
+      examinationPackage.appointment = examinationPackage.appointment.id;
+    }
     if (examinationPackage.id !== undefined) {
       this.subscribeToSaveResponse(this.examinationPackageService.update(examinationPackage));
     } else {
@@ -161,7 +164,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScan: this.editForm.get(['examinationPackageScan']).value,
       user: this.editForm.get(['user']).value,
       visitedDoctors: this.editForm.get(['visitedDoctors']).value,
-      appointment: this.editForm.get(['appointment']).value.id
+      appointment: this.editForm.get(['appointment']).value
     };
   }
 

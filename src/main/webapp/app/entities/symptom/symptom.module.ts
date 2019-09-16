@@ -6,7 +6,7 @@ import {SymptomComponent} from './symptom.component';
 import {SymptomUpdateComponent} from './symptom-update.component';
 import {SymptomDeleteDialogComponent, SymptomDeletePopupComponent} from './symptom-delete-dialog.component';
 import {symptomPopupRoute, symptomRoute} from './symptom.route';
-import {MedicusSymptomInjectableModule} from "app/entities/symptom/symptom-injectable.module";
+import {MedicusSymptomInjectableModule} from "app/entities/symptom/symptom.injectable-module";
 
 const ENTITY_STATES = [...symptomRoute, ...symptomPopupRoute];
 

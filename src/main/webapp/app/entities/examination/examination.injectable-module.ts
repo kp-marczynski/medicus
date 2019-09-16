@@ -19,6 +19,5 @@ import { ExaminationDeletePopupComponent, ExaminationDeleteDialogComponent } fro
   exports: [
     ExaminationComponent
   ],
-  entryComponents: [ExaminationComponent, ExaminationUpdateComponent, ExaminationDeleteDialogComponent, ExaminationDeletePopupComponent]
 })
 export class MedicusExaminationInjectableModule {}

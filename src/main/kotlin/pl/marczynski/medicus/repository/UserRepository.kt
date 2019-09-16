@@ -42,4 +42,7 @@ interface UserRepository : JpaRepository<User, Long> {
     fun findOneWithAuthoritiesByEmailIgnoreCase(email: String): Optional<User>
 
     fun findAllByLoginNot(pageable: Pageable, login: String): Page<User>
+
+    @Query("select user.langKey from User user where user.login = ?#{principal.username}")
+    fun getCurrentUserLanguage(): Optional<String>
 }

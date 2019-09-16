@@ -28,7 +28,7 @@
             <tr *ngFor="let ownedMedicine of ownedMedicines ;trackBy: trackId">
 <!--                <td><a [routerLink]="['/owned-medicine', ownedMedicine.id, 'view' ]">{{ownedMedicine.id}}</a></td>-->
                 <td>{{ownedMedicine.doses}}</td>
-                <td>{{ownedMedicine.expirationDate | date:'mediumDate'}}</td>
+                <td [ngClass]="{'table-danger': ownedMedicine?.expirationDate && ownedMedicine.expirationDate < getDate()}">{{ownedMedicine.expirationDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="ownedMedicine.medicine">
                         <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view' ]" >{{ownedMedicine.medicine?.name}}</a>

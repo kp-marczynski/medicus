@@ -16,6 +16,7 @@ import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
 import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
+import {IExaminationPackage} from "app/shared/model/examination-package.model";
 
 @Component({
   selector: 'jhi-procedure-update',
@@ -92,6 +93,17 @@ export class ProcedureUpdateComponent implements OnInit {
       visitedDoctors: procedure.visitedDoctors,
       appointment: procedure.appointment ? new Appointment(procedure.appointment) : procedure.appointment
     });
+    if (procedure.appointment) {
+      this.updateAppointment(procedure);
+    }
+  }
+
+  updateAppointment(procedure: IProcedure) {
+    if (Object.prototype.hasOwnProperty.call(procedure.appointment, 'id')) {
+      this.editForm.patchValue({ appointment: procedure.appointment });
+    } else {
+      setTimeout(() => this.updateAppointment(procedure), 100);
+    }
   }
 
   byteSize(field) {
@@ -134,6 +146,9 @@ export class ProcedureUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const procedure = this.createFromForm();
+    if (procedure.appointment) {
+      procedure.appointment = procedure.appointment.id;
+    }
     if (procedure.id !== undefined) {
       this.subscribeToSaveResponse(this.procedureService.update(procedure));
     } else {
@@ -151,7 +166,7 @@ export class ProcedureUpdateComponent implements OnInit {
       descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
       visitedDoctors: this.editForm.get(['visitedDoctors']).value,
-      appointment: this.editForm.get(['appointment']).value.id
+      appointment: this.editForm.get(['appointment']).value
     };
   }
 

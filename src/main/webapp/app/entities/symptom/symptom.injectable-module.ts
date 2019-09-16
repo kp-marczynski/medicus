@@ -18,7 +18,6 @@ import {SymptomDeleteDialogComponent, SymptomDeletePopupComponent} from './sympt
   ],
   exports: [
     SymptomComponent
-  ],
-  entryComponents: [SymptomComponent, SymptomUpdateComponent, SymptomDeleteDialogComponent, SymptomDeletePopupComponent]
+  ]
 })
 export class MedicusSymptomInjectableModule {}

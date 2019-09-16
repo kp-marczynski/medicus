@@ -18,7 +18,6 @@ import {ProcedureDeleteDialogComponent, ProcedureDeletePopupComponent} from './p
   ],
   exports: [
     ProcedureComponent
-  ],
-  entryComponents: [ProcedureComponent, ProcedureUpdateComponent, ProcedureDeleteDialogComponent, ProcedureDeletePopupComponent]
+  ]
 })
 export class MedicusProcedureInjectableModule {}

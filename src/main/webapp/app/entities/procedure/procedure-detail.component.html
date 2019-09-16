@@ -22,9 +22,11 @@
                 </dd>
                 <dt><span jhiTranslate="medicusApp.procedure.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
-                    <span *ngFor="let visitedDoctor of procedure.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
-                    </span>
+                    <ul>
+                        <li *ngFor="let visitedDoctor of procedure.visitedDoctors; let last = last">
+                            <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
+                        </li>
+                    </ul>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span></dt>
                 <dd>

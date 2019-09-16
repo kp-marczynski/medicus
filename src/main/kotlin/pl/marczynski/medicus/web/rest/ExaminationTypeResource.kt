@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import javax.validation.Valid
 import java.net.URI
@@ -30,7 +31,8 @@ private const val ENTITY_NAME = "examinationType"
 @RestController
 @RequestMapping("/api")
 class ExaminationTypeResource(
-    private val examinationTypeRepository: ExaminationTypeRepository
+    private val examinationTypeRepository: ExaminationTypeRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -54,6 +56,7 @@ class ExaminationTypeResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        examinationType.language = userRepository.getCurrentUserLanguage().orElse(null)
         val result = examinationTypeRepository.save(examinationType)
         return ResponseEntity.created(URI("/api/examination-types/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))

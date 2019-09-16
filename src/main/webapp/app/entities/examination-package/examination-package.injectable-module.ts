@@ -9,8 +9,8 @@ import {
   ExaminationPackageDeleteDialogComponent,
   ExaminationPackageDeletePopupComponent
 } from './examination-package-delete-dialog.component';
-import {MedicusExaminationInjectableModule} from "app/entities/examination/examination-injectable.module";
-import {MedicusVisitedDoctorInjectableModule} from "app/entities/visited-doctor/visited-doctor-injectable.module";
+import {MedicusExaminationInjectableModule} from "app/entities/examination/examination.injectable-module";
+import {MedicusVisitedDoctorInjectableModule} from "app/entities/visited-doctor/visited-doctor.injectable-module";
 
 
 @NgModule({
@@ -24,12 +24,6 @@ import {MedicusVisitedDoctorInjectableModule} from "app/entities/visited-doctor/
   ],
   exports: [
     ExaminationPackageComponent
-  ],
-  entryComponents: [
-    ExaminationPackageComponent,
-    ExaminationPackageUpdateComponent,
-    ExaminationPackageDeleteDialogComponent,
-    ExaminationPackageDeletePopupComponent
   ]
 })
 export class MedicusExaminationPackageInjectableModule {}

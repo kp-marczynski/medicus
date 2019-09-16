@@ -92,7 +92,7 @@ class OwnedMedicineResource(
             .headers(
                 HeaderUtil.createEntityUpdateAlert(
                     applicationName, true, ENTITY_NAME,
-                     ownedMedicine.id.toString()
+                    ownedMedicine.id.toString()
                 )
             )
             .body(result)

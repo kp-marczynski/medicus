@@ -6,8 +6,8 @@
     <!--
         Added the constraints for entity OwnedMedicine.
     -->
-    <changeSet id="20190915094530-2" author="jhipster">
-
+    <changeSet id="20190916194044-2" author="jhipster">
+        
         <addForeignKeyConstraint baseColumnNames="medicine_id"
                                  baseTableName="owned_medicine"
                                  constraintName="fk_owned_medicine_medicine_id"

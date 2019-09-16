@@ -99,7 +99,6 @@ class MedicineResourceIT {
         assertThat(testMedicine.indication).isEqualTo(DEFAULT_INDICATION)
         assertThat(testMedicine.leaflet).isEqualTo(DEFAULT_LEAFLET)
         assertThat(testMedicine.leafletContentType).isEqualTo(DEFAULT_LEAFLET_CONTENT_TYPE)
-        assertThat(testMedicine.language).isEqualTo(DEFAULT_LANGUAGE)
     }
 
     @Test
@@ -156,7 +155,6 @@ class MedicineResourceIT {
             .andExpect(jsonPath("$.[*].indication").value(hasItem(DEFAULT_INDICATION)))
             .andExpect(jsonPath("$.[*].leafletContentType").value(hasItem(DEFAULT_LEAFLET_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].leaflet").value(hasItem(Base64Utils.encodeToString(DEFAULT_LEAFLET))))
-            .andExpect(jsonPath("$.[*].language").value(hasItem(DEFAULT_LANGUAGE)))
     }
 
     @Test
@@ -177,7 +175,6 @@ class MedicineResourceIT {
             .andExpect(jsonPath("$.indication").value(DEFAULT_INDICATION))
             .andExpect(jsonPath("$.leafletContentType").value(DEFAULT_LEAFLET_CONTENT_TYPE))
             .andExpect(jsonPath("$.leaflet").value(Base64Utils.encodeToString(DEFAULT_LEAFLET)))
-            .andExpect(jsonPath("$.language").value(DEFAULT_LANGUAGE))
     }
 
     @Test
@@ -206,7 +203,6 @@ class MedicineResourceIT {
         updatedMedicine.indication = UPDATED_INDICATION
         updatedMedicine.leaflet = UPDATED_LEAFLET
         updatedMedicine.leafletContentType = UPDATED_LEAFLET_CONTENT_TYPE
-        updatedMedicine.language = UPDATED_LANGUAGE
 
         restMedicineMockMvc.perform(
             put("/api/medicines")
@@ -222,7 +218,6 @@ class MedicineResourceIT {
         assertThat(testMedicine.indication).isEqualTo(UPDATED_INDICATION)
         assertThat(testMedicine.leaflet).isEqualTo(UPDATED_LEAFLET)
         assertThat(testMedicine.leafletContentType).isEqualTo(UPDATED_LEAFLET_CONTENT_TYPE)
-        assertThat(testMedicine.language).isEqualTo(UPDATED_LANGUAGE)
     }
 
     @Test
@@ -294,9 +289,6 @@ class MedicineResourceIT {
         private const val DEFAULT_LEAFLET_CONTENT_TYPE: String = "image/jpg"
         private const val UPDATED_LEAFLET_CONTENT_TYPE: String = "image/png"
 
-        private const val DEFAULT_LANGUAGE: String = "AAAAAAAAAA"
-        private const val UPDATED_LANGUAGE = "BBBBBBBBBB"
-
         /**
          * Create an entity for this test.
          *
@@ -309,8 +301,7 @@ class MedicineResourceIT {
                 name = DEFAULT_NAME,
                 indication = DEFAULT_INDICATION,
                 leaflet = DEFAULT_LEAFLET,
-                leafletContentType = DEFAULT_LEAFLET_CONTENT_TYPE,
-                language = DEFAULT_LANGUAGE
+                leafletContentType = DEFAULT_LEAFLET_CONTENT_TYPE
             )
 
             return medicine
@@ -328,8 +319,7 @@ class MedicineResourceIT {
                 name = UPDATED_NAME,
                 indication = UPDATED_INDICATION,
                 leaflet = UPDATED_LEAFLET,
-                leafletContentType = UPDATED_LEAFLET_CONTENT_TYPE,
-                language = UPDATED_LANGUAGE
+                leafletContentType = UPDATED_LEAFLET_CONTENT_TYPE
             )
 
             return medicine

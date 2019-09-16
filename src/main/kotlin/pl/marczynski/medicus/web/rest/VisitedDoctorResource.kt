@@ -20,9 +20,11 @@ import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import pl.marczynski.medicus.repository.UserRepository
 
 import java.net.URI
 import java.net.URISyntaxException
+import javax.validation.Valid
 
 private const val ENTITY_NAME = "visitedDoctor"
 
@@ -32,7 +34,8 @@ private const val ENTITY_NAME = "visitedDoctor"
 @RestController
 @RequestMapping("/api")
 class VisitedDoctorResource(
-    private val visitedDoctorRepository: VisitedDoctorRepository
+    private val visitedDoctorRepository: VisitedDoctorRepository,
+    private val userRepository: UserRepository
 ) {
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -48,7 +51,7 @@ class VisitedDoctorResource(
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/visited-doctors")
-    fun createVisitedDoctor(@RequestBody visitedDoctor: VisitedDoctor): ResponseEntity<VisitedDoctor> {
+    fun createVisitedDoctor(@Valid @RequestBody visitedDoctor: VisitedDoctor): ResponseEntity<VisitedDoctor> {
         log.debug("REST request to save VisitedDoctor : {}", visitedDoctor)
         if (visitedDoctor.id != null) {
             throw BadRequestAlertException(
@@ -56,6 +59,7 @@ class VisitedDoctorResource(
                 ENTITY_NAME, "idexists"
             )
         }
+        visitedDoctor.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = visitedDoctorRepository.save(visitedDoctor)
         return ResponseEntity.created(URI("/api/visited-doctors/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -72,10 +76,16 @@ class VisitedDoctorResource(
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/visited-doctors")
-    fun updateVisitedDoctor(@RequestBody visitedDoctor: VisitedDoctor): ResponseEntity<VisitedDoctor> {
+    fun updateVisitedDoctor(@Valid @RequestBody visitedDoctor: VisitedDoctor): ResponseEntity<VisitedDoctor> {
         log.debug("REST request to update VisitedDoctor : {}", visitedDoctor)
         if (visitedDoctor.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!visitedDoctorRepository.checkUserRightsById(visitedDoctor.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = visitedDoctorRepository.save(visitedDoctor)
         return ResponseEntity.ok()
@@ -115,6 +125,12 @@ class VisitedDoctorResource(
     @GetMapping("/visited-doctors/{id}")
     fun getVisitedDoctor(@PathVariable id: Long): ResponseEntity<VisitedDoctor> {
         log.debug("REST request to get VisitedDoctor : {}", id)
+        if (!visitedDoctorRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val visitedDoctor = visitedDoctorRepository.findById(id)
         return ResponseUtil.wrapOrNotFound(visitedDoctor)
     }
@@ -128,7 +144,12 @@ class VisitedDoctorResource(
     @DeleteMapping("/visited-doctors/{id}")
     fun deleteVisitedDoctor(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete VisitedDoctor : {}", id)
-
+        if (!visitedDoctorRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         visitedDoctorRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

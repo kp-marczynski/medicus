@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(MedicineService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Medicine(0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new Medicine(0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -58,8 +58,7 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             indication: 'BBBBBB',
-            leaflet: 'BBBBBB',
-            language: 'BBBBBB'
+            leaflet: 'BBBBBB'
           },
           elemDefault
         );
@@ -79,8 +78,7 @@ describe('Service Tests', () => {
           {
             name: 'BBBBBB',
             indication: 'BBBBBB',
-            leaflet: 'BBBBBB',
-            language: 'BBBBBB'
+            leaflet: 'BBBBBB'
           },
           elemDefault
         );

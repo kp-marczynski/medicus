@@ -1,3 +1,4 @@
+import { IUser } from 'app/core/user/user.model';
 import { IExamination } from 'app/shared/model/examination.model';
 
 export interface IExaminationType {
@@ -6,7 +7,7 @@ export interface IExaminationType {
   unit?: string;
   minValue?: number;
   maxValue?: number;
-  language?: string;
+  user?: IUser;
   examinations?: IExamination[];
 }
 
@@ -17,7 +18,7 @@ export class ExaminationType implements IExaminationType {
     public unit?: string,
     public minValue?: number,
     public maxValue?: number,
-    public language?: string,
+    public user?: IUser,
     public examinations?: IExamination[]
   ) {}
 }

@@ -1,4 +1,3 @@
-import { IDoctor } from 'app/shared/model/doctor.model';
 import { IUser } from 'app/core/user/user.model';
 import { IAppointment } from 'app/shared/model/appointment.model';
 import { IProcedure } from 'app/shared/model/procedure.model';
@@ -7,8 +6,9 @@ import { IExaminationPackage } from 'app/shared/model/examination-package.model'
 
 export interface IVisitedDoctor {
   id?: number;
+  name?: string;
+  specialization?: string;
   opinion?: any;
-  doctor?: IDoctor;
   user?: IUser;
   appointments?: IAppointment[];
   procedures?: IProcedure[];
@@ -19,8 +19,9 @@ export interface IVisitedDoctor {
 export class VisitedDoctor implements IVisitedDoctor {
   constructor(
     public id?: number,
+    public name?: string,
+    public specialization?: string,
     public opinion?: any,
-    public doctor?: IDoctor,
     public user?: IUser,
     public appointments?: IAppointment[],
     public procedures?: IProcedure[],

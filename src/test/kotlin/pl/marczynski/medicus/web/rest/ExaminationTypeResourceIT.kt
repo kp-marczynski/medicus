@@ -98,7 +98,6 @@ class ExaminationTypeResourceIT {
         assertThat(testExaminationType.unit).isEqualTo(DEFAULT_UNIT)
         assertThat(testExaminationType.minValue).isEqualTo(DEFAULT_MIN_VALUE)
         assertThat(testExaminationType.maxValue).isEqualTo(DEFAULT_MAX_VALUE)
-        assertThat(testExaminationType.language).isEqualTo(DEFAULT_LANGUAGE)
     }
 
     @Test
@@ -155,7 +154,6 @@ class ExaminationTypeResourceIT {
             .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT)))
             .andExpect(jsonPath("$.[*].minValue").value(hasItem(DEFAULT_MIN_VALUE)))
             .andExpect(jsonPath("$.[*].maxValue").value(hasItem(DEFAULT_MAX_VALUE)))
-            .andExpect(jsonPath("$.[*].language").value(hasItem(DEFAULT_LANGUAGE)))
     }
 
     @Test
@@ -176,7 +174,6 @@ class ExaminationTypeResourceIT {
             .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT))
             .andExpect(jsonPath("$.minValue").value(DEFAULT_MIN_VALUE))
             .andExpect(jsonPath("$.maxValue").value(DEFAULT_MAX_VALUE))
-            .andExpect(jsonPath("$.language").value(DEFAULT_LANGUAGE))
     }
 
     @Test
@@ -205,7 +202,6 @@ class ExaminationTypeResourceIT {
         updatedExaminationType.unit = UPDATED_UNIT
         updatedExaminationType.minValue = UPDATED_MIN_VALUE
         updatedExaminationType.maxValue = UPDATED_MAX_VALUE
-        updatedExaminationType.language = UPDATED_LANGUAGE
 
         restExaminationTypeMockMvc.perform(
             put("/api/examination-types")
@@ -221,7 +217,6 @@ class ExaminationTypeResourceIT {
         assertThat(testExaminationType.unit).isEqualTo(UPDATED_UNIT)
         assertThat(testExaminationType.minValue).isEqualTo(UPDATED_MIN_VALUE)
         assertThat(testExaminationType.maxValue).isEqualTo(UPDATED_MAX_VALUE)
-        assertThat(testExaminationType.language).isEqualTo(UPDATED_LANGUAGE)
     }
 
     @Test
@@ -296,9 +291,6 @@ class ExaminationTypeResourceIT {
         private const val UPDATED_MAX_VALUE: Double = 2.0
         private const val SMALLER_MAX_VALUE: Double = 1.0 - 1.0
 
-        private const val DEFAULT_LANGUAGE: String = "AAAAAAAAAA"
-        private const val UPDATED_LANGUAGE = "BBBBBBBBBB"
-
         /**
          * Create an entity for this test.
          *
@@ -311,8 +303,7 @@ class ExaminationTypeResourceIT {
                 name = DEFAULT_NAME,
                 unit = DEFAULT_UNIT,
                 minValue = DEFAULT_MIN_VALUE,
-                maxValue = DEFAULT_MAX_VALUE,
-                language = DEFAULT_LANGUAGE
+                maxValue = DEFAULT_MAX_VALUE
             )
 
             return examinationType
@@ -330,8 +321,7 @@ class ExaminationTypeResourceIT {
                 name = UPDATED_NAME,
                 unit = UPDATED_UNIT,
                 minValue = UPDATED_MIN_VALUE,
-                maxValue = UPDATED_MAX_VALUE,
-                language = UPDATED_LANGUAGE
+                maxValue = UPDATED_MAX_VALUE
             )
 
             return examinationType

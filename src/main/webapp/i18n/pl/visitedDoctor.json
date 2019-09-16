@@ -16,8 +16,9 @@
       "detail": {
         "title": "Visited Doctor"
       },
+      "name": "Name",
+      "specialization": "Specialization",
       "opinion": "Opinion",
-      "doctor": "Doctor",
       "user": "User",
       "appointment": "Appointment",
       "procedure": "Procedure",

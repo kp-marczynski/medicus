@@ -9,8 +9,6 @@ import { filter, map } from 'rxjs/operators';
 import { JhiAlertService, JhiDataUtils } from 'ng-jhipster';
 import { IVisitedDoctor, VisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { VisitedDoctorService } from './visited-doctor.service';
-import { IDoctor } from 'app/shared/model/doctor.model';
-import { DoctorService } from 'app/entities/doctor/doctor.service';
 import { IUser } from 'app/core/user/user.model';
 import { UserService } from 'app/core/user/user.service';
 import { IAppointment } from 'app/shared/model/appointment.model';
@@ -29,8 +27,6 @@ import { ExaminationPackageService } from 'app/entities/examination-package/exam
 export class VisitedDoctorUpdateComponent implements OnInit {
   isSaving: boolean;
 
-  doctors: IDoctor[];
-
   users: IUser[];
 
   appointments: IAppointment[];
@@ -43,8 +39,9 @@ export class VisitedDoctorUpdateComponent implements OnInit {
 
   editForm = this.fb.group({
     id: [],
+    name: [null, [Validators.required]],
+    specialization: [null, [Validators.required]],
     opinion: [],
-    doctor: [],
     user: []
   });
 
@@ -52,7 +49,6 @@ export class VisitedDoctorUpdateComponent implements OnInit {
     protected dataUtils: JhiDataUtils,
     protected jhiAlertService: JhiAlertService,
     protected visitedDoctorService: VisitedDoctorService,
-    protected doctorService: DoctorService,
     protected userService: UserService,
     protected appointmentService: AppointmentService,
     protected procedureService: ProcedureService,
@@ -67,13 +63,6 @@ export class VisitedDoctorUpdateComponent implements OnInit {
     this.activatedRoute.data.subscribe(({ visitedDoctor }) => {
       this.updateForm(visitedDoctor);
     });
-    this.doctorService
-      .query()
-      .pipe(
-        filter((mayBeOk: HttpResponse<IDoctor[]>) => mayBeOk.ok),
-        map((response: HttpResponse<IDoctor[]>) => response.body)
-      )
-      .subscribe((res: IDoctor[]) => (this.doctors = res), (res: HttpErrorResponse) => this.onError(res.message));
     this.userService
       .query()
       .pipe(
@@ -114,8 +103,9 @@ export class VisitedDoctorUpdateComponent implements OnInit {
   updateForm(visitedDoctor: IVisitedDoctor) {
     this.editForm.patchValue({
       id: visitedDoctor.id,
+      name: visitedDoctor.name,
+      specialization: visitedDoctor.specialization,
       opinion: visitedDoctor.opinion,
-      doctor: visitedDoctor.doctor,
       user: visitedDoctor.user
     });
   }
@@ -171,8 +161,9 @@ export class VisitedDoctorUpdateComponent implements OnInit {
     return {
       ...new VisitedDoctor(),
       id: this.editForm.get(['id']).value,
+      name: this.editForm.get(['name']).value,
+      specialization: this.editForm.get(['specialization']).value,
       opinion: this.editForm.get(['opinion']).value,
-      doctor: this.editForm.get(['doctor']).value,
       user: this.editForm.get(['user']).value
     };
   }
@@ -191,10 +182,6 @@ export class VisitedDoctorUpdateComponent implements OnInit {
   }
   protected onError(errorMessage: string) {
     this.jhiAlertService.error(errorMessage, null, null);
-  }
-
-  trackDoctorById(index: number, item: IDoctor) {
-    return item.id;
   }
 
   trackUserById(index: number, item: IUser) {

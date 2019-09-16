@@ -33,7 +33,7 @@
                 <dt><span jhiTranslate="medicusApp.treatment.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
                     <span *ngFor="let visitedDoctor of treatment.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.specialization}} - {{visitedDoctor.name}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

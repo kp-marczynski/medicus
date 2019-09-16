@@ -6,14 +6,8 @@
     <!--
         Added the constraints for entity VisitedDoctor.
     -->
-    <changeSet id="20190915094535-2" author="jhipster">
-
-        <addForeignKeyConstraint baseColumnNames="doctor_id"
-                                 baseTableName="visited_doctor"
-                                 constraintName="fk_visited_doctor_doctor_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="doctor"/>
-
+    <changeSet id="20190916194048-2" author="jhipster">
+        
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="visited_doctor"
                                  constraintName="fk_visited_doctor_user_id"

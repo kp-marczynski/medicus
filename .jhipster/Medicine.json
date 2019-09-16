@@ -20,13 +20,16 @@
             "fieldName": "leaflet",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "any"
-        },
-        {
-            "fieldName": "language",
-            "fieldType": "String"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "medicine",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "ownedMedicine",
@@ -42,7 +45,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190915094529",
+    "changelogDate": "20190916194043",
     "entityTableName": "medicine",
     "dto": "no",
     "pagination": "no",

@@ -94,6 +94,8 @@ class VisitedDoctorResourceIT {
         val visitedDoctorList = visitedDoctorRepository.findAll()
         assertThat(visitedDoctorList).hasSize(databaseSizeBeforeCreate + 1)
         val testVisitedDoctor = visitedDoctorList[visitedDoctorList.size - 1]
+        assertThat(testVisitedDoctor.name).isEqualTo(DEFAULT_NAME)
+        assertThat(testVisitedDoctor.specialization).isEqualTo(DEFAULT_SPECIALIZATION)
         assertThat(testVisitedDoctor.opinion).isEqualTo(DEFAULT_OPINION)
     }
 
@@ -119,6 +121,44 @@ class VisitedDoctorResourceIT {
 
     @Test
     @Transactional
+    fun checkNameIsRequired() {
+        val databaseSizeBeforeTest = visitedDoctorRepository.findAll().size
+        // set the field null
+        visitedDoctor.name = null
+
+        // Create the VisitedDoctor, which fails.
+
+        restVisitedDoctorMockMvc.perform(
+            post("/api/visited-doctors")
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(convertObjectToJsonBytes(visitedDoctor))
+        ).andExpect(status().isBadRequest)
+
+        val visitedDoctorList = visitedDoctorRepository.findAll()
+        assertThat(visitedDoctorList).hasSize(databaseSizeBeforeTest)
+    }
+
+    @Test
+    @Transactional
+    fun checkSpecializationIsRequired() {
+        val databaseSizeBeforeTest = visitedDoctorRepository.findAll().size
+        // set the field null
+        visitedDoctor.specialization = null
+
+        // Create the VisitedDoctor, which fails.
+
+        restVisitedDoctorMockMvc.perform(
+            post("/api/visited-doctors")
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(convertObjectToJsonBytes(visitedDoctor))
+        ).andExpect(status().isBadRequest)
+
+        val visitedDoctorList = visitedDoctorRepository.findAll()
+        assertThat(visitedDoctorList).hasSize(databaseSizeBeforeTest)
+    }
+
+    @Test
+    @Transactional
     fun getAllVisitedDoctors() {
         // Initialize the database
         visitedDoctorRepository.saveAndFlush(visitedDoctor)
@@ -128,6 +168,8 @@ class VisitedDoctorResourceIT {
             .andExpect(status().isOk)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(visitedDoctor.id?.toInt())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
+            .andExpect(jsonPath("$.[*].specialization").value(hasItem(DEFAULT_SPECIALIZATION)))
             .andExpect(jsonPath("$.[*].opinion").value(hasItem(DEFAULT_OPINION)))
     }
 
@@ -145,6 +187,8 @@ class VisitedDoctorResourceIT {
             .andExpect(status().isOk)
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(id.toInt()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
+            .andExpect(jsonPath("$.specialization").value(DEFAULT_SPECIALIZATION))
             .andExpect(jsonPath("$.opinion").value(DEFAULT_OPINION))
     }
 
@@ -170,6 +214,8 @@ class VisitedDoctorResourceIT {
         val updatedVisitedDoctor = visitedDoctorRepository.findById(id).get()
         // Disconnect from session so that the updates on updatedVisitedDoctor are not directly saved in db
         em.detach(updatedVisitedDoctor)
+        updatedVisitedDoctor.name = UPDATED_NAME
+        updatedVisitedDoctor.specialization = UPDATED_SPECIALIZATION
         updatedVisitedDoctor.opinion = UPDATED_OPINION
 
         restVisitedDoctorMockMvc.perform(
@@ -182,6 +228,8 @@ class VisitedDoctorResourceIT {
         val visitedDoctorList = visitedDoctorRepository.findAll()
         assertThat(visitedDoctorList).hasSize(databaseSizeBeforeUpdate)
         val testVisitedDoctor = visitedDoctorList[visitedDoctorList.size - 1]
+        assertThat(testVisitedDoctor.name).isEqualTo(UPDATED_NAME)
+        assertThat(testVisitedDoctor.specialization).isEqualTo(UPDATED_SPECIALIZATION)
         assertThat(testVisitedDoctor.opinion).isEqualTo(UPDATED_OPINION)
     }
 
@@ -243,6 +291,12 @@ class VisitedDoctorResourceIT {
 
     companion object {
 
+        private const val DEFAULT_NAME: String = "AAAAAAAAAA"
+        private const val UPDATED_NAME = "BBBBBBBBBB"
+
+        private const val DEFAULT_SPECIALIZATION: String = "AAAAAAAAAA"
+        private const val UPDATED_SPECIALIZATION = "BBBBBBBBBB"
+
         private const val DEFAULT_OPINION: String = "AAAAAAAAAA"
         private const val UPDATED_OPINION = "BBBBBBBBBB"
 
@@ -255,6 +309,8 @@ class VisitedDoctorResourceIT {
         @JvmStatic
         fun createEntity(em: EntityManager): VisitedDoctor {
             val visitedDoctor = VisitedDoctor(
+                name = DEFAULT_NAME,
+                specialization = DEFAULT_SPECIALIZATION,
                 opinion = DEFAULT_OPINION
             )
 
@@ -270,6 +326,8 @@ class VisitedDoctorResourceIT {
         @JvmStatic
         fun createUpdatedEntity(em: EntityManager): VisitedDoctor {
             val visitedDoctor = VisitedDoctor(
+                name = UPDATED_NAME,
+                specialization = UPDATED_SPECIALIZATION,
                 opinion = UPDATED_OPINION
             )
 

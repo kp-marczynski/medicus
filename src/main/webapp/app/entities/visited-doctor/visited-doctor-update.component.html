@@ -10,17 +10,31 @@
                         readonly />
                 </div>
                 <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.name" for="field_name">Name</label>
+                    <input type="text" class="form-control" name="name" id="field_name"
+                           formControlName="name"/>
+                    <div *ngIf="editForm.get('name').invalid && (editForm.get('name').dirty || editForm.get('name').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('name').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.specialization" for="field_specialization">Specialization</label>
+                    <input type="text" class="form-control" name="specialization" id="field_specialization"
+                           formControlName="specialization"/>
+                    <div *ngIf="editForm.get('specialization').invalid && (editForm.get('specialization').dirty || editForm.get('specialization').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('specialization').errors.required" jhiTranslate="entity.validation.required">
+                            This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.opinion" for="field_opinion">Opinion</label>
                     <textarea class="form-control" name="opinion" id="field_opinion"
                               formControlName="opinion"></textarea>
-                </div>
-
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.doctor" for="field_doctor">Doctor</label>
-                    <select class="form-control" id="field_doctor" name="doctor" formControlName="doctor">
-                        <option [ngValue]="null"></option>
-                        <option [ngValue]="doctorOption.id === editForm.get('doctor').value?.id ? editForm.get('doctor').value : doctorOption" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.specialization}} - {{doctorOption.name}}</option>
-                    </select>
                 </div>
             </div>
             <div>

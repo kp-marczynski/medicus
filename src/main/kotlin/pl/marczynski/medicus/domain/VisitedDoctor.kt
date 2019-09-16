@@ -14,6 +14,7 @@ import javax.persistence.ManyToMany
 import javax.persistence.ManyToOne
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
+import javax.validation.constraints.NotNull
 
 import java.io.Serializable
 
@@ -29,14 +30,18 @@ class VisitedDoctor(
     @SequenceGenerator(name = "sequenceGenerator")
     var id: Long? = null,
 
+    @get: NotNull
+    @Column(name = "name", nullable = false)
+    var name: String? = null,
+
+    @get: NotNull
+    @Column(name = "specialization", nullable = false)
+    var specialization: String? = null,
+
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "opinion")
     var opinion: String? = null,
-
-    @ManyToOne
-    @JsonIgnoreProperties("visitedDoctors")
-    var doctor: Doctor? = null,
 
     @ManyToOne
     @JsonIgnoreProperties("visitedDoctors")
@@ -74,6 +79,8 @@ class VisitedDoctor(
 
     override fun toString() = "VisitedDoctor{" +
         "id=$id" +
+        ", name='$name'" +
+        ", specialization='$specialization'" +
         ", opinion='$opinion'" +
         "}"
 

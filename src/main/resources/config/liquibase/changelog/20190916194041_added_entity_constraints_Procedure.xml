@@ -6,8 +6,8 @@
     <!--
         Added the constraints for entity Procedure.
     -->
-    <changeSet id="20190915094527-2" author="jhipster">
-
+    <changeSet id="20190916194041-2" author="jhipster">
+        
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="procedure"
                                  constraintName="fk_procedure_user_id"
@@ -25,7 +25,7 @@
                                  constraintName="fk_procedure_visited_doctor_visited_doctor_id"
                                  referencedColumnNames="id"
                                  referencedTableName="visited_doctor"/>
-
+        
         <addForeignKeyConstraint baseColumnNames="appointment_id"
                                  baseTableName="procedure"
                                  constraintName="fk_procedure_appointment_id"

@@ -19,7 +19,7 @@
       "name": "Name",
       "indication": "Indication",
       "leaflet": "Leaflet",
-      "language": "Language",
+      "user": "User",
       "ownedMedicine": "Owned Medicine",
       "treatment": "Treatment"
     }

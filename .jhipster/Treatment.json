@@ -59,7 +59,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190915094528",
+    "changelogDate": "20190916194042",
     "entityTableName": "treatment",
     "dto": "no",
     "pagination": "pager",

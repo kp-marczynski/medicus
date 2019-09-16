@@ -24,7 +24,7 @@
                 <dd>
                     <ul>
                         <li *ngFor="let visitedDoctor of procedure.visitedDoctors; let last = last">
-                            <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
+                            <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.specialization}} - {{visitedDoctor.name}}</a>
                         </li>
                     </ul>
                 </dd>

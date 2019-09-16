@@ -20,7 +20,7 @@
       "unit": "Unit",
       "minValue": "Min Value",
       "maxValue": "Max Value",
-      "language": "Language",
+      "user": "User",
       "examination": "Examination"
     }
   }

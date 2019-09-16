@@ -74,7 +74,7 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190915094531",
+    "changelogDate": "20190916194045",
     "entityTableName": "appointment",
     "dto": "no",
     "pagination": "pager",

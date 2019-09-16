@@ -34,7 +34,6 @@ entity ExaminationType {
     unit String
     minValue Double
     maxValue Double
-    language String
 }
 
 @paginate(pager)
@@ -62,7 +61,6 @@ entity Medicine {
 	name String required
     indication TextBlob required
   	leaflet AnyBlob
-    language String
 }
 
 @paginate(pager)
@@ -94,14 +92,9 @@ entity Symptom {
 }
 
 @paginate(pager)
-entity Doctor {
+entity VisitedDoctor {
 	name String required
     specialization String required
-    language String
-}
-
-@paginate(pager)
-entity VisitedDoctor {
 	opinion TextBlob
 }
 
@@ -123,17 +116,18 @@ relationship ManyToMany {
 
 relationship ManyToOne {
 	Examination to ExaminationType
-    VisitedDoctor to Doctor
     OwnedMedicine to Medicine
 
     Appointment to User
     ExaminationPackage to User
     Examination to User
+    ExaminationType to User
     OwnedMedicine to User
     Treatment to User
     Procedure to User
     Symptom to User
     VisitedDoctor to User
+    Medicine to User
 }
 
 noFluentMethod *

@@ -41,10 +41,6 @@ import { RouterModule } from '@angular/router';
         loadChildren: () => import('./symptom/symptom.module').then(m => m.MedicusSymptomModule)
       },
       {
-        path: 'doctor',
-        loadChildren: () => import('./doctor/doctor.module').then(m => m.MedicusDoctorModule)
-      },
-      {
         path: 'visited-doctor',
         loadChildren: () => import('./visited-doctor/visited-doctor.module').then(m => m.MedicusVisitedDoctorModule)
       }

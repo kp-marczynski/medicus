@@ -27,7 +27,8 @@ export class MedicineUpdateComponent implements OnInit {
     indication: [null, [Validators.required]],
     leaflet: [],
     leafletContentType: [],
-    language: []
+    language: [],
+    user: []
   });
 
   constructor(
@@ -60,7 +61,7 @@ export class MedicineUpdateComponent implements OnInit {
       indication: medicine.indication,
       leaflet: medicine.leaflet,
       leafletContentType: medicine.leafletContentType,
-      language: medicine.language
+      user: medicine.user
     });
   }
 
@@ -119,7 +120,7 @@ export class MedicineUpdateComponent implements OnInit {
       indication: this.editForm.get(['indication']).value,
       leafletContentType: this.editForm.get(['leafletContentType']).value,
       leaflet: this.editForm.get(['leaflet']).value,
-      language: this.editForm.get(['language']).value
+      user: this.editForm.get(['user']).value
     };
   }
 

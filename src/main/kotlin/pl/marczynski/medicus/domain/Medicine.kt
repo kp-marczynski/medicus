@@ -1,6 +1,7 @@
 package pl.marczynski.medicus.domain
 
 import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Type
 
 import javax.persistence.Column
@@ -10,6 +11,8 @@ import javax.persistence.GenerationType
 import javax.persistence.Id
 import javax.persistence.Lob
 import javax.persistence.ManyToMany
+import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -44,8 +47,12 @@ class Medicine(
     @Column(name = "leaflet_content_type")
     var leafletContentType: String? = null,
 
-    @Column(name = "language")
-    var language: String? = null,
+    @ManyToOne
+    @JsonIgnoreProperties("medicines")
+    var user: User? = null,
+
+    @OneToMany(mappedBy = "medicine")
+    var ownedMedicines: MutableSet<OwnedMedicine> = mutableSetOf(),
 
     @ManyToMany(mappedBy = "medicines")
     @JsonIgnore
@@ -71,7 +78,6 @@ class Medicine(
         ", indication='$indication'" +
         ", leaflet='$leaflet'" +
         ", leafletContentType='$leafletContentType'" +
-        ", language='$language'" +
         "}"
 
     companion object {

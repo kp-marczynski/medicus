@@ -5,15 +5,17 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.name">Name</span></dt>
+                <dd>
+                    <span>{{visitedDoctor.name}}</span>
+                </dd>
+                <dt><span jhiTranslate="medicusApp.visitedDoctor.specialization">Specialization</span></dt>
+                <dd>
+                    <span>{{visitedDoctor.specialization}}</span>
+                </dd>
                 <dt><span jhiTranslate="medicusApp.visitedDoctor.opinion">Opinion</span></dt>
                 <dd>
                     <span>{{visitedDoctor.opinion}}</span>
-                </dd>
-                <dt><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span></dt>
-                <dd>
-                    <div *ngIf="visitedDoctor.doctor">
-                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view']">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
-                    </div>
                 </dd>
             </dl>
 

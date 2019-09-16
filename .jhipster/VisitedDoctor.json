@@ -2,19 +2,26 @@
     "name": "VisitedDoctor",
     "fields": [
         {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "specialization",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "opinion",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
         }
     ],
     "relationships": [
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "doctor",
-            "otherEntityRelationshipName": "visitedDoctor",
-            "relationshipName": "doctor",
-            "otherEntityField": "id"
-        },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
@@ -55,7 +62,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190915094535",
+    "changelogDate": "20190916194048",
     "entityTableName": "visited_doctor",
     "dto": "no",
     "pagination": "pager",

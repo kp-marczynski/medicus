@@ -56,7 +56,7 @@ class ExaminationTypeResource(
                 ENTITY_NAME, "idexists"
             )
         }
-        examinationType.language = userRepository.getCurrentUserLanguage().orElse(null)
+        examinationType.user = userRepository.findByUserIsCurrentUser().orElse(null)
         val result = examinationTypeRepository.save(examinationType)
         return ResponseEntity.created(URI("/api/examination-types/" + result.id))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.id.toString()))
@@ -77,6 +77,12 @@ class ExaminationTypeResource(
         log.debug("REST request to update ExaminationType : {}", examinationType)
         if (examinationType.id == null) {
             throw BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull")
+        }
+        if (!examinationTypeRepository.checkUserRightsById(examinationType.id!!)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
         }
         val result = examinationTypeRepository.save(examinationType)
         return ResponseEntity.ok()
@@ -110,6 +116,12 @@ class ExaminationTypeResource(
     @GetMapping("/examination-types/{id}")
     fun getExaminationType(@PathVariable id: Long): ResponseEntity<ExaminationType> {
         log.debug("REST request to get ExaminationType : {}", id)
+        if (!examinationTypeRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         val examinationType = examinationTypeRepository.findById(id)
         return ResponseUtil.wrapOrNotFound(examinationType)
     }
@@ -123,7 +135,12 @@ class ExaminationTypeResource(
     @DeleteMapping("/examination-types/{id}")
     fun deleteExaminationType(@PathVariable id: Long): ResponseEntity<Void> {
         log.debug("REST request to delete ExaminationType : {}", id)
-
+        if (!examinationTypeRepository.checkUserRightsById(id)) {
+            throw BadRequestAlertException(
+                "User must be owner od the entity",
+                ENTITY_NAME, "notowner"
+            )
+        }
         examinationTypeRepository.deleteById(id)
         return ResponseEntity.noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build()

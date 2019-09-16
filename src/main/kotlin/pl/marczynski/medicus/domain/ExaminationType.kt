@@ -1,10 +1,14 @@
 package pl.marczynski.medicus.domain
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties
+
 import javax.persistence.Column
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
 import javax.persistence.GenerationType
 import javax.persistence.Id
+import javax.persistence.ManyToOne
+import javax.persistence.OneToMany
 import javax.persistence.SequenceGenerator
 import javax.persistence.Table
 import javax.validation.constraints.NotNull
@@ -36,8 +40,12 @@ class ExaminationType(
     @Column(name = "max_value")
     var maxValue: Double? = null,
 
-    @Column(name = "language")
-    var language: String? = null
+    @ManyToOne
+    @JsonIgnoreProperties("examinationTypes")
+    var user: User? = null,
+
+    @OneToMany(mappedBy = "examinationType")
+    var examinations: MutableSet<Examination> = mutableSetOf()
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {
@@ -58,8 +66,8 @@ class ExaminationType(
         ", name='$name'" +
         ", unit='$unit'" +
         ", minValue=$minValue" +
-        ", maxValue=$maxValue" +
-        ", language='$language'" +
+        ", maxVal" +
+        "ue=$maxValue" +
         "}"
 
     companion object {

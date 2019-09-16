@@ -18,20 +18,18 @@
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
 <!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
+            <th jhiSortBy="name"><span jhiTranslate="medicusApp.visitedDoctor.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="specialization"><span jhiTranslate="medicusApp.visitedDoctor.specialization">Specialization</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="opinion"><span jhiTranslate="medicusApp.visitedDoctor.opinion">Opinion</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="doctor.id"><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let visitedDoctor of visitedDoctors ;trackBy: trackId">
 <!--                <td><a [routerLink]="['/visited-doctor', visitedDoctor.id, 'view' ]">{{visitedDoctor.id}}</a></td>-->
+                <td>{{visitedDoctor.name}}</td>
+                <td>{{visitedDoctor.specialization}}</td>
                 <td>{{visitedDoctor.opinion}}</td>
-                <td>
-                    <div *ngIf="visitedDoctor.doctor">
-                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view' ]" >{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
-                    </div>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

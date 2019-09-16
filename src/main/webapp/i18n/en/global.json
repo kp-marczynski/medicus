@@ -16,7 +16,6 @@
         "appointment": "Appointment",
         "examinationPackage": "Examination Package",
         "symptom": "Symptom",
-        "doctor": "Doctor",
         "visitedDoctor": "Visited Doctor",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },

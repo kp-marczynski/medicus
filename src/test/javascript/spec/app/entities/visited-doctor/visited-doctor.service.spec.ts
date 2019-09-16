@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(VisitedDoctorService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new VisitedDoctor(0, 'AAAAAAA');
+      elemDefault = new VisitedDoctor(0, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -56,6 +56,8 @@ describe('Service Tests', () => {
       it('should update a VisitedDoctor', () => {
         const returnedFromService = Object.assign(
           {
+            name: 'BBBBBB',
+            specialization: 'BBBBBB',
             opinion: 'BBBBBB'
           },
           elemDefault
@@ -74,6 +76,8 @@ describe('Service Tests', () => {
       it('should return a list of VisitedDoctor', () => {
         const returnedFromService = Object.assign(
           {
+            name: 'BBBBBB',
+            specialization: 'BBBBBB',
             opinion: 'BBBBBB'
           },
           elemDefault

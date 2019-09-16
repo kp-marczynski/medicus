@@ -19,13 +19,16 @@
         {
             "fieldName": "maxValue",
             "fieldType": "Double"
-        },
-        {
-            "fieldName": "language",
-            "fieldType": "String"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "examinationType",
+            "relationshipName": "user",
+            "otherEntityField": "id"
+        },
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "examination",
@@ -33,7 +36,7 @@
             "relationshipName": "examination"
         }
     ],
-    "changelogDate": "20190915094525",
+    "changelogDate": "20190916194039",
     "entityTableName": "examination_type",
     "dto": "no",
     "pagination": "no",

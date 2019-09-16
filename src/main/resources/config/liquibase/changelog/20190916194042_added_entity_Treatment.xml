@@ -8,15 +8,19 @@
 
 
     <!--
-        Added the entity Procedure.
+        Added the entity Treatment.
     -->
-    <changeSet id="20190915094527-1" author="jhipster">
-        <createTable tableName="procedure">
+    <changeSet id="20190916194042-1" author="jhipster">
+        <createTable tableName="treatment">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="date" type="date">
+            <column name="start_date" type="date">
                 <constraints nullable="false" />
+            </column>
+
+            <column name="end_date" type="date">
+                <constraints nullable="true" />
             </column>
 
             <column name="description" type="${clobType}">
@@ -34,28 +38,35 @@
                 <constraints nullable="true" />
             </column>
 
-            <column name="appointment_id" type="bigint">
-                <constraints nullable="true" />
-            </column>
-
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
 
     </changeSet>
 
-    <changeSet id="20190915094527-1-relations" author="jhipster">
+    <changeSet id="20190916194042-1-relations" author="jhipster">
 
-        <createTable tableName="procedure_visited_doctor">
-            <column name="visited_doctor_id" type="bigint">
+        <createTable tableName="treatment_medicine">
+            <column name="medicine_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
-            <column name="procedure_id" type="bigint">
+            <column name="treatment_id" type="bigint">
                 <constraints nullable="false"/>
             </column>
         </createTable>
 
-        <addPrimaryKey columnNames="procedure_id, visited_doctor_id" tableName="procedure_visited_doctor"/>
+        <addPrimaryKey columnNames="treatment_id, medicine_id" tableName="treatment_medicine"/>
+        
+        <createTable tableName="treatment_visited_doctor">
+            <column name="visited_doctor_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="treatment_id" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
 
+        <addPrimaryKey columnNames="treatment_id, visited_doctor_id" tableName="treatment_visited_doctor"/>
+        
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
 
@@ -67,13 +78,14 @@
           This can be customized by adding or removing 'faker' in the 'spring.liquibase.contexts'
           Spring Boot configuration key.
     -->
-    <changeSet id="20190915094527-1-data" author="jhipster" context="faker">
+    <changeSet id="20190916194042-1-data" author="jhipster" context="faker">
         <loadData
-            file="config/liquibase/fake-data/procedure.csv"
-            separator=";"
-            tableName="procedure">
+                  file="config/liquibase/fake-data/treatment.csv"
+                  separator=";"
+                  tableName="treatment">
             <column name="id" type="numeric"/>
-            <column name="date" type="date"/>
+            <column name="start_date" type="date"/>
+            <column name="end_date" type="date"/>
             <column name="description" type="clob"/>
             <column name="description_scan" type="blob"/>
             <column name="description_scan_content_type" type="string"/>

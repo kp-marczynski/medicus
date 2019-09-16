@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(ExaminationTypeService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new ExaminationType(0, 'AAAAAAA', 'AAAAAAA', 0, 0);
+      elemDefault = new ExaminationType(0, 'AAAAAAA', 'AAAAAAA', 0, 0, false);
     });
 
     describe('Service methods', () => {
@@ -59,7 +59,8 @@ describe('Service Tests', () => {
             name: 'BBBBBB',
             unit: 'BBBBBB',
             minValue: 1,
-            maxValue: 1
+            maxValue: 1,
+            innerRange: true
           },
           elemDefault
         );
@@ -80,7 +81,8 @@ describe('Service Tests', () => {
             name: 'BBBBBB',
             unit: 'BBBBBB',
             minValue: 1,
-            maxValue: 1
+            maxValue: 1,
+            innerRange: true
           },
           elemDefault
         );

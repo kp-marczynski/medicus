@@ -5,6 +5,7 @@ import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 export interface IProcedure {
   id?: number;
   date?: Moment;
+  title?: string;
   description?: any;
   descriptionScanContentType?: string;
   descriptionScan?: any;
@@ -17,6 +18,7 @@ export class Procedure implements IProcedure {
   constructor(
     public id?: number,
     public date?: Moment,
+    public title?: string,
     public description?: any,
     public descriptionScanContentType?: string,
     public descriptionScan?: any,

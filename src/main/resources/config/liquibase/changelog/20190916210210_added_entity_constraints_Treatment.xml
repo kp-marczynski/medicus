@@ -6,7 +6,7 @@
     <!--
         Added the constraints for entity Treatment.
     -->
-    <changeSet id="20190916194042-2" author="jhipster">
+    <changeSet id="20190916210210-2" author="jhipster">
         
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="treatment"

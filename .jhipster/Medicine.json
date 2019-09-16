@@ -11,10 +11,7 @@
         {
             "fieldName": "indication",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "leaflet",
@@ -45,7 +42,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190916194043",
+    "changelogDate": "20190916210211",
     "entityTableName": "medicine",
     "dto": "no",
     "pagination": "no",

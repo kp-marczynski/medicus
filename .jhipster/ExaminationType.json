@@ -19,6 +19,10 @@
         {
             "fieldName": "maxValue",
             "fieldType": "Double"
+        },
+        {
+            "fieldName": "innerRange",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [
@@ -36,7 +40,7 @@
             "relationshipName": "examination"
         }
     ],
-    "changelogDate": "20190916194039",
+    "changelogDate": "20190916210207",
     "entityTableName": "examination_type",
     "dto": "no",
     "pagination": "no",

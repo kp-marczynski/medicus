@@ -15,10 +15,7 @@
         {
             "fieldName": "description",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "descriptionScan",
@@ -59,7 +56,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190916194042",
+    "changelogDate": "20190916210210",
     "entityTableName": "treatment",
     "dto": "no",
     "pagination": "pager",

@@ -1,11 +1,11 @@
-id;name;unit;min_value;max_value
-1;mobile Fish;Home Loan Account Table Computer;5808;45924
-2;seamless Metal deposit;Producer;83244;93855
-3;Electronics;Soap methodology Albania;43194;2306
-4;Namibia;Steel zero administration;36636;23277
-5;Licensed Savings Account;Cambridgeshire Mississippi;4645;85994
-6;Yuan Renminbi Centers;Factors;96563;56328
-7;envisioneer Music Public-key;infomediaries;12203;60999
-8;backing up Salad;Digitized invoice;31171;42515
-9;sky blue Georgia;Facilitator;77513;44975
-10;e-enable Communications capacitor;Awesome;19598;52083
+id;name;unit;min_value;max_value;inner_range
+1;mobile Fish;Home Loan Account Table Computer;5808;45924;true
+2;Savings Account alarm;Tasty Metal Bacon;93855;21233;false
+3;Officer;methodology Albania;43194;2306;false
+4;Investment Account Steel;Coordinator;23277;45606;false
+5;Savings Account syndicate Planner;Refined Rubber Chicken Table;6505;1326;true
+6;Planner cross-platform access;Public-key;24102;44015;true
+7;Investment Account;Games Regional Digitized;66252;75536;false
+8;Costa Rica Mayotte;Industrial;84228;77513;false
+9;e-enable Communications capacitor;Awesome;19598;52083;false
+10;software scale interactive;Louisiana Specialist Home Loan Account;27599;14092;false

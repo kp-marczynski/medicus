@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new Procedure(0, currentDate, 'AAAAAAA', 'image/png', 'AAAAAAA');
+      elemDefault = new Procedure(0, currentDate, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -72,6 +72,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             date: currentDate.format(DATE_FORMAT),
+            title: 'BBBBBB',
             description: 'BBBBBB',
             descriptionScan: 'BBBBBB'
           },
@@ -97,6 +98,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             date: currentDate.format(DATE_FORMAT),
+            title: 'BBBBBB',
             description: 'BBBBBB',
             descriptionScan: 'BBBBBB'
           },

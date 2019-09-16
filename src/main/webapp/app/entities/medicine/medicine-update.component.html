@@ -24,12 +24,6 @@
                     <label class="form-control-label" jhiTranslate="medicusApp.medicine.indication" for="field_indication">Indication</label>
                     <textarea class="form-control" name="indication" id="field_indication"
                               formControlName="indication"></textarea>
-                    <div *ngIf="editForm.get('indication').invalid && (editForm.get('indication').dirty || editForm.get('indication').touched)">
-                        <small class="form-text text-danger"
-                               *ngIf="editForm.get('indication').errors.required" jhiTranslate="entity.validation.required">
-                        This field is required.
-                        </small>
-                    </div>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.medicine.leaflet" for="field_leaflet">Leaflet</label>

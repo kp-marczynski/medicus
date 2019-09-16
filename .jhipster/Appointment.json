@@ -18,10 +18,7 @@
         {
             "fieldName": "description",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "descriptionScan",
@@ -74,7 +71,7 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190916194045",
+    "changelogDate": "20190916210213",
     "entityTableName": "appointment",
     "dto": "no",
     "pagination": "pager",

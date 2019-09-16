@@ -39,7 +39,7 @@ export class AppointmentUpdateComponent implements OnInit {
     id: [],
     date: [null, [Validators.required]],
     appointmentType: [null, [Validators.required]],
-    description: [null, [Validators.required]],
+    description: [],
     descriptionScan: [],
     descriptionScanContentType: [],
     user: [],

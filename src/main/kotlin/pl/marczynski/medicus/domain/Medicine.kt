@@ -37,7 +37,7 @@ class Medicine(
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
-    @Column(name = "indication", nullable = false)
+    @Column(name = "indication")
     var indication: String? = null,
 
     @Lob
@@ -52,11 +52,11 @@ class Medicine(
     var user: User? = null,
 
     @OneToMany(mappedBy = "medicine")
-    var ownedMedicines: MutableSet<OwnedMedicine> = mutableSetOf(),
+    var ownedMedicines: MutableSet<OwnedMedicine>? = mutableSetOf(),
 
     @ManyToMany(mappedBy = "medicines")
     @JsonIgnore
-    var treatments: MutableSet<Treatment> = mutableSetOf()
+    var treatments: MutableSet<Treatment>? = mutableSetOf()
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
 ) : Serializable {

@@ -19,6 +19,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
 <!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.procedure.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="title"><span jhiTranslate="medicusApp.procedure.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.procedure.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th *ngIf="standaloneView" jhiSortBy="appointment"><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -29,6 +30,7 @@
             <tr *ngFor="let procedure of procedures ;trackBy: trackId">
 <!--                <td><a [routerLink]="['/procedure', procedure.id, 'view' ]">{{procedure.id}}</a></td>-->
                 <td>{{procedure.date | date:'mediumDate'}}</td>
+                <td>{{procedure.title}}</td>
                 <td>{{procedure.description}}</td>
                 <td>
                     <a *ngIf="procedure.descriptionScan" (click)="openFile(procedure.descriptionScanContentType, procedure.descriptionScan)" jhiTranslate="entity.action.open">open</a>

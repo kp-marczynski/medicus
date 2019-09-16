@@ -9,12 +9,16 @@
             ]
         },
         {
-            "fieldName": "description",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text",
+            "fieldName": "title",
+            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
         },
         {
             "fieldName": "descriptionScan",
@@ -46,7 +50,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190916194041",
+    "changelogDate": "20190916210209",
     "entityTableName": "procedure",
     "dto": "no",
     "pagination": "pager",

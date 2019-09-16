@@ -31,7 +31,7 @@ class Treatment(
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     var description: String? = null,
 
     @Lob

@@ -94,7 +94,7 @@ export class ExaminationUpdateComponent implements OnInit {
   save() {
     this.isSaving = true;
     const examination = this.createFromForm();
-    if (examination.examinationPackage.appointment) {
+    if (examination.examinationPackage && examination.examinationPackage.appointment) {
       examination.examinationPackage.appointment = examination.examinationPackage.appointment.id;
     }
     if (examination.id !== undefined) {

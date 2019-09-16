@@ -107,6 +107,7 @@ class ProcedureResourceIT {
         assertThat(procedureList).hasSize(databaseSizeBeforeCreate + 1)
         val testProcedure = procedureList[procedureList.size - 1]
         assertThat(testProcedure.date).isEqualTo(DEFAULT_DATE)
+        assertThat(testProcedure.title).isEqualTo(DEFAULT_TITLE)
         assertThat(testProcedure.description).isEqualTo(DEFAULT_DESCRIPTION)
         assertThat(testProcedure.descriptionScan).isEqualTo(DEFAULT_DESCRIPTION_SCAN)
         assertThat(testProcedure.descriptionScanContentType).isEqualTo(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)
@@ -153,6 +154,25 @@ class ProcedureResourceIT {
 
     @Test
     @Transactional
+    fun checkTitleIsRequired() {
+        val databaseSizeBeforeTest = procedureRepository.findAll().size
+        // set the field null
+        procedure.title = null
+
+        // Create the Procedure, which fails.
+
+        restProcedureMockMvc.perform(
+            post("/api/procedures")
+                .contentType(APPLICATION_JSON_UTF8)
+                .content(convertObjectToJsonBytes(procedure))
+        ).andExpect(status().isBadRequest)
+
+        val procedureList = procedureRepository.findAll()
+        assertThat(procedureList).hasSize(databaseSizeBeforeTest)
+    }
+
+    @Test
+    @Transactional
     fun getAllProcedures() {
         // Initialize the database
         procedureRepository.saveAndFlush(procedure)
@@ -163,6 +183,7 @@ class ProcedureResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(procedure.id?.toInt())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].descriptionScanContentType").value(hasItem(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].descriptionScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN))))
@@ -216,6 +237,7 @@ class ProcedureResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.descriptionScanContentType").value(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE))
             .andExpect(jsonPath("$.descriptionScan").value(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN)))
@@ -244,6 +266,7 @@ class ProcedureResourceIT {
         // Disconnect from session so that the updates on updatedProcedure are not directly saved in db
         em.detach(updatedProcedure)
         updatedProcedure.date = UPDATED_DATE
+        updatedProcedure.title = UPDATED_TITLE
         updatedProcedure.description = UPDATED_DESCRIPTION
         updatedProcedure.descriptionScan = UPDATED_DESCRIPTION_SCAN
         updatedProcedure.descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
@@ -259,6 +282,7 @@ class ProcedureResourceIT {
         assertThat(procedureList).hasSize(databaseSizeBeforeUpdate)
         val testProcedure = procedureList[procedureList.size - 1]
         assertThat(testProcedure.date).isEqualTo(UPDATED_DATE)
+        assertThat(testProcedure.title).isEqualTo(UPDATED_TITLE)
         assertThat(testProcedure.description).isEqualTo(UPDATED_DESCRIPTION)
         assertThat(testProcedure.descriptionScan).isEqualTo(UPDATED_DESCRIPTION_SCAN)
         assertThat(testProcedure.descriptionScanContentType).isEqualTo(UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE)
@@ -326,6 +350,9 @@ class ProcedureResourceIT {
         private val UPDATED_DATE: LocalDate = LocalDate.now(ZoneId.systemDefault())
         private val SMALLER_DATE: LocalDate = LocalDate.ofEpochDay(-1L)
 
+        private const val DEFAULT_TITLE: String = "AAAAAAAAAA"
+        private const val UPDATED_TITLE = "BBBBBBBBBB"
+
         private const val DEFAULT_DESCRIPTION: String = "AAAAAAAAAA"
         private const val UPDATED_DESCRIPTION = "BBBBBBBBBB"
 
@@ -344,6 +371,7 @@ class ProcedureResourceIT {
         fun createEntity(em: EntityManager): Procedure {
             val procedure = Procedure(
                 date = DEFAULT_DATE,
+                title = DEFAULT_TITLE,
                 description = DEFAULT_DESCRIPTION,
                 descriptionScan = DEFAULT_DESCRIPTION_SCAN,
                 descriptionScanContentType = DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE
@@ -362,6 +390,7 @@ class ProcedureResourceIT {
         fun createUpdatedEntity(em: EntityManager): Procedure {
             val procedure = Procedure(
                 date = UPDATED_DATE,
+                title = UPDATED_TITLE,
                 description = UPDATED_DESCRIPTION,
                 descriptionScan = UPDATED_DESCRIPTION_SCAN,
                 descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE

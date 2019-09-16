@@ -34,6 +34,7 @@ entity ExaminationType {
     unit String
     minValue Double
     maxValue Double
+    innerRange Boolean
 }
 
 @paginate(pager)
@@ -45,7 +46,8 @@ entity Examination {
 @paginate(pager)
 entity Procedure {
 	date LocalDate required
-	description TextBlob required
+    title String required
+	description TextBlob
     descriptionScan AnyBlob
 }
 
@@ -53,13 +55,13 @@ entity Procedure {
 entity Treatment {
 	startDate LocalDate required
     endDate LocalDate
-    description TextBlob required
+    description TextBlob
     descriptionScan AnyBlob
 }
 
 entity Medicine {
 	name String required
-    indication TextBlob required
+    indication TextBlob
   	leaflet AnyBlob
 }
 
@@ -73,7 +75,7 @@ entity OwnedMedicine {
 entity Appointment {
 	date LocalDate required
     appointmentType String required
-    description TextBlob required
+    description TextBlob
     descriptionScan AnyBlob
 }
 

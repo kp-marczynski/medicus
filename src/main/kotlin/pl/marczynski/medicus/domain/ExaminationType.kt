@@ -40,6 +40,9 @@ class ExaminationType(
     @Column(name = "max_value")
     var maxValue: Double? = null,
 
+    @Column(name = "inner_range")
+    var innerRange: Boolean? = null,
+
     @ManyToOne
     @JsonIgnoreProperties("examinationTypes")
     var user: User? = null,
@@ -66,8 +69,8 @@ class ExaminationType(
         ", name='$name'" +
         ", unit='$unit'" +
         ", minValue=$minValue" +
-        ", maxVal" +
-        "ue=$maxValue" +
+        ", maxValue=$maxValue" +
+        ", innerRange='$innerRange'" +
         "}"
 
     companion object {

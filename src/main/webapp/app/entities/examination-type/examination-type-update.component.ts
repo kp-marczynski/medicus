@@ -21,6 +21,7 @@ export class ExaminationTypeUpdateComponent implements OnInit {
     unit: [],
     minValue: [],
     maxValue: [],
+    innerRange: [],
     user: []
   });
 
@@ -44,6 +45,7 @@ export class ExaminationTypeUpdateComponent implements OnInit {
       unit: examinationType.unit,
       minValue: examinationType.minValue,
       maxValue: examinationType.maxValue,
+      innerRange: examinationType.innerRange,
       user: examinationType.user
     });
   }
@@ -70,6 +72,7 @@ export class ExaminationTypeUpdateComponent implements OnInit {
       unit: this.editForm.get(['unit']).value,
       minValue: this.editForm.get(['minValue']).value,
       maxValue: this.editForm.get(['maxValue']).value,
+      innerRange: this.editForm.get(['innerRange']).value,
       user: this.editForm.get(['user']).value
     };
   }

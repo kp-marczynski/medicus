@@ -35,7 +35,8 @@ export class ProcedureUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     date: [null, [Validators.required]],
-    description: [null, [Validators.required]],
+    title: [null, [Validators.required]],
+    description: [],
     descriptionScan: [],
     descriptionScanContentType: [],
     user: [],
@@ -86,6 +87,7 @@ export class ProcedureUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: procedure.id,
       date: procedure.date,
+      title: procedure.title,
       description: procedure.description,
       descriptionScan: procedure.descriptionScan,
       descriptionScanContentType: procedure.descriptionScanContentType,
@@ -161,6 +163,7 @@ export class ProcedureUpdateComponent implements OnInit {
       ...new Procedure(),
       id: this.editForm.get(['id']).value,
       date: this.editForm.get(['date']).value,
+      title: this.editForm.get(['title']).value,
       description: this.editForm.get(['description']).value,
       descriptionScanContentType: this.editForm.get(['descriptionScanContentType']).value,
       descriptionScan: this.editForm.get(['descriptionScan']).value,

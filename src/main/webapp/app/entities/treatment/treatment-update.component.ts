@@ -40,7 +40,7 @@ export class TreatmentUpdateComponent implements OnInit {
     id: [],
     startDate: [null, [Validators.required]],
     endDate: [],
-    description: [null, [Validators.required]],
+    description: [],
     descriptionScan: [],
     descriptionScanContentType: [],
     user: [],

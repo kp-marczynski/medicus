@@ -25,9 +25,13 @@ class Procedure(
     @Column(name = "date", nullable = false)
     var date: LocalDate? = null,
 
+    @get: NotNull
+    @Column(name = "title", nullable = false)
+    var title: String? = null,
+
     @Lob
     @Type(type = "org.hibernate.type.TextType")
-    @Column(name = "description", nullable = false)
+    @Column(name = "description")
     var description: String? = null,
 
     @Lob

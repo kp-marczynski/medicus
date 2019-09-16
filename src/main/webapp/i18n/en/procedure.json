@@ -17,6 +17,7 @@
         "title": "Procedure"
       },
       "date": "Date",
+      "title": "Title",
       "description": "Description",
       "descriptionScan": "Description Scan",
       "user": "User",

@@ -24,7 +24,7 @@ export class MedicineUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     name: [null, [Validators.required]],
-    indication: [null, [Validators.required]],
+    indication: [],
     leaflet: [],
     leafletContentType: [],
     language: [],

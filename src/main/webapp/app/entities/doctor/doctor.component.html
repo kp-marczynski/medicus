@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="name"><span jhiTranslate="medicusApp.doctor.name">Name</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="specialization"><span jhiTranslate="medicusApp.doctor.specialization">Specialization</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="language"><span jhiTranslate="medicusApp.doctor.language">Language</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let doctor of doctors ;trackBy: trackId">
-                <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.id}}</a></td>
+<!--                <td><a [routerLink]="['/doctor', doctor.id, 'view' ]">{{doctor.id}}</a></td>-->
                 <td>{{doctor.name}}</td>
                 <td>{{doctor.specialization}}</td>
                 <td>{{doctor.language}}</td>

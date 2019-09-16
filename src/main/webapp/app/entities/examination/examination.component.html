@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                 <th jhiSortBy="value"><span jhiTranslate="medicusApp.examination.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationType.name"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationPackage.date"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let examination of examinations ;trackBy: trackId">
-                <td><a [routerLink]="['/examination', examination.id, 'view' ]">{{examination.id}}</a></td>
+<!--                <td><a [routerLink]="['/examination', examination.id, 'view' ]">{{examination.id}}</a></td>-->
                 <td>{{examination.valueModificator}} {{examination.value}}</td>
                 <td>
                     <div *ngIf="examination.examinationType">

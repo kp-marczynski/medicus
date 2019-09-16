@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+<!--            <th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="medicusApp.examinationType.name">Name</span></th>
             <th><span jhiTranslate="medicusApp.examinationType.unit">Unit</span></th>
             <th><span jhiTranslate="medicusApp.examinationType.minValue">Min Value</span></th>
@@ -28,7 +28,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let examinationType of examinationTypes ;trackBy: trackId">
-                <td><a [routerLink]="['/examination-type', examinationType.id, 'view' ]">{{examinationType.id}}</a></td>
+<!--                <td><a [routerLink]="['/examination-type', examinationType.id, 'view' ]">{{examinationType.id}}</a></td>-->
                 <td>{{examinationType.name}}</td>
                 <td>{{examinationType.unit}}</td>
                 <td>{{examinationType.minValue}}</td>

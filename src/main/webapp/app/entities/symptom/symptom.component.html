@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="startDate"><span jhiTranslate="medicusApp.symptom.startDate">Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="endDate"><span jhiTranslate="medicusApp.symptom.endDate">End Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.symptom.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -26,7 +26,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let symptom of symptoms ;trackBy: trackId">
-                <td><a [routerLink]="['/symptom', symptom.id, 'view' ]">{{symptom.id}}</a></td>
+<!--                <td><a [routerLink]="['/symptom', symptom.id, 'view' ]">{{symptom.id}}</a></td>-->
                 <td>{{symptom.startDate | date:'mediumDate'}}</td>
                 <td>{{symptom.endDate | date:'mediumDate'}}</td>
                 <td>{{symptom.description}}</td>

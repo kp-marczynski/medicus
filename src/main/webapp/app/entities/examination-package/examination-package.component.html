@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                 <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="examinationPackageScan"><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let examinationPackage of examinationPackages ;trackBy: trackId">
-                <td><a [routerLink]="['/examination-package', examinationPackage.id, 'view' ]">{{examinationPackage.id}}</a></td>
+<!--                <td><a [routerLink]="['/examination-package', examinationPackage.id, 'view' ]">{{examinationPackage.id}}</a></td>-->
                 <td>{{examinationPackage.date | date:'mediumDate'}}</td>
                 <td>{{examinationPackage.title}}</td>
                 <td>

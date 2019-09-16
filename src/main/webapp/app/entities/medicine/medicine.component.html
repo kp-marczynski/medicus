@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr>
-            <th><span jhiTranslate="global.field.id">ID</span></th>
+<!--            <th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="medicusApp.medicine.name">Name</span></th>
             <th><span jhiTranslate="medicusApp.medicine.indication">Indication</span></th>
             <th><span jhiTranslate="medicusApp.medicine.leaflet">Leaflet</span></th>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let medicine of medicines ;trackBy: trackId">
-                <td><a [routerLink]="['/medicine', medicine.id, 'view' ]">{{medicine.id}}</a></td>
+<!--                <td><a [routerLink]="['/medicine', medicine.id, 'view' ]">{{medicine.id}}</a></td>-->
                 <td>{{medicine.name}}</td>
                 <td>{{medicine.indication}}</td>
                 <td>

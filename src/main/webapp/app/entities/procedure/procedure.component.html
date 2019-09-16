@@ -17,7 +17,7 @@
         <table class="table table-striped" aria-describedby="page-heading">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+<!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.procedure.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.procedure.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
@@ -27,7 +27,7 @@
             </thead>
             <tbody>
             <tr *ngFor="let procedure of procedures ;trackBy: trackId">
-                <td><a [routerLink]="['/procedure', procedure.id, 'view' ]">{{procedure.id}}</a></td>
+<!--                <td><a [routerLink]="['/procedure', procedure.id, 'view' ]">{{procedure.id}}</a></td>-->
                 <td>{{procedure.date | date:'mediumDate'}}</td>
                 <td>{{procedure.description}}</td>
                 <td>

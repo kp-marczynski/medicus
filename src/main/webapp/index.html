@@ -12,20 +12,24 @@
     <link rel="shortcut icon" href="favicon.ico" />
     <link rel="manifest" href="manifest.webapp" />
     <link rel="stylesheet" href="content/css/loading.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=block" rel="stylesheet">
     <!-- jhipster-needle-add-resources-to-root - JHipster will add new resources here -->
 </head>
-<body>
+<body style="background-color: #ecf0f1;">
     <!--[if lt IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <jhi-main>
         <div class="app-loading">
-            <div class="lds-css ng-scope">
-                <div class="lds-pacman">
-                    <div><div></div><div></div><div></div></div>
-                    <div><div></div><div></div><div></div></div>
-                </div>
+            <div class="folding-square">
+                <div class="square-spinner1 square-spinner"></div>
+                <div class="square-spinner2 square-spinner"></div>
+                <div class="square-spinner4 square-spinner"></div>
+                <div class="square-spinner3 square-spinner"></div>
             </div>
+        </div>
+        <div class="app-loading">
+            <span class="loading-header">Medicus</span>
         </div>
         <div class="app-loading">
             <div id="jhipster-error" style="display:none">

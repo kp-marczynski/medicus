@@ -1,13 +1,14 @@
-<nav class="navbar navbar-dark navbar-expand-md bg-dark">
+<nav class="navbar navbar-dark navbar-expand-md bg-primary bg-success fixed-top">
     <a class="navbar-brand logo" routerLink="/" (click)="collapseNavbar()">
         <span class="logo-img"></span>
         <span jhiTranslate="global.title" class="navbar-title">Medicus</span> <span class="navbar-version">{{version}}</span>
     </a>
-    <a class="navbar-toggler d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
+    <a class="navbar-toggler text-white d-lg-none" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
         <fa-icon icon="bars"></fa-icon>
     </a>
-    <div class="navbar-collapse collapse" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
-        <ul class="navbar-nav ml-auto">
+    <div id="expanded-background" class="d-lg-none" (click)="collapseNavbar()" *ngIf="!isNavbarCollapsed"></div>
+    <div class="navbar-collapse collapse bg-primary sidebar flex-column" id="navbarResponsive" [ngbCollapse]="isNavbarCollapsed" [ngSwitch]="isAuthenticated()">
+        <ul class="navbar-nav flex-column">
             <li class="nav-item" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/" (click)="collapseNavbar()">
                     <span>
@@ -16,80 +17,92 @@
                     </span>
                 </a>
             </li>
+        </ul>
+        <hr>
+        <ul class="navbar-nav flex-column">
             <!-- jhipster-needle-add-element-to-menu - JHipster will add new menu items here -->
-            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">
-                    <span>
-                        <fa-icon icon="th-list"></fa-icon>
-                        <span jhiTranslate="global.menu.entities.main">
-                            Entities
-                        </span>
-                    </span>
-                </a>
-                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">
-                    <li>
-                        <a class="dropdown-item" routerLink="examination-type" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+<!--            <li *ngSwitchCase="true" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">-->
+<!--                <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="entity-menu">-->
+<!--                    <span>-->
+<!--                        <fa-icon icon="th-list"></fa-icon>-->
+<!--                        <span jhiTranslate="global.menu.entities.main">-->
+<!--                            Entities-->
+<!--                        </span>-->
+<!--                    </span>-->
+<!--                </a>-->
+<!--                <ul class="dropdown-menu" ngbDropdownMenu aria-labelledby="entity-menu">-->
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="examination-type" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="heartbeat" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.examinationType">Examination Type</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="examination" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="examination" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="microscope" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.examination">Examination</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="procedure" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="procedures" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.procedure">Procedure</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="treatment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="band-aid" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.treatment">Treatment</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="medicine" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="pills" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.medicine">Medicine</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="owned-medicine" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="prescription-bottle" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.ownedMedicine">Owned Medicine</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="appointment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
-                            <fa-icon icon="clinic-medical" fixedWidth="true"></fa-icon>
-                            <span jhiTranslate="global.menu.entities.appointment">Appointment</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="examination-package" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="examination-package" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="file-medical-alt" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.examinationPackage">Examination Package</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="symptom" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                </ul>
+                <hr>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="treatment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="band-aid" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.treatment">Treatment</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="medicine" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="pills" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.medicine">Medicine</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="owned-medicine" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="prescription-bottle" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.ownedMedicine">Owned Medicine</span>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <ul class="navbar-nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="appointment" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="clinic-medical" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.appointment">Appointment</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="symptom" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="stethoscope" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.symptom">Symptom</span>
                         </a>
                     </li>
-                    <li>
-                        <a class="dropdown-item" routerLink="visited-doctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="visited-doctor" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
                             <fa-icon icon="user-md" fixedWidth="true"></fa-icon>
                             <span jhiTranslate="global.menu.entities.visitedDoctor">Visited Doctor</span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="procedure" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="collapseNavbar()">
+                            <fa-icon icon="procedures" fixedWidth="true"></fa-icon>
+                            <span jhiTranslate="global.menu.entities.procedure">Procedure</span>
+                        </a>
+                    </li>
                     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
-                </ul>
-            </li>
+<!--                </ul>-->
+<!--            </li>-->
+        </ul>
+        <hr>
+        <ul class="navbar-nav flex-column">
             <li *jhiHasAnyAuthority="'ROLE_ADMIN'" ngbDropdown class="nav-item dropdown pointer" display="dynamic" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link dropdown-toggle" ngbDropdownToggle href="javascript:void(0);" id="admin-menu">
                     <span>

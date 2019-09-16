@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -18,7 +18,8 @@ import { SymptomService } from './symptom.service';
 })
 export class SymptomComponent implements OnInit, OnDestroy {
   currentAccount: any;
-  symptoms: ISymptom[];
+  standaloneView: boolean;
+  @Input() symptoms: ISymptom[];
   error: any;
   success: any;
   eventSubscriber: Subscription;
@@ -42,24 +43,35 @@ export class SymptomComponent implements OnInit, OnDestroy {
   ) {
     this.itemsPerPage = ITEMS_PER_PAGE;
     this.routeData = this.activatedRoute.data.subscribe(data => {
-      this.page = data.pagingParams.page;
-      this.previousPage = data.pagingParams.page;
-      this.reverse = data.pagingParams.ascending;
-      this.predicate = data.pagingParams.predicate;
+      if (data.pagingParams) {
+        this.standaloneView = true;
+        this.page = data.pagingParams.page;
+        this.previousPage = data.pagingParams.page;
+        this.reverse = data.pagingParams.ascending;
+        this.predicate = data.pagingParams.predicate;
+      } else {
+        this.standaloneView = false;
+        this.page = 1;
+        this.previousPage = 1;
+        this.reverse = true;
+        this.predicate = 'id';
+      }
     });
   }
 
   loadAll() {
-    this.symptomService
-      .query({
-        page: this.page - 1,
-        size: this.itemsPerPage,
-        sort: this.sort()
-      })
-      .subscribe(
-        (res: HttpResponse<ISymptom[]>) => this.paginateSymptoms(res.body, res.headers),
-        (res: HttpErrorResponse) => this.onError(res.message)
-      );
+    if(this.standaloneView) {
+      this.symptomService
+        .query({
+          page: this.page - 1,
+          size: this.itemsPerPage,
+          sort: this.sort()
+        })
+        .subscribe(
+          (res: HttpResponse<ISymptom[]>) => this.paginateSymptoms(res.body, res.headers),
+          (res: HttpErrorResponse) => this.onError(res.message)
+        );
+    }
   }
 
   loadPage(page: number) {

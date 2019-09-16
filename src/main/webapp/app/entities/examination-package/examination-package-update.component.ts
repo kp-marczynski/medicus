@@ -89,9 +89,19 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScan: examinationPackage.examinationPackageScan,
       examinationPackageScanContentType: examinationPackage.examinationPackageScanContentType,
       user: examinationPackage.user,
-      visitedDoctors: examinationPackage.visitedDoctors,
-      appointment: examinationPackage.appointment
+      visitedDoctors: examinationPackage.visitedDoctors
     });
+    if (examinationPackage.appointment) {
+      this.updateAppointment(examinationPackage);
+    }
+  }
+
+  updateAppointment(examinationPackage: IExaminationPackage) {
+    if (Object.prototype.hasOwnProperty.call(examinationPackage.appointment, 'id')) {
+      this.editForm.patchValue({ appointment: examinationPackage.appointment });
+    } else {
+      setTimeout(() => this.updateAppointment(examinationPackage), 100);
+    }
   }
 
   byteSize(field) {

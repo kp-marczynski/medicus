@@ -67,19 +67,19 @@
                 <div class="form-group">
                     <label jhiTranslate="medicusApp.appointment.treatment" for="field_treatments">Treatment</label>
                     <select class="form-control" id="field_treatments" multiple name="treatments" formControlName="treatments">
-                        <option [ngValue]="getSelected(editForm.get('treatments').value, treatmentOption)" *ngFor="let treatmentOption of treatments; trackBy: trackTreatmentById">{{treatmentOption.id}}</option>
+                        <option [ngValue]="getSelected(editForm.get('treatments').value, treatmentOption)" *ngFor="let treatmentOption of treatments; trackBy: trackTreatmentById">{{treatmentOption.startDate | date:'mediumDate'}} - {{treatmentOption.description}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="medicusApp.appointment.symptom" for="field_symptoms">Symptom</label>
                     <select class="form-control" id="field_symptoms" multiple name="symptoms" formControlName="symptoms">
-                        <option [ngValue]="getSelected(editForm.get('symptoms').value, symptomOption)" *ngFor="let symptomOption of symptoms; trackBy: trackSymptomById">{{symptomOption.id}}</option>
+                        <option [ngValue]="getSelected(editForm.get('symptoms').value, symptomOption)" *ngFor="let symptomOption of symptoms; trackBy: trackSymptomById">{{symptomOption.startDate | date:'mediumDate'}} - {{symptomOption.description}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="medicusApp.appointment.visitedDoctor" for="field_visitedDoctors">Visited Doctor</label>
                     <select class="form-control" id="field_visitedDoctors" multiple name="visitedDoctors" formControlName="visitedDoctors">
-                        <option [ngValue]="getSelected(editForm.get('visitedDoctors').value, visitedDoctorOption)" *ngFor="let visitedDoctorOption of visiteddoctors; trackBy: trackVisitedDoctorById">{{visitedDoctorOption.id}}</option>
+                        <option [ngValue]="getSelected(editForm.get('visitedDoctors').value, visitedDoctorOption)" *ngFor="let visitedDoctorOption of visiteddoctors; trackBy: trackVisitedDoctorById">{{visitedDoctorOption.doctor?.specialization}} - {{visitedDoctorOption.doctor?.name}}</option>
                     </select>
                 </div>
             </div>

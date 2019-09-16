@@ -36,7 +36,7 @@ class ExaminationPackage(
     var examinationPackageScanContentType: String? = null,
 
     @OneToMany(mappedBy = "examinationPackage")
-    var examinations: MutableSet<Examination> = mutableSetOf(),
+    var examinations: MutableSet<Examination>? = mutableSetOf(),
 
     @ManyToOne
     @JsonIgnoreProperties("examinationPackages")

@@ -7,7 +7,7 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="medicusApp.appointment.date">Date</span></dt>
                 <dd>
-                    <span>{{appointment.date}}</span>
+                    <span>{{appointment.date | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.appointmentType">Appointment Type</span></dt>
                 <dd>
@@ -27,19 +27,19 @@
                 <dt><span jhiTranslate="medicusApp.appointment.treatment">Treatment</span></dt>
                 <dd>
                     <span *ngFor="let treatment of appointment.treatments; let last = last">
-                        <a [routerLink]="['/treatment', treatment?.id, 'view' ]">{{treatment.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/treatment', treatment?.id, 'view' ]">{{treatment.startDate | date:'mediumDate'}} - {{treatment.description}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.symptom">Symptom</span></dt>
                 <dd>
                     <span *ngFor="let symptom of appointment.symptoms; let last = last">
-                        <a [routerLink]="['/symptom', symptom?.id, 'view' ]">{{symptom.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/symptom', symptom?.id, 'view' ]">{{symptom.startDate | date:'mediumDate'}} - {{symptom.description}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
                     <span *ngFor="let visitedDoctor of appointment.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

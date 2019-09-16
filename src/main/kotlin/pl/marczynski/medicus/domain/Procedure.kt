@@ -45,7 +45,7 @@ class Procedure(
     @JoinTable(name = "procedure_visited_doctor",
         joinColumns = [JoinColumn(name = "procedure_id", referencedColumnName = "id")],
         inverseJoinColumns = [JoinColumn(name = "visited_doctor_id", referencedColumnName = "id")])
-    var visitedDoctors: MutableSet<VisitedDoctor> = mutableSetOf(),
+    var visitedDoctors: MutableSet<VisitedDoctor>? = mutableSetOf(),
 
     @Column(name = "appointment_id")
     var appointment: Long? = null

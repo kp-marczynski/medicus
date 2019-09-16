@@ -90,7 +90,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       examinationPackageScanContentType: examinationPackage.examinationPackageScanContentType,
       user: examinationPackage.user,
       visitedDoctors: examinationPackage.visitedDoctors,
-      appointment: examinationPackage.appointment ? new Appointment(examinationPackage.appointment) : examinationPackage.appointment
+      appointment: examinationPackage.appointment
     });
   }
 

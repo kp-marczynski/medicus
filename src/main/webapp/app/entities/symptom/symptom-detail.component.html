@@ -7,11 +7,11 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="medicusApp.symptom.startDate">Start Date</span></dt>
                 <dd>
-                    <span>{{symptom.startDate}}</span>
+                    <span>{{symptom.startDate | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.symptom.endDate">End Date</span></dt>
                 <dd>
-                    <span>{{symptom.endDate}}</span>
+                    <span>{{symptom.endDate | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.symptom.description">Description</span></dt>
                 <dd>

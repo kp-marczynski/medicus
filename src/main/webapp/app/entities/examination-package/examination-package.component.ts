@@ -12,7 +12,6 @@ import { AccountService } from 'app/core/auth/account.service';
 import { ITEMS_PER_PAGE } from 'app/shared/constants/pagination.constants';
 import { ExaminationPackageService } from './examination-package.service';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
-import { IAppointment } from 'app/shared/model/appointment.model';
 
 @Component({
   selector: 'jhi-examination-package',
@@ -36,7 +35,6 @@ export class ExaminationPackageComponent implements OnInit, OnDestroy {
 
   constructor(
     protected examinationPackageService: ExaminationPackageService,
-    protected appointmentService: AppointmentService,
     protected parseLinks: JhiParseLinks,
     protected jhiAlertService: JhiAlertService,
     protected accountService: AccountService,
@@ -76,14 +74,8 @@ export class ExaminationPackageComponent implements OnInit, OnDestroy {
           (res: HttpErrorResponse) => this.onError(res.message)
         );
     } else {
-      this.examinationPackages.forEach(examinationPackage => this.loadAppointment(examinationPackage));
+      this.examinationPackages.forEach(examinationPackage => this.examinationPackageService.loadAppointment(examinationPackage));
     }
-  }
-
-  loadAppointment(examinationPackage: IExaminationPackage) {
-    this.appointmentService
-      .find(examinationPackage.appointment)
-      .subscribe((res: HttpResponse<IAppointment>) => (examinationPackage.appointment = res.body));
   }
 
   loadPage(page: number) {
@@ -156,7 +148,6 @@ export class ExaminationPackageComponent implements OnInit, OnDestroy {
     this.links = this.parseLinks.parse(headers.get('link'));
     this.totalItems = parseInt(headers.get('X-Total-Count'), 10);
     this.examinationPackages = data;
-    this.examinationPackages.forEach(examinationPackage => this.loadAppointment(examinationPackage));
   }
 
   protected onError(errorMessage: string) {

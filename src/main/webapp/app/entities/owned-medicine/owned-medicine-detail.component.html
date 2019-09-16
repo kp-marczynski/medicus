@@ -11,12 +11,12 @@
                 </dd>
                 <dt><span jhiTranslate="medicusApp.ownedMedicine.expirationDate">Expiration Date</span></dt>
                 <dd>
-                    <span>{{ownedMedicine.expirationDate}}</span>
+                    <span>{{ownedMedicine.expirationDate | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.ownedMedicine.medicine">Medicine</span></dt>
                 <dd>
                     <div *ngIf="ownedMedicine.medicine">
-                        <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view']">{{ownedMedicine.medicine?.id}}</a>
+                        <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view']">{{ownedMedicine.medicine?.name}}</a>
                     </div>
                 </dd>
             </dl>

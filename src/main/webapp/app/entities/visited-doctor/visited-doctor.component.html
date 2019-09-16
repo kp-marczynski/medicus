@@ -29,7 +29,7 @@
                 <td>{{visitedDoctor.opinion}}</td>
                 <td>
                     <div *ngIf="visitedDoctor.doctor">
-                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view' ]" >{{visitedDoctor.doctor?.id}}</a>
+                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view' ]" >{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

@@ -7,11 +7,11 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="medicusApp.treatment.startDate">Start Date</span></dt>
                 <dd>
-                    <span>{{treatment.startDate}}</span>
+                    <span>{{treatment.startDate | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.treatment.endDate">End Date</span></dt>
                 <dd>
-                    <span>{{treatment.endDate}}</span>
+                    <span>{{treatment.endDate | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.treatment.description">Description</span></dt>
                 <dd>
@@ -27,13 +27,13 @@
                 <dt><span jhiTranslate="medicusApp.treatment.medicine">Medicine</span></dt>
                 <dd>
                     <span *ngFor="let medicine of treatment.medicines; let last = last">
-                        <a [routerLink]="['/medicine', medicine?.id, 'view' ]">{{medicine.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/medicine', medicine?.id, 'view' ]">{{medicine.name}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.treatment.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
                     <span *ngFor="let visitedDoctor of treatment.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
             </dl>

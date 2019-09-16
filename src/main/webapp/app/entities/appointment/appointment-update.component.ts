@@ -45,7 +45,9 @@ export class AppointmentUpdateComponent implements OnInit {
     user: [],
     treatments: [],
     symptoms: [],
-    visitedDoctors: []
+    visitedDoctors: [],
+    procedures: [],
+    examinationPackages: []
   });
 
   constructor(
@@ -106,7 +108,9 @@ export class AppointmentUpdateComponent implements OnInit {
       user: appointment.user,
       treatments: appointment.treatments,
       symptoms: appointment.symptoms,
-      visitedDoctors: appointment.visitedDoctors
+      visitedDoctors: appointment.visitedDoctors,
+      procedures: appointment.procedures,
+      examinationPackages: appointment.examinationPackages
     });
   }
 
@@ -169,7 +173,9 @@ export class AppointmentUpdateComponent implements OnInit {
       user: this.editForm.get(['user']).value,
       treatments: this.editForm.get(['treatments']).value,
       symptoms: this.editForm.get(['symptoms']).value,
-      visitedDoctors: this.editForm.get(['visitedDoctors']).value
+      visitedDoctors: this.editForm.get(['visitedDoctors']).value,
+      procedures: this.editForm.get(['procedures']).value,
+      examinationPackages: this.editForm.get(['examinationPackages']).value
     };
   }
 

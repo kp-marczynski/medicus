@@ -56,14 +56,14 @@
                 <div class="form-group">
                     <label jhiTranslate="medicusApp.examinationPackage.visitedDoctor" for="field_visitedDoctors">Visited Doctor</label>
                     <select class="form-control" id="field_visitedDoctors" multiple name="visitedDoctors" formControlName="visitedDoctors">
-                        <option [ngValue]="getSelected(editForm.get('visitedDoctors').value, visitedDoctorOption)" *ngFor="let visitedDoctorOption of visiteddoctors; trackBy: trackVisitedDoctorById">{{visitedDoctorOption.id}}</option>
+                        <option [ngValue]="getSelected(editForm.get('visitedDoctors').value, visitedDoctorOption)" *ngFor="let visitedDoctorOption of visiteddoctors; trackBy: trackVisitedDoctorById">{{visitedDoctorOption.doctor?.specialization}} - {{visitedDoctorOption.doctor?.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.examinationPackage.appointment" for="field_appointment">Appointment</label>
                     <select class="form-control" id="field_appointment" name="appointment" formControlName="appointment">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="appointmentOption.id === editForm.get('appointment').value?.id ? editForm.get('appointment').value : appointmentOption" *ngFor="let appointmentOption of appointments; trackBy: trackAppointmentById">{{appointmentOption.id}}</option>
+                        <option [ngValue]="appointmentOption.id === editForm.get('appointment').value?.id ? editForm.get('appointment').value : appointmentOption" *ngFor="let appointmentOption of appointments; trackBy: trackAppointmentById">{{appointmentOption.date | date:'mediumDate'}} - {{appointmentOption.appointmentType}}</option>
                     </select>
                 </div>
             </div>

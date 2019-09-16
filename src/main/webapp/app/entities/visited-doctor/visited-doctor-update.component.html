@@ -19,7 +19,7 @@
                     <label class="form-control-label" jhiTranslate="medicusApp.visitedDoctor.doctor" for="field_doctor">Doctor</label>
                     <select class="form-control" id="field_doctor" name="doctor" formControlName="doctor">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="doctorOption.id === editForm.get('doctor').value?.id ? editForm.get('doctor').value : doctorOption" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.id}}</option>
+                        <option [ngValue]="doctorOption.id === editForm.get('doctor').value?.id ? editForm.get('doctor').value : doctorOption" *ngFor="let doctorOption of doctors; trackBy: trackDoctorById">{{doctorOption.specialization}} - {{doctorOption.name}}</option>
                     </select>
                 </div>
             </div>

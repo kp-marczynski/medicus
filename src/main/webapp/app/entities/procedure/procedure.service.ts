@@ -9,6 +9,8 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IProcedure } from 'app/shared/model/procedure.model';
+import { IAppointment } from 'app/shared/model/appointment.model';
+import { AppointmentService } from 'app/entities/appointment/appointment.service';
 
 type EntityResponseType = HttpResponse<IProcedure>;
 type EntityArrayResponseType = HttpResponse<IProcedure[]>;
@@ -17,7 +19,7 @@ type EntityArrayResponseType = HttpResponse<IProcedure[]>;
 export class ProcedureService {
   public resourceUrl = SERVER_API_URL + 'api/procedures';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, protected appointmentService: AppointmentService) {}
 
   create(procedure: IProcedure): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(procedure);
@@ -36,18 +38,38 @@ export class ProcedureService {
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<IProcedure>(`${this.resourceUrl}/${id}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)))
+      .pipe(map((res: EntityResponseType) => this.loadAppointmentPipe(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
       .get<IProcedure[]>(this.resourceUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)))
+      .pipe(map((res: EntityArrayResponseType) => this.loadAppointmentsPipe(res)));
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  loadAppointment(procedure: IProcedure) {
+    if (procedure.appointment) {
+      this.appointmentService
+        .find(procedure.appointment)
+        .subscribe((res: HttpResponse<IAppointment>) => (procedure.appointment = res.body));
+    }
+  }
+
+  protected loadAppointmentPipe(procedure: EntityResponseType): EntityResponseType {
+    this.loadAppointment(procedure.body);
+    return procedure;
+  }
+
+  protected loadAppointmentsPipe(procedures: EntityArrayResponseType): EntityArrayResponseType {
+    procedures.body.forEach(procedure => this.loadAppointment(procedure));
+    return procedures;
   }
 
   protected convertDateFromClient(procedure: IProcedure): IProcedure {

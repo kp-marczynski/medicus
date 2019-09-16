@@ -61,7 +61,7 @@ export class ProcedureComponent implements OnInit, OnDestroy {
   }
 
   loadAll() {
-    if(this.standaloneView) {
+    if (this.standaloneView) {
       this.procedureService
         .query({
           page: this.page - 1,
@@ -72,6 +72,8 @@ export class ProcedureComponent implements OnInit, OnDestroy {
           (res: HttpResponse<IProcedure[]>) => this.paginateProcedures(res.body, res.headers),
           (res: HttpErrorResponse) => this.onError(res.message)
         );
+    } else {
+      this.procedures.forEach(procedure => this.procedureService.loadAppointment(procedure));
     }
   }
 

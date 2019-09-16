@@ -9,6 +9,8 @@ import { map } from 'rxjs/operators';
 import { SERVER_API_URL } from 'app/app.constants';
 import { createRequestOption } from 'app/shared/util/request-util';
 import { IExaminationPackage } from 'app/shared/model/examination-package.model';
+import { IAppointment } from 'app/shared/model/appointment.model';
+import { AppointmentService } from 'app/entities/appointment/appointment.service';
 
 type EntityResponseType = HttpResponse<IExaminationPackage>;
 type EntityArrayResponseType = HttpResponse<IExaminationPackage[]>;
@@ -17,7 +19,7 @@ type EntityArrayResponseType = HttpResponse<IExaminationPackage[]>;
 export class ExaminationPackageService {
   public resourceUrl = SERVER_API_URL + 'api/examination-packages';
 
-  constructor(protected http: HttpClient) {}
+  constructor(protected http: HttpClient, protected appointmentService: AppointmentService) {}
 
   create(examinationPackage: IExaminationPackage): Observable<EntityResponseType> {
     const copy = this.convertDateFromClient(examinationPackage);
@@ -36,18 +38,38 @@ export class ExaminationPackageService {
   find(id: number): Observable<EntityResponseType> {
     return this.http
       .get<IExaminationPackage>(`${this.resourceUrl}/${id}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)))
+      .pipe(map((res: EntityResponseType) => this.loadAppointmentPipe(res)));
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
     return this.http
       .get<IExaminationPackage[]>(this.resourceUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)))
+      .pipe(map((res: EntityArrayResponseType) => this.loadAppointmentsPipe(res)));
   }
 
   delete(id: number): Observable<HttpResponse<any>> {
     return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
+  }
+
+  loadAppointment(examinationPackage: IExaminationPackage) {
+    if (examinationPackage.appointment) {
+      this.appointmentService
+        .find(examinationPackage.appointment)
+        .subscribe((res: HttpResponse<IAppointment>) => (examinationPackage.appointment = res.body));
+    }
+  }
+
+  protected loadAppointmentPipe(examinationPackage: EntityResponseType): EntityResponseType {
+    this.loadAppointment(examinationPackage.body);
+    return examinationPackage;
+  }
+
+  protected loadAppointmentsPipe(examinationPackages: EntityArrayResponseType): EntityArrayResponseType {
+    examinationPackages.body.forEach(examinationPackage => this.loadAppointment(examinationPackage));
+    return examinationPackages;
   }
 
   protected convertDateFromClient(examinationPackage: IExaminationPackage): IExaminationPackage {

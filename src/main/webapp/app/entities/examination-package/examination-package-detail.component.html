@@ -7,7 +7,7 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="medicusApp.examinationPackage.date">Date</span></dt>
                 <dd>
-                    <span>{{examinationPackage.date}}</span>
+                    <span>{{examinationPackage.date | date:'mediumDate'}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.title">Title</span></dt>
                 <dd>
@@ -23,13 +23,13 @@
                 <dt><span jhiTranslate="medicusApp.examinationPackage.visitedDoctor">Visited Doctor</span></dt>
                 <dd>
                     <span *ngFor="let visitedDoctor of examinationPackage.visitedDoctors; let last = last">
-                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.id}}</a>{{last ? '' : ', '}}
+                        <a [routerLink]="['/visited-doctor', visitedDoctor?.id, 'view' ]">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>{{last ? '' : ', '}}
                     </span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span></dt>
                 <dd>
                     <div *ngIf="examinationPackage.appointment">
-                        <a [routerLink]="['/appointment', examinationPackage.appointment, 'view']">{{examinationPackage.appointment}}</a>
+                        <a [routerLink]="['/appointment', examinationPackage.appointment.id, 'view']">{{examinationPackage.appointment.date | date:'mediumDate'}} - {{examinationPackage.appointment.appointmentType}}</a>
                     </div>
                 </dd>
             </dl>

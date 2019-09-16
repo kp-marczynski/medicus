@@ -31,7 +31,7 @@
                 <td>{{ownedMedicine.expirationDate | date:'mediumDate'}}</td>
                 <td>
                     <div *ngIf="ownedMedicine.medicine">
-                        <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view' ]" >{{ownedMedicine.medicine?.id}}</a>
+                        <a [routerLink]="['/medicine', ownedMedicine.medicine?.id, 'view' ]" >{{ownedMedicine.medicine?.name}}</a>
                     </div>
                 </td>
                 <td class="text-right">

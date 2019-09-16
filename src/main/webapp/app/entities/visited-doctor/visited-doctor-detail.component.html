@@ -12,7 +12,7 @@
                 <dt><span jhiTranslate="medicusApp.visitedDoctor.doctor">Doctor</span></dt>
                 <dd>
                     <div *ngIf="visitedDoctor.doctor">
-                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view']">{{visitedDoctor.doctor?.id}}</a>
+                        <a [routerLink]="['/doctor', visitedDoctor.doctor?.id, 'view']">{{visitedDoctor.doctor?.specialization}} - {{visitedDoctor.doctor?.name}}</a>
                     </div>
                 </dd>
             </dl>

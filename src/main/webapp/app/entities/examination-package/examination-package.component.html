@@ -36,7 +36,7 @@
                 </td>
                 <td>
                     <div *ngIf="examinationPackage.appointment">
-                        <a [routerLink]="['/appointment', examinationPackage.appointment, 'view' ]" >{{examinationPackage.appointment.date | date:'mediumDate'}} - {{examinationPackage.appointment.appointmentType}}</a>
+                        <a [routerLink]="['/appointment', examinationPackage.appointment.id, 'view' ]" >{{examinationPackage.appointment.date | date:'mediumDate'}} - {{examinationPackage.appointment.appointmentType}}</a>
                     </div>
                 </td>
                 <td class="text-right">

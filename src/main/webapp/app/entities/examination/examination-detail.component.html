@@ -7,22 +7,18 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="medicusApp.examination.value">Value</span></dt>
                 <dd>
-                    <span>{{examination.value}}</span>
-                </dd>
-                <dt><span jhiTranslate="medicusApp.examination.valueModificator">Value Modificator</span></dt>
-                <dd>
-                    <span>{{examination.valueModificator}}</span>
+                    <span>{{examination.valueModificator}} {{examination.value}}</span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span></dt>
                 <dd>
                     <div *ngIf="examination.examinationType">
-                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view']">{{examination.examinationType?.id}}</a>
+                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view']">{{examination.examinationType?.name}}</a>
                     </div>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span></dt>
                 <dd>
                     <div *ngIf="examination.examinationPackage">
-                        <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view']">{{examination.examinationPackage?.id}}</a>
+                        <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view']">{{examination.examinationPackage?.date | date:'mediumDate'}} - {{examination.examinationPackage?.title}}</a>
                     </div>
                 </dd>
             </dl>

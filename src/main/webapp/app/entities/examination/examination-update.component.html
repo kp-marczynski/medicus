@@ -34,14 +34,14 @@
                     <label class="form-control-label" jhiTranslate="medicusApp.examination.examinationType" for="field_examinationType">Examination Type</label>
                     <select class="form-control" id="field_examinationType" name="examinationType" formControlName="examinationType">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="examinationTypeOption.id === editForm.get('examinationType').value?.id ? editForm.get('examinationType').value : examinationTypeOption" *ngFor="let examinationTypeOption of examinationtypes; trackBy: trackExaminationTypeById">{{examinationTypeOption.id}}</option>
+                        <option [ngValue]="examinationTypeOption.id === editForm.get('examinationType').value?.id ? editForm.get('examinationType').value : examinationTypeOption" *ngFor="let examinationTypeOption of examinationtypes; trackBy: trackExaminationTypeById">{{examinationTypeOption.name}}</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label class="form-control-label" jhiTranslate="medicusApp.examination.examinationPackage" for="field_examinationPackage">Examination Package</label>
                     <select class="form-control" id="field_examinationPackage" name="examinationPackage" formControlName="examinationPackage">
                         <option [ngValue]="null"></option>
-                        <option [ngValue]="examinationPackageOption.id === editForm.get('examinationPackage').value?.id ? editForm.get('examinationPackage').value : examinationPackageOption" *ngFor="let examinationPackageOption of examinationpackages; trackBy: trackExaminationPackageById">{{examinationPackageOption.id}}</option>
+                        <option [ngValue]="examinationPackageOption.id === editForm.get('examinationPackage').value?.id ? editForm.get('examinationPackage').value : examinationPackageOption" *ngFor="let examinationPackageOption of examinationpackages; trackBy: trackExaminationPackageById">{{examinationPackageOption.date | date:'mediumDate'}} - {{examinationPackageOption.title}}</option>
                     </select>
                 </div>
             </div>

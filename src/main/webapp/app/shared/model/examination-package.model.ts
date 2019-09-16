@@ -12,7 +12,7 @@ export interface IExaminationPackage {
   examinations?: IExamination[];
   user?: IUser;
   visitedDoctors?: IVisitedDoctor[];
-  appointment?: number;
+  appointment?: any;
 }
 
 export class ExaminationPackage implements IExaminationPackage {
@@ -25,6 +25,6 @@ export class ExaminationPackage implements IExaminationPackage {
     public examinations?: IExamination[],
     public user?: IUser,
     public visitedDoctors?: IVisitedDoctor[],
-    public appointment?: number
+    public appointment?: any
   ) {}
 }

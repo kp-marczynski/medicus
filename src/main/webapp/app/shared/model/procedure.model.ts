@@ -10,7 +10,7 @@ export interface IProcedure {
   descriptionScan?: any;
   user?: IUser;
   visitedDoctors?: IVisitedDoctor[];
-  appointment?: number;
+  appointment?: any;
 }
 
 export class Procedure implements IProcedure {
@@ -22,6 +22,6 @@ export class Procedure implements IProcedure {
     public descriptionScan?: any,
     public user?: IUser,
     public visitedDoctors?: IVisitedDoctor[],
-    public appointment?: number
+    public appointment?: any
   ) {}
 }

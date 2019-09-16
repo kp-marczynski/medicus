@@ -19,25 +19,23 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
                 <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="value"><span jhiTranslate="medicusApp.examination.value">Value</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="valueModificator"><span jhiTranslate="medicusApp.examination.valueModificator">Value Modificator</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="examinationType.id"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th jhiSortBy="examinationPackage.id"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="examinationType.name"><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="examinationPackage.date"><span jhiTranslate="medicusApp.examination.examinationPackage">Examination Package</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let examination of examinations ;trackBy: trackId">
                 <td><a [routerLink]="['/examination', examination.id, 'view' ]">{{examination.id}}</a></td>
-                <td>{{examination.value}}</td>
-                <td>{{examination.valueModificator}}</td>
+                <td>{{examination.valueModificator}} {{examination.value}}</td>
                 <td>
                     <div *ngIf="examination.examinationType">
-                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view' ]" >{{examination.examinationType?.id}}</a>
+                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view' ]" >{{examination.examinationType?.name}}</a>
                     </div>
                 </td>
                 <td>
                     <div *ngIf="examination.examinationPackage">
-                        <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view' ]" >{{examination.examinationPackage?.id}}</a>
+                        <a [routerLink]="['/examination-package', examination.examinationPackage?.id, 'view' ]" >{{examination.examinationPackage?.date | date:'mediumDate'}} - {{examination.examinationPackage?.title}}</a>
                     </div>
                 </td>
                 <td class="text-right">

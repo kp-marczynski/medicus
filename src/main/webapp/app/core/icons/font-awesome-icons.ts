@@ -32,10 +32,32 @@ import {
   faTrashAlt,
   faAsterisk,
   faTasks,
-  faHome
+  faHome,
+  faHeartbeat,
+  faStethoscope,
+  faProcedures,
+  faFileMedicalAlt,
+  faBandAid,
+  faPrescriptionBottle,
+  faPills,
+  faUserMd,
+  faNotesMedical,
+  faMicroscope,
+  faClinicMedical
 } from '@fortawesome/free-solid-svg-icons';
 
 export const fontAwesomeIcons = [
+  faHeartbeat,
+  faStethoscope,
+  faProcedures,
+  faFileMedicalAlt,
+  faBandAid,
+  faPrescriptionBottle,
+  faPills,
+  faUserMd,
+  faNotesMedical,
+  faMicroscope,
+  faClinicMedical,
   faUser,
   faSort,
   faSortUp,

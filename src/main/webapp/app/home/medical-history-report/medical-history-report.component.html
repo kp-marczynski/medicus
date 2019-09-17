@@ -1,0 +1,4 @@
+<button type="button" class="btn btn-primary" (click)="downloadReport()">Generate your medical history report</button>
+<div *ngIf="medicalHistoryReport">
+    <jhi-file-viewer [contentType]="'application/pdf'" [data]="medicalHistoryReport.report"></jhi-file-viewer>
+</div>

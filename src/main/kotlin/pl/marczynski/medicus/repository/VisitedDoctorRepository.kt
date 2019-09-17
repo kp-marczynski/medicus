@@ -24,6 +24,9 @@ interface VisitedDoctorRepository : JpaRepository<VisitedDoctor, Long> {
     )
     override fun findAll(pageable: Pageable): Page<VisitedDoctor>
 
+    @Query("select distinct res from VisitedDoctor res where res.user.login = ?#{principal.username}")
+    override fun findAll(): MutableList<VisitedDoctor>
+
     @Query("select case when count(res)> 0 then true else false end from VisitedDoctor res where res.id = :id and res.user.login = ?#{principal.username}")
     fun checkUserRightsById(@Param("id") id: Long): Boolean
 }

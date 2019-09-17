@@ -28,6 +28,9 @@ interface ProcedureRepository : JpaRepository<Procedure, Long> {
     )
     override fun findAll(pageable: Pageable): Page<Procedure>
 
+    @Query("select distinct res from Procedure res where res.user.login = ?#{principal.username}")
+    override fun findAll(): MutableList<Procedure>
+
     @Query(
         value = "select distinct procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.user.login = ?#{principal.username}",
         countQuery = "select count(distinct procedure) from Procedure procedure where procedure.user.login = ?#{principal.username}"

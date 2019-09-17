@@ -26,4 +26,7 @@ interface ExaminationRepository : JpaRepository<Examination, Long> {
         countQuery = "select count(distinct res) from Examination res where res.user.login = ?#{principal.username}"
     )
     override fun findAll(pageable: Pageable): Page<Examination>
+
+    @Query("select distinct res from Examination res where res.user.login = ?#{principal.username}")
+    override fun findAll(): MutableList<Examination>
 }

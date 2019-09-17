@@ -39,4 +39,7 @@ interface AppointmentRepository : JpaRepository<Appointment, Long> {
         countQuery = "select count(distinct res) from Appointment res where res.user.login = ?#{principal.username}"
     )
     override fun findAll(pageable: Pageable): Page<Appointment>
+
+    @Query("select distinct res from Appointment res where res.user.login = ?#{principal.username}")
+    override fun findAll(): MutableList<Appointment>
 }

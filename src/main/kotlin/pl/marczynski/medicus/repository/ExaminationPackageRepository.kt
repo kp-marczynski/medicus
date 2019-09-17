@@ -28,6 +28,9 @@ interface ExaminationPackageRepository : JpaRepository<ExaminationPackage, Long>
     )
     override fun findAll(pageable: Pageable): Page<ExaminationPackage>
 
+    @Query("select distinct res from ExaminationPackage res where res.user.login = ?#{principal.username}")
+    override fun findAll(): MutableList<ExaminationPackage>
+
     @Query(
         value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.user.login = ?#{principal.username}",
         countQuery = "select count(distinct examinationPackage) from ExaminationPackage examinationPackage where examinationPackage.user.login = ?#{principal.username}"

@@ -25,4 +25,7 @@ interface OwnedMedicineRepository : JpaRepository<OwnedMedicine, Long> {
         countQuery = "select count(distinct res) from OwnedMedicine res where res.user.login = ?#{principal.username}"
     )
     override fun findAll(pageable: Pageable): Page<OwnedMedicine>
+
+    @Query("select distinct res from OwnedMedicine res where res.user.login = ?#{principal.username}")
+    override fun findAll(): MutableList<OwnedMedicine>
 }

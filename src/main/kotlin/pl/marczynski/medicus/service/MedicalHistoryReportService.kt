@@ -50,9 +50,7 @@ class MedicalHistoryReportService(
             document.add(para)
             document.add(Chunk.NEWLINE)
 
-            tables.sortedBy { it.first }
-            tables.forEach {
-                document.add(Paragraph(it.first.toString()))
+            tables.sortedWith(compareBy { it.first }).forEach {
                 document.add(it.second)
             }
 
@@ -69,11 +67,9 @@ class MedicalHistoryReportService(
         // Add PDF Table Header ->
         val examinationPackagesGroups = examinationPackageRepository.findAllWithoutAppointment().groupBy { it.date!! }
         for (elem in examinationPackagesGroups) {
-            val table = PdfPTable(3)
-            table.setWidths(floatArrayOf(1f, 1f, 3f))
-            arrayOf("Date", "Title", "Examinations").forEach { table.addCell(getHeaderCell(it)) }
+            val table = PdfPTable(2)
+            arrayOf("Title", "Examinations").forEach { table.addCell(getHeaderCell(it)) }
             for (examinationPackage in elem.value) {
-                table.addCell(PdfPCell(Phrase(examinationPackage.date.toString())))
                 table.addCell(PdfPCell(Phrase(examinationPackage.title)))
 
                 val examinationTable = PdfPTable(2)
@@ -83,7 +79,7 @@ class MedicalHistoryReportService(
                 }
                 table.addCell(PdfPCell(examinationTable))
             }
-            tables.add(Pair(elem.key, table))
+            tables.add(Pair(elem.key, wrapTable(table, elem.key, "Examination Package")))
         }
 
         return tables
@@ -101,10 +97,22 @@ class MedicalHistoryReportService(
                 table.addCell(PdfPCell(Phrase(examinationPackage.endDate?.toString() ?: "")))
                 table.addCell(PdfPCell(Phrase(examinationPackage.description ?: "")))
             }
-            tables.add(Pair(elem.key, table))
+            tables.add(Pair(elem.key, wrapTable(table, elem.key, "Symptom")))
         }
 
         return tables
+    }
+
+    private fun wrapTable(table: PdfPTable, date: LocalDate, recordType: String): PdfPTable {
+        val tableContainer = PdfPTable(3)
+        tableContainer.setWidths(floatArrayOf(1f, 1f, 5f))
+        tableContainer.addCell(PdfPCell(Phrase(date.toString())))
+        tableContainer.addCell(PdfPCell(Phrase(recordType)))
+        val cell = PdfPCell(table)
+        cell.setPadding(10f)
+        tableContainer.addCell(cell)
+        tableContainer.widthPercentage = 100f
+        return tableContainer
     }
 
     private fun getHeaderCell(text: String): PdfPCell {

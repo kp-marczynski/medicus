@@ -65,7 +65,7 @@ class MedicalHistoryReportService(
     private fun getExaminationPackagesTables(): MutableCollection<Pair<LocalDate, PdfPTable>> {
         val tables: MutableCollection<Pair<LocalDate, PdfPTable>> = mutableListOf()
         // Add PDF Table Header ->
-        val examinationPackagesGroups = examinationPackageRepository.findAllWithoutAppointment().groupBy { it.date!! }
+        val examinationPackagesGroups = examinationPackageRepository.findAll().groupBy { it.date!! }
         for (elem in examinationPackagesGroups) {
             val table = PdfPTable(2)
             arrayOf("Title", "Examinations").forEach { table.addCell(getHeaderCell(it)) }

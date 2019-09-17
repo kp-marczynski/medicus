@@ -244,7 +244,7 @@ dependencies {
     implementation "org.postgresql:postgresql"
     liquibaseRuntime "org.postgresql:postgresql"
     implementation "org.mapstruct:mapstruct:${mapstruct_version}"
-    implementation "com.itextpdf:itextpdf:5.0.6"
+    implementation "com.github.librepdf:openpdf:1.3.10"
     annotationProcessor "org.mapstruct:mapstruct-processor:${mapstruct_version}"
     annotationProcessor "org.hibernate:hibernate-jpamodelgen:${hibernate_version}"
     annotationProcessor "org.glassfish.jaxb:jaxb-runtime:${jaxb_runtime_version}"

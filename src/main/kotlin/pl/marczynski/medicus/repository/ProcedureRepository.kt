@@ -28,7 +28,7 @@ interface ProcedureRepository : JpaRepository<Procedure, Long> {
     )
     override fun findAll(pageable: Pageable): Page<Procedure>
 
-    @Query("select distinct res from Procedure res where res.user.login = ?#{principal.username}")
+    @Query("select distinct res from Procedure res where res.user.login = ?#{principal.username} order by res.date")
     override fun findAll(): MutableList<Procedure>
 
     @Query(
@@ -37,8 +37,11 @@ interface ProcedureRepository : JpaRepository<Procedure, Long> {
     )
     fun findAllWithEagerRelationships(pageable: Pageable): Page<Procedure>
 
-    @Query(value = "select distinct procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.user.login = ?#{principal.username}")
+    @Query(value = "select distinct procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.user.login = ?#{principal.username} order by procedure.date")
     fun findAllWithEagerRelationships(): MutableList<Procedure>
+
+    @Query(value = "select distinct procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.user.login = ?#{principal.username} and procedure.appointment is null order by procedure.date")
+    fun findAllWithoutAppointment(): MutableList<Procedure>
 
     @Query("select procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Procedure>

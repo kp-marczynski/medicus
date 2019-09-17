@@ -28,7 +28,7 @@ interface ExaminationPackageRepository : JpaRepository<ExaminationPackage, Long>
     )
     override fun findAll(pageable: Pageable): Page<ExaminationPackage>
 
-    @Query("select distinct res from ExaminationPackage res where res.user.login = ?#{principal.username}")
+    @Query("select distinct res from ExaminationPackage res where res.user.login = ?#{principal.username} order by res.date")
     override fun findAll(): MutableList<ExaminationPackage>
 
     @Query(
@@ -37,8 +37,11 @@ interface ExaminationPackageRepository : JpaRepository<ExaminationPackage, Long>
     )
     fun findAllWithEagerRelationships(pageable: Pageable): Page<ExaminationPackage>
 
-    @Query(value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.user.login = ?#{principal.username}")
+    @Query(value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.user.login = ?#{principal.username}  order by examinationPackage.date")
     fun findAllWithEagerRelationships(): MutableList<ExaminationPackage>
+
+    @Query(value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.user.login = ?#{principal.username} and examinationPackage.appointment is null order by examinationPackage.date")
+    fun findAllWithoutAppointment(): MutableList<ExaminationPackage>
 
     @Query("select examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<ExaminationPackage>

@@ -28,6 +28,9 @@ interface TreatmentRepository : JpaRepository<Treatment, Long> {
     @Query(value = "select distinct treatment from Treatment treatment left join fetch treatment.visitedDoctors left join fetch treatment.medicines where treatment.user.login = ?#{principal.username}")
     fun findAllWithEagerRelationships(): MutableList<Treatment>
 
+    @Query(value = "select distinct treatment from Treatment treatment left join fetch treatment.visitedDoctors left join fetch treatment.medicines where treatment.user.login = ?#{principal.username} and treatment.appointments is null order by treatment.startDate")
+    fun findAllWithoutAppointment(): MutableList<Treatment>
+
     @Query("select treatment from Treatment treatment left join fetch treatment.visitedDoctors left join fetch treatment.medicines where treatment.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Treatment>
 
@@ -40,6 +43,6 @@ interface TreatmentRepository : JpaRepository<Treatment, Long> {
     )
     override fun findAll(pageable: Pageable): Page<Treatment>
 
-    @Query("select distinct res from Treatment res where res.user.login = ?#{principal.username}")
+    @Query("select distinct res from Treatment res where res.user.login = ?#{principal.username} order by res.startDate")
     override fun findAll(): MutableList<Treatment>
 }

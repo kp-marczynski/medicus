@@ -40,6 +40,6 @@ interface AppointmentRepository : JpaRepository<Appointment, Long> {
     )
     override fun findAll(pageable: Pageable): Page<Appointment>
 
-    @Query("select distinct res from Appointment res where res.user.login = ?#{principal.username}")
+    @Query("select distinct res from Appointment res where res.user.login = ?#{principal.username} order by res.date")
     override fun findAll(): MutableList<Appointment>
 }

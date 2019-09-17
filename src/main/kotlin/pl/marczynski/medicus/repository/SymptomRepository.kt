@@ -27,6 +27,6 @@ interface SymptomRepository : JpaRepository<Symptom, Long> {
     )
     override fun findAll(pageable: Pageable): Page<Symptom>
 
-    @Query("select distinct res from Symptom res where res.user.login = ?#{principal.username}")
+    @Query("select distinct res from Symptom res where res.user.login = ?#{principal.username} order by res.startDate")
     override fun findAll(): MutableList<Symptom>
 }

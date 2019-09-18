@@ -35,11 +35,13 @@ class MedicalHistoryReportService(
 ) {
     companion object {
         val defaultFont = Font(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED), 11f)
+        var lang = "en"
     }
 
     private val log = LoggerFactory.getLogger(javaClass)
 
     fun getReport(): MedicalHistoryReport {
+        lang = userRepository.getCurrentUserLanguage().orElse("en")
         val document = Document()
         val out = ByteArrayOutputStream()
 
@@ -252,7 +254,7 @@ class MedicalHistoryReportService(
     }
 
     private fun getTranslation(key: String): String {
-        val locale = Locale.forLanguageTag(userRepository.getCurrentUserLanguage().orElse("en"))
+        val locale = Locale.forLanguageTag(lang)
         return messageSource.getMessage(key, null, locale)
     }
 

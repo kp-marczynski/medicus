@@ -34,7 +34,7 @@ class MedicalHistoryReportService(
     private val messageSource: MessageSource
 ) {
     companion object {
-        val defaultFont = Font(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED), 12f)
+        val defaultFont = Font(BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, BaseFont.EMBEDDED), 11f)
     }
 
     private val log = LoggerFactory.getLogger(javaClass)
@@ -78,7 +78,7 @@ class MedicalHistoryReportService(
             val table = PdfPTable(2)
             table.setWidths(floatArrayOf(1f, 3f))
             table.addCell(getHeaderCell(getTranslation("report.examinationPackage.title")))
-            table.addCell(PdfPCell(createPhrase(examinationPackage.title)))
+            table.addCell(getPaddedCell(examinationPackage.title))
 
             table.addCell(getHeaderCell(getTranslation("report.examinationPackage.visitedDoctors")))
             table.addCell(createTabularList(examinationPackage.visitedDoctors?.map { it.specialization + " - " + it.name }))
@@ -91,9 +91,9 @@ class MedicalHistoryReportService(
                 getTranslation("report.examinationPackage.examinations.reference")
             ).forEach { examinationTable.addCell(getHeaderCell(it)) }
             examinationPackage.examinations?.forEach {
-                examinationTable.addCell(PdfPCell(createPhrase(it.examinationType?.name)))
-                examinationTable.addCell(PdfPCell(createPhrase(it.value.toString() + " " + it.examinationType?.unit)))
-                examinationTable.addCell(PdfPCell(createPhrase(it.examinationType?.minValue.toString() + " - " + it.examinationType?.maxValue.toString())))
+                examinationTable.addCell(getPaddedCell(it.examinationType?.name))
+                examinationTable.addCell(getPaddedCell(it.value.toString() + " " + it.examinationType?.unit))
+                examinationTable.addCell(getPaddedCell(it.examinationType?.minValue.toString() + " - " + it.examinationType?.maxValue.toString()))
             }
             table.addCell(PdfPCell(examinationTable))
 
@@ -105,21 +105,21 @@ class MedicalHistoryReportService(
 
     private fun getSymptomsTables(): MutableCollection<Pair<LocalDate, PdfPTable>> {
         val tables: MutableCollection<Pair<LocalDate, PdfPTable>> = mutableListOf()
-        val symptomGroups = symptomRepository.findAll().groupBy { it.startDate!! }
-        symptomGroups.forEach { elem ->
-            val table = PdfPTable(3)
-            table.setWidths(floatArrayOf(1f, 1f, 2f))
-            arrayOf(
-                getTranslation("report.symptom.startDate"),
-                getTranslation("report.symptom.endDate"),
-                getTranslation("report.symptom.description")
-            ).forEach { table.addCell(getHeaderCell(it)) }
-            elem.value.forEach { symptom ->
-                table.addCell(PdfPCell(createPhrase(symptom.startDate.toString())))
-                table.addCell(PdfPCell(createPhrase(symptom.endDate?.toString())))
-                table.addCell(PdfPCell(createPhrase(symptom.description)))
-            }
-            tables.add(Pair(elem.key, wrapTable(table, elem.key, getTranslation("report.symptom.header"))))
+        val symptomGroups = symptomRepository.findAll()
+        symptomGroups.forEach { symptom ->
+            val table = PdfPTable(2)
+            table.setWidths(floatArrayOf(1f, 3f))
+
+            table.addCell(getHeaderCell(getTranslation("report.symptom.startDate")))
+            table.addCell(getPaddedCell(symptom.startDate.toString()))
+
+            table.addCell(getHeaderCell(getTranslation("report.symptom.endDate")))
+            table.addCell(getPaddedCell(symptom.endDate?.toString()))
+
+            table.addCell(getHeaderCell(getTranslation("report.symptom.description")))
+            table.addCell(getPaddedCell(symptom.description))
+
+            tables.add(Pair(symptom.startDate!!, wrapTable(table, symptom.startDate!!, getTranslation("report.symptom.header"))))
         }
 
         return tables
@@ -136,16 +136,16 @@ class MedicalHistoryReportService(
             table.addCell(PdfPCell()) // todo add title to treatment domain model
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.startDate")))
-            table.addCell(PdfPCell(createPhrase(treatment.startDate.toString())))
+            table.addCell(getPaddedCell(treatment.startDate.toString()))
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.endDate")))
-            table.addCell(PdfPCell(createPhrase(treatment.endDate?.toString())))
+            table.addCell(getPaddedCell(treatment.endDate?.toString()))
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.visitedDoctors")))
             table.addCell(createTabularList(treatment.visitedDoctors?.map { it.specialization + " - " + it.name }))
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.description")))
-            table.addCell(PdfPCell(createPhrase(treatment.description)))
+            table.addCell(getPaddedCell(treatment.description))
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.medicines")))
             table.addCell(createTabularList(treatment.medicines?.map { it.name!! }))
@@ -164,13 +164,13 @@ class MedicalHistoryReportService(
             table.setWidths(floatArrayOf(1f, 3f))
 
             table.addCell(getHeaderCell(getTranslation("report.procedure.title")))
-            table.addCell(PdfPCell(createPhrase(procedure.title)))
+            table.addCell(getPaddedCell(procedure.title))
 
             table.addCell(getHeaderCell(getTranslation("report.procedure.visitedDoctors")))
             table.addCell(createTabularList(procedure.visitedDoctors?.map { it.specialization + " - " + it.name }))
 
             table.addCell(getHeaderCell(getTranslation("report.procedure.description")))
-            table.addCell(PdfPCell(createPhrase(procedure.description)))
+            table.addCell(getPaddedCell(procedure.description))
 
             tables.add(Pair(procedure.date!!, wrapTable(table, procedure.date!!, getTranslation("report.procedure.header"))))
         }
@@ -186,13 +186,13 @@ class MedicalHistoryReportService(
             table.setWidths(floatArrayOf(1f, 3f))
 
             table.addCell(getHeaderCell(getTranslation("report.appointment.title")))
-            table.addCell(PdfPCell(createPhrase(appointment.appointmentType))) // todo change appointmentType to title
+            table.addCell(getPaddedCell(appointment.appointmentType)) // todo change appointmentType to title
 
             table.addCell(getHeaderCell(getTranslation("report.appointment.visitedDoctors")))
             table.addCell(createTabularList(appointment.visitedDoctors?.map { it.specialization + " - " + it.name }))
 
             table.addCell(getHeaderCell(getTranslation("report.appointment.description")))
-            table.addCell(PdfPCell(createPhrase(appointment.description)))
+            table.addCell(getPaddedCell(appointment.description))
 
             table.addCell(getHeaderCell(getTranslation("report.appointment.symptoms")))
             table.addCell(createTabularList(appointment.symptoms?.map { it.description!! }))
@@ -218,8 +218,8 @@ class MedicalHistoryReportService(
     private fun wrapTable(table: PdfPTable, date: LocalDate, recordType: String): PdfPTable {
         val tableContainer = PdfPTable(3)
         tableContainer.setWidths(floatArrayOf(1f, 1f, 5f))
-        tableContainer.addCell(PdfPCell(createPhrase(date.toString())))
-        tableContainer.addCell(PdfPCell(createPhrase(recordType)))
+        tableContainer.addCell(getCenteredCell(date.toString()))
+        tableContainer.addCell(getCenteredCell(recordType))
         val cell = PdfPCell(table)
         cell.setPadding(10f)
         tableContainer.addCell(cell)
@@ -227,15 +227,26 @@ class MedicalHistoryReportService(
         return tableContainer
     }
 
-    private fun getHeaderCell(text: String): PdfPCell {
-        val header = PdfPCell(createPhrase(text))
+    private fun getHeaderCell(text: String?): PdfPCell {
+        val header = getCenteredCell(text)
         header.backgroundColor = Color.LIGHT_GRAY
-        header.horizontalAlignment = Element.ALIGN_CENTER
         return header
     }
 
-    private fun getBorderlessCell(text: String): PdfPCell {
+    private fun getPaddedCell(text: String?): PdfPCell {
         val cell = PdfPCell(createPhrase(text))
+        cell.setPadding(5f)
+        return cell
+    }
+
+    private fun getCenteredCell(text: String?): PdfPCell {
+        val cell = getPaddedCell(text)
+        cell.horizontalAlignment = Element.ALIGN_CENTER
+        return cell
+    }
+
+    private fun getBorderlessCell(text: String): PdfPCell {
+        val cell = getPaddedCell(text)
         cell.borderWidth = 0f
         return cell
     }
@@ -250,6 +261,9 @@ class MedicalHistoryReportService(
     }
 }
 
+// internal enum class RecordType(val name: String, val color: Color) {
+//    SYMPTOM, PROCEDURE, TREATMENT, EXAMINATION_PACKAGE, APPOINTMENT
+// }
 // internal class ParagraphBorder : PdfPageEventHelper() {
 //    private var active = false
 //

@@ -9,7 +9,7 @@ import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 export interface IAppointment {
   id?: number;
   date?: Moment;
-  appointmentType?: string;
+  title?: string;
   description?: any;
   descriptionScanContentType?: string;
   descriptionScan?: any;
@@ -25,7 +25,7 @@ export class Appointment implements IAppointment {
   constructor(
     public id?: number,
     public date?: Moment,
-    public appointmentType?: string,
+    public title?: string,
     public description?: any,
     public descriptionScanContentType?: string,
     public descriptionScan?: any,

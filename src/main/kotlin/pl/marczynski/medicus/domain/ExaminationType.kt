@@ -34,14 +34,17 @@ class ExaminationType(
     @Column(name = "unit")
     var unit: String? = null,
 
-    @Column(name = "min_value")
-    var minValue: Double? = null,
+    @Column(name = "min_good_value")
+    var minGoodValue: Double? = null,
 
-    @Column(name = "max_value")
-    var maxValue: Double? = null,
+    @Column(name = "max_good_value")
+    var maxGoodValue: Double? = null,
 
-    @Column(name = "inner_range")
-    var innerRange: Boolean? = null,
+    @Column(name = "min_bad_value")
+    var minBadValue: Double? = null,
+
+    @Column(name = "max_bad_value")
+    var maxBadValue: Double? = null,
 
     @ManyToOne
     @JsonIgnoreProperties("examinationTypes")
@@ -68,9 +71,10 @@ class ExaminationType(
         "id=$id" +
         ", name='$name'" +
         ", unit='$unit'" +
-        ", minValue=$minValue" +
-        ", maxValue=$maxValue" +
-        ", innerRange='$innerRange'" +
+        ", minGoodValue=$minGoodValue" +
+        ", maxGoodValue=$maxGoodValue" +
+        ", minBadValue=$minBadValue" +
+        ", maxBadValue=$maxBadValue" +
         "}"
 
     companion object {

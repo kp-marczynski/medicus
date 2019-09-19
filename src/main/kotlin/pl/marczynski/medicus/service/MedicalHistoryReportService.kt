@@ -95,7 +95,7 @@ class MedicalHistoryReportService(
             examinationPackage.examinations?.forEach {
                 examinationTable.addCell(getPaddedCell(it.examinationType?.name))
                 examinationTable.addCell(getPaddedCell(it.value.toString() + " " + it.examinationType?.unit))
-                examinationTable.addCell(getPaddedCell(it.examinationType?.minValue.toString() + " - " + it.examinationType?.maxValue.toString()))
+                examinationTable.addCell(getPaddedCell(it.examinationType?.minGoodValue.toString() + " - " + it.examinationType?.maxGoodValue.toString()))
             }
             table.addCell(PdfPCell(examinationTable))
 
@@ -135,7 +135,7 @@ class MedicalHistoryReportService(
             table.setWidths(floatArrayOf(1f, 3f))
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.title")))
-            table.addCell(PdfPCell()) // todo add title to treatment domain model
+            table.addCell(getPaddedCell(treatment.title))
 
             table.addCell(getHeaderCell(getTranslation("report.treatment.startDate")))
             table.addCell(getPaddedCell(treatment.startDate.toString()))
@@ -188,7 +188,7 @@ class MedicalHistoryReportService(
             table.setWidths(floatArrayOf(1f, 3f))
 
             table.addCell(getHeaderCell(getTranslation("report.appointment.title")))
-            table.addCell(getPaddedCell(appointment.appointmentType)) // todo change appointmentType to title
+            table.addCell(getPaddedCell(appointment.title))
 
             table.addCell(getHeaderCell(getTranslation("report.appointment.visitedDoctors")))
             table.addCell(createTabularList(appointment.visitedDoctors?.map { it.specialization + " - " + it.name }))

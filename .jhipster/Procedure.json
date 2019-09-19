@@ -50,7 +50,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190916210209",
+    "changelogDate": "20190919141408",
     "entityTableName": "procedure",
     "dto": "no",
     "pagination": "pager",

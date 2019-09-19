@@ -96,9 +96,10 @@ class ExaminationTypeResourceIT {
         val testExaminationType = examinationTypeList[examinationTypeList.size - 1]
         assertThat(testExaminationType.name).isEqualTo(DEFAULT_NAME)
         assertThat(testExaminationType.unit).isEqualTo(DEFAULT_UNIT)
-        assertThat(testExaminationType.minValue).isEqualTo(DEFAULT_MIN_VALUE)
-        assertThat(testExaminationType.maxValue).isEqualTo(DEFAULT_MAX_VALUE)
-        assertThat(testExaminationType.innerRange).isEqualTo(DEFAULT_INNER_RANGE)
+        assertThat(testExaminationType.minGoodValue).isEqualTo(DEFAULT_MIN_GOOD_VALUE)
+        assertThat(testExaminationType.maxGoodValue).isEqualTo(DEFAULT_MAX_GOOD_VALUE)
+        assertThat(testExaminationType.minBadValue).isEqualTo(DEFAULT_MIN_BAD_VALUE)
+        assertThat(testExaminationType.maxBadValue).isEqualTo(DEFAULT_MAX_BAD_VALUE)
     }
 
     @Test
@@ -153,9 +154,10 @@ class ExaminationTypeResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(examinationType.id?.toInt())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT)))
-            .andExpect(jsonPath("$.[*].minValue").value(hasItem(DEFAULT_MIN_VALUE)))
-            .andExpect(jsonPath("$.[*].maxValue").value(hasItem(DEFAULT_MAX_VALUE)))
-            .andExpect(jsonPath("$.[*].innerRange").value(hasItem(DEFAULT_INNER_RANGE)))
+            .andExpect(jsonPath("$.[*].minGoodValue").value(hasItem(DEFAULT_MIN_GOOD_VALUE)))
+            .andExpect(jsonPath("$.[*].maxGoodValue").value(hasItem(DEFAULT_MAX_GOOD_VALUE)))
+            .andExpect(jsonPath("$.[*].minBadValue").value(hasItem(DEFAULT_MIN_BAD_VALUE)))
+            .andExpect(jsonPath("$.[*].maxBadValue").value(hasItem(DEFAULT_MAX_BAD_VALUE)))
     }
 
     @Test
@@ -174,9 +176,10 @@ class ExaminationTypeResourceIT {
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT))
-            .andExpect(jsonPath("$.minValue").value(DEFAULT_MIN_VALUE))
-            .andExpect(jsonPath("$.maxValue").value(DEFAULT_MAX_VALUE))
-            .andExpect(jsonPath("$.innerRange").value(DEFAULT_INNER_RANGE))
+            .andExpect(jsonPath("$.minGoodValue").value(DEFAULT_MIN_GOOD_VALUE))
+            .andExpect(jsonPath("$.maxGoodValue").value(DEFAULT_MAX_GOOD_VALUE))
+            .andExpect(jsonPath("$.minBadValue").value(DEFAULT_MIN_BAD_VALUE))
+            .andExpect(jsonPath("$.maxBadValue").value(DEFAULT_MAX_BAD_VALUE))
     }
 
     @Test
@@ -203,9 +206,10 @@ class ExaminationTypeResourceIT {
         em.detach(updatedExaminationType)
         updatedExaminationType.name = UPDATED_NAME
         updatedExaminationType.unit = UPDATED_UNIT
-        updatedExaminationType.minValue = UPDATED_MIN_VALUE
-        updatedExaminationType.maxValue = UPDATED_MAX_VALUE
-        updatedExaminationType.innerRange = UPDATED_INNER_RANGE
+        updatedExaminationType.minGoodValue = UPDATED_MIN_GOOD_VALUE
+        updatedExaminationType.maxGoodValue = UPDATED_MAX_GOOD_VALUE
+        updatedExaminationType.minBadValue = UPDATED_MIN_BAD_VALUE
+        updatedExaminationType.maxBadValue = UPDATED_MAX_BAD_VALUE
 
         restExaminationTypeMockMvc.perform(
             put("/api/examination-types")
@@ -219,9 +223,10 @@ class ExaminationTypeResourceIT {
         val testExaminationType = examinationTypeList[examinationTypeList.size - 1]
         assertThat(testExaminationType.name).isEqualTo(UPDATED_NAME)
         assertThat(testExaminationType.unit).isEqualTo(UPDATED_UNIT)
-        assertThat(testExaminationType.minValue).isEqualTo(UPDATED_MIN_VALUE)
-        assertThat(testExaminationType.maxValue).isEqualTo(UPDATED_MAX_VALUE)
-        assertThat(testExaminationType.innerRange).isEqualTo(UPDATED_INNER_RANGE)
+        assertThat(testExaminationType.minGoodValue).isEqualTo(UPDATED_MIN_GOOD_VALUE)
+        assertThat(testExaminationType.maxGoodValue).isEqualTo(UPDATED_MAX_GOOD_VALUE)
+        assertThat(testExaminationType.minBadValue).isEqualTo(UPDATED_MIN_BAD_VALUE)
+        assertThat(testExaminationType.maxBadValue).isEqualTo(UPDATED_MAX_BAD_VALUE)
     }
 
     @Test
@@ -288,16 +293,21 @@ class ExaminationTypeResourceIT {
         private const val DEFAULT_UNIT: String = "AAAAAAAAAA"
         private const val UPDATED_UNIT = "BBBBBBBBBB"
 
-        private const val DEFAULT_MIN_VALUE: Double = 1.0
-        private const val UPDATED_MIN_VALUE: Double = 2.0
-        private const val SMALLER_MIN_VALUE: Double = 1.0 - 1.0
+        private const val DEFAULT_MIN_GOOD_VALUE: Double = 1.0
+        private const val UPDATED_MIN_GOOD_VALUE: Double = 2.0
+        private const val SMALLER_MIN_GOOD_VALUE: Double = 1.0 - 1.0
 
-        private const val DEFAULT_MAX_VALUE: Double = 1.0
-        private const val UPDATED_MAX_VALUE: Double = 2.0
-        private const val SMALLER_MAX_VALUE: Double = 1.0 - 1.0
+        private const val DEFAULT_MAX_GOOD_VALUE: Double = 1.0
+        private const val UPDATED_MAX_GOOD_VALUE: Double = 2.0
+        private const val SMALLER_MAX_GOOD_VALUE: Double = 1.0 - 1.0
 
-        private const val DEFAULT_INNER_RANGE: Boolean = false
-        private const val UPDATED_INNER_RANGE: Boolean = true
+        private const val DEFAULT_MIN_BAD_VALUE: Double = 1.0
+        private const val UPDATED_MIN_BAD_VALUE: Double = 2.0
+        private const val SMALLER_MIN_BAD_VALUE: Double = 1.0 - 1.0
+
+        private const val DEFAULT_MAX_BAD_VALUE: Double = 1.0
+        private const val UPDATED_MAX_BAD_VALUE: Double = 2.0
+        private const val SMALLER_MAX_BAD_VALUE: Double = 1.0 - 1.0
 
         /**
          * Create an entity for this test.
@@ -310,9 +320,10 @@ class ExaminationTypeResourceIT {
             val examinationType = ExaminationType(
                 name = DEFAULT_NAME,
                 unit = DEFAULT_UNIT,
-                minValue = DEFAULT_MIN_VALUE,
-                maxValue = DEFAULT_MAX_VALUE,
-                innerRange = DEFAULT_INNER_RANGE
+                minGoodValue = DEFAULT_MIN_GOOD_VALUE,
+                maxGoodValue = DEFAULT_MAX_GOOD_VALUE,
+                minBadValue = DEFAULT_MIN_BAD_VALUE,
+                maxBadValue = DEFAULT_MAX_BAD_VALUE
             )
 
             return examinationType
@@ -329,9 +340,10 @@ class ExaminationTypeResourceIT {
             val examinationType = ExaminationType(
                 name = UPDATED_NAME,
                 unit = UPDATED_UNIT,
-                minValue = UPDATED_MIN_VALUE,
-                maxValue = UPDATED_MAX_VALUE,
-                innerRange = UPDATED_INNER_RANGE
+                minGoodValue = UPDATED_MIN_GOOD_VALUE,
+                maxGoodValue = UPDATED_MAX_GOOD_VALUE,
+                minBadValue = UPDATED_MIN_BAD_VALUE,
+                maxBadValue = UPDATED_MAX_BAD_VALUE
             )
 
             return examinationType

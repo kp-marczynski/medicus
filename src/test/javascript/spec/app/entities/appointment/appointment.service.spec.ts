@@ -72,7 +72,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             date: currentDate.format(DATE_FORMAT),
-            appointmentType: 'BBBBBB',
+            title: 'BBBBBB',
             description: 'BBBBBB',
             descriptionScan: 'BBBBBB'
           },
@@ -98,7 +98,7 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             date: currentDate.format(DATE_FORMAT),
-            appointmentType: 'BBBBBB',
+            title: 'BBBBBB',
             description: 'BBBBBB',
             descriptionScan: 'BBBBBB'
           },

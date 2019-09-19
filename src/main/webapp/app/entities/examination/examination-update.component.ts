@@ -33,6 +33,7 @@ export class ExaminationUpdateComponent implements OnInit {
     id: [],
     value: [null, [Validators.required]],
     valueModificator: [],
+    ignoreNumberValue: [],
     examinationType: [],
     user: [],
     examinationPackage: []
@@ -81,6 +82,7 @@ export class ExaminationUpdateComponent implements OnInit {
       id: examination.id,
       value: examination.value,
       valueModificator: examination.valueModificator,
+      ignoreNumberValue: examination.ignoreNumberValue,
       examinationType: examination.examinationType,
       user: examination.user,
       examinationPackage: examination.examinationPackage
@@ -110,6 +112,7 @@ export class ExaminationUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       value: this.editForm.get(['value']).value,
       valueModificator: this.editForm.get(['valueModificator']).value,
+      ignoreNumberValue: this.editForm.get(['ignoreNumberValue']).value,
       examinationType: this.editForm.get(['examinationType']).value,
       user: this.editForm.get(['user']).value,
       examinationPackage: this.editForm.get(['examinationPackage']).value

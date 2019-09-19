@@ -26,8 +26,8 @@ class Appointment(
     var date: LocalDate? = null,
 
     @get: NotNull
-    @Column(name = "appointment_type", nullable = false)
-    var appointmentType: String? = null,
+    @Column(name = "title", nullable = false)
+    var title: String? = null,
 
     @Lob
     @Type(type = "org.hibernate.type.TextType")
@@ -90,7 +90,7 @@ class Appointment(
     override fun toString() = "Appointment{" +
         "id=$id" +
         ", date='$date'" +
-        ", appointmentType='$appointmentType'" +
+        ", title='$title'" +
         ", description='$description'" +
         ", descriptionScan='$descriptionScan'" +
         ", descriptionScanContentType='$descriptionScanContentType'" +

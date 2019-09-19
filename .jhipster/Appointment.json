@@ -9,7 +9,7 @@
             ]
         },
         {
-            "fieldName": "appointmentType",
+            "fieldName": "title",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -71,7 +71,7 @@
             "ownerSide": true
         }
     ],
-    "changelogDate": "20190916210213",
+    "changelogDate": "20190919141412",
     "entityTableName": "appointment",
     "dto": "no",
     "pagination": "pager",

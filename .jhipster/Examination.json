@@ -11,6 +11,10 @@
         {
             "fieldName": "valueModificator",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "ignoreNumberValue",
+            "fieldType": "Boolean"
         }
     ],
     "relationships": [
@@ -36,7 +40,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190916210208",
+    "changelogDate": "20190919141407",
     "entityTableName": "examination",
     "dto": "no",
     "pagination": "pager",

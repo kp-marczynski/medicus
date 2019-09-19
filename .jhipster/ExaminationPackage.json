@@ -51,7 +51,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190916210214",
+    "changelogDate": "20190919141413",
     "entityTableName": "examination_package",
     "dto": "no",
     "pagination": "pager",

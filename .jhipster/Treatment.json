@@ -13,6 +13,10 @@
             "fieldType": "LocalDate"
         },
         {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "description",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
@@ -56,7 +60,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190916210210",
+    "changelogDate": "20190919141409",
     "entityTableName": "treatment",
     "dto": "no",
     "pagination": "pager",

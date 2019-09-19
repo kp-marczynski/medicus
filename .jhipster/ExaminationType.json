@@ -13,16 +13,20 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "minValue",
+            "fieldName": "minGoodValue",
             "fieldType": "Double"
         },
         {
-            "fieldName": "maxValue",
+            "fieldName": "maxGoodValue",
             "fieldType": "Double"
         },
         {
-            "fieldName": "innerRange",
-            "fieldType": "Boolean"
+            "fieldName": "minBadValue",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "maxBadValue",
+            "fieldType": "Double"
         }
     ],
     "relationships": [
@@ -40,7 +44,7 @@
             "relationshipName": "examination"
         }
     ],
-    "changelogDate": "20190916210207",
+    "changelogDate": "20190919141406",
     "entityTableName": "examination_type",
     "dto": "no",
     "pagination": "no",

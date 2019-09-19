@@ -33,7 +33,7 @@
                                                 || !examination.examinationType.minValue && examination.examinationType.maxValue && examination.value <= examination.examinationType.maxValue
                             }">
 <!--                <td><a [routerLink]="['/examination', examination.id, 'view' ]">{{examination.id}}</a></td>-->
-                <td>{{examination.valueModificator}} {{examination.value}}</td>
+                <td>{{examination.valueModificator}} <span *ngIf="examination.ignoreNumberValue">{{examination.value}}</span></td>
                 <td>
 
 <!--                        <a [routerLink]="['/examination-type', examination.examinationType?.id, 'view' ]" >{{examination.examinationType?.name}}</a>-->

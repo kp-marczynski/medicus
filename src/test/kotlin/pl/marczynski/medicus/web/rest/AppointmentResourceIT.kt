@@ -107,7 +107,7 @@ class AppointmentResourceIT {
         assertThat(appointmentList).hasSize(databaseSizeBeforeCreate + 1)
         val testAppointment = appointmentList[appointmentList.size - 1]
         assertThat(testAppointment.date).isEqualTo(DEFAULT_DATE)
-        assertThat(testAppointment.appointmentType).isEqualTo(DEFAULT_APPOINTMENT_TYPE)
+        assertThat(testAppointment.title).isEqualTo(DEFAULT_TITLE)
         assertThat(testAppointment.description).isEqualTo(DEFAULT_DESCRIPTION)
         assertThat(testAppointment.descriptionScan).isEqualTo(DEFAULT_DESCRIPTION_SCAN)
         assertThat(testAppointment.descriptionScanContentType).isEqualTo(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)
@@ -154,10 +154,10 @@ class AppointmentResourceIT {
 
     @Test
     @Transactional
-    fun checkAppointmentTypeIsRequired() {
+    fun checkTitleIsRequired() {
         val databaseSizeBeforeTest = appointmentRepository.findAll().size
         // set the field null
-        appointment.appointmentType = null
+        appointment.title = null
 
         // Create the Appointment, which fails.
 
@@ -183,7 +183,7 @@ class AppointmentResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(appointment.id?.toInt())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
-            .andExpect(jsonPath("$.[*].appointmentType").value(hasItem(DEFAULT_APPOINTMENT_TYPE)))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].descriptionScanContentType").value(hasItem(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].descriptionScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN))))
@@ -237,7 +237,7 @@ class AppointmentResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
-            .andExpect(jsonPath("$.appointmentType").value(DEFAULT_APPOINTMENT_TYPE))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.descriptionScanContentType").value(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE))
             .andExpect(jsonPath("$.descriptionScan").value(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN)))
@@ -266,7 +266,7 @@ class AppointmentResourceIT {
         // Disconnect from session so that the updates on updatedAppointment are not directly saved in db
         em.detach(updatedAppointment)
         updatedAppointment.date = UPDATED_DATE
-        updatedAppointment.appointmentType = UPDATED_APPOINTMENT_TYPE
+        updatedAppointment.title = UPDATED_TITLE
         updatedAppointment.description = UPDATED_DESCRIPTION
         updatedAppointment.descriptionScan = UPDATED_DESCRIPTION_SCAN
         updatedAppointment.descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
@@ -282,7 +282,7 @@ class AppointmentResourceIT {
         assertThat(appointmentList).hasSize(databaseSizeBeforeUpdate)
         val testAppointment = appointmentList[appointmentList.size - 1]
         assertThat(testAppointment.date).isEqualTo(UPDATED_DATE)
-        assertThat(testAppointment.appointmentType).isEqualTo(UPDATED_APPOINTMENT_TYPE)
+        assertThat(testAppointment.title).isEqualTo(UPDATED_TITLE)
         assertThat(testAppointment.description).isEqualTo(UPDATED_DESCRIPTION)
         assertThat(testAppointment.descriptionScan).isEqualTo(UPDATED_DESCRIPTION_SCAN)
         assertThat(testAppointment.descriptionScanContentType).isEqualTo(UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE)
@@ -350,8 +350,8 @@ class AppointmentResourceIT {
         private val UPDATED_DATE: LocalDate = LocalDate.now(ZoneId.systemDefault())
         private val SMALLER_DATE: LocalDate = LocalDate.ofEpochDay(-1L)
 
-        private const val DEFAULT_APPOINTMENT_TYPE: String = "AAAAAAAAAA"
-        private const val UPDATED_APPOINTMENT_TYPE = "BBBBBBBBBB"
+        private const val DEFAULT_TITLE: String = "AAAAAAAAAA"
+        private const val UPDATED_TITLE = "BBBBBBBBBB"
 
         private const val DEFAULT_DESCRIPTION: String = "AAAAAAAAAA"
         private const val UPDATED_DESCRIPTION = "BBBBBBBBBB"
@@ -371,7 +371,7 @@ class AppointmentResourceIT {
         fun createEntity(em: EntityManager): Appointment {
             val appointment = Appointment(
                 date = DEFAULT_DATE,
-                appointmentType = DEFAULT_APPOINTMENT_TYPE,
+                title = DEFAULT_TITLE,
                 description = DEFAULT_DESCRIPTION,
                 descriptionScan = DEFAULT_DESCRIPTION_SCAN,
                 descriptionScanContentType = DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE
@@ -390,7 +390,7 @@ class AppointmentResourceIT {
         fun createUpdatedEntity(em: EntityManager): Appointment {
             val appointment = Appointment(
                 date = UPDATED_DATE,
-                appointmentType = UPDATED_APPOINTMENT_TYPE,
+                title = UPDATED_TITLE,
                 description = UPDATED_DESCRIPTION,
                 descriptionScan = UPDATED_DESCRIPTION_SCAN,
                 descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE

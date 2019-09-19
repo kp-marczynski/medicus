@@ -1,11 +1,11 @@
-id;value;value_modificator
-1;80219;Small
-2;98688;index orange
-3;552;overriding
-4;70685;application quantify Unbranded Plastic Tuna
-5;11586;IB Investment Account archive
-6;6355;moratorium moratorium
-7;72960;withdrawal COM
-8;47221;Frozen bus
-9;76078;Idaho compress Avon
-10;52273;partnerships Grocery Intelligent
+id;value;value_modificator;ignore_number_value
+1;98688;index orange;false
+2;1407;magenta monitor 1080p;true
+3;7404;world-class Frozen IB;true
+4;44945;Ergonomic;false
+5;31098;moratorium pixel withdrawal;true
+6;56124;embrace Developer;true
+7;76078;Idaho compress Avon;true
+8;71066;Small partnerships;false
+9;3142;withdrawal knowledge base Buckinghamshire;true
+10;13933;Investment Account;true

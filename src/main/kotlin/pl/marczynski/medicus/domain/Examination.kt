@@ -33,6 +33,9 @@ class Examination(
     @Column(name = "value_modificator")
     var valueModificator: String? = null,
 
+    @Column(name = "ignore_number_value")
+    var ignoreNumberValue: Boolean? = null,
+
     @ManyToOne
     @JsonIgnoreProperties("examinations")
     var examinationType: ExaminationType? = null,
@@ -63,6 +66,7 @@ class Examination(
         "id=$id" +
         ", value=$value" +
         ", valueModificator='$valueModificator'" +
+        ", ignoreNumberValue='$ignoreNumberValue'" +
         "}"
 
     companion object {

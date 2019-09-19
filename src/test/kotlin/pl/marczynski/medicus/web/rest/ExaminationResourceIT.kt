@@ -96,6 +96,7 @@ class ExaminationResourceIT {
         val testExamination = examinationList[examinationList.size - 1]
         assertThat(testExamination.value).isEqualTo(DEFAULT_VALUE)
         assertThat(testExamination.valueModificator).isEqualTo(DEFAULT_VALUE_MODIFICATOR)
+        assertThat(testExamination.ignoreNumberValue).isEqualTo(DEFAULT_IGNORE_NUMBER_VALUE)
     }
 
     @Test
@@ -150,6 +151,7 @@ class ExaminationResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(examination.id?.toInt())))
             .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE)))
             .andExpect(jsonPath("$.[*].valueModificator").value(hasItem(DEFAULT_VALUE_MODIFICATOR)))
+            .andExpect(jsonPath("$.[*].ignoreNumberValue").value(hasItem(DEFAULT_IGNORE_NUMBER_VALUE)))
     }
 
     @Test
@@ -168,6 +170,7 @@ class ExaminationResourceIT {
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.value").value(DEFAULT_VALUE))
             .andExpect(jsonPath("$.valueModificator").value(DEFAULT_VALUE_MODIFICATOR))
+            .andExpect(jsonPath("$.ignoreNumberValue").value(DEFAULT_IGNORE_NUMBER_VALUE))
     }
 
     @Test
@@ -194,6 +197,7 @@ class ExaminationResourceIT {
         em.detach(updatedExamination)
         updatedExamination.value = UPDATED_VALUE
         updatedExamination.valueModificator = UPDATED_VALUE_MODIFICATOR
+        updatedExamination.ignoreNumberValue = UPDATED_IGNORE_NUMBER_VALUE
 
         restExaminationMockMvc.perform(
             put("/api/examinations")
@@ -207,6 +211,7 @@ class ExaminationResourceIT {
         val testExamination = examinationList[examinationList.size - 1]
         assertThat(testExamination.value).isEqualTo(UPDATED_VALUE)
         assertThat(testExamination.valueModificator).isEqualTo(UPDATED_VALUE_MODIFICATOR)
+        assertThat(testExamination.ignoreNumberValue).isEqualTo(UPDATED_IGNORE_NUMBER_VALUE)
     }
 
     @Test
@@ -274,6 +279,9 @@ class ExaminationResourceIT {
         private const val DEFAULT_VALUE_MODIFICATOR: String = "AAAAAAAAAA"
         private const val UPDATED_VALUE_MODIFICATOR = "BBBBBBBBBB"
 
+        private const val DEFAULT_IGNORE_NUMBER_VALUE: Boolean = false
+        private const val UPDATED_IGNORE_NUMBER_VALUE: Boolean = true
+
         /**
          * Create an entity for this test.
          *
@@ -284,7 +292,8 @@ class ExaminationResourceIT {
         fun createEntity(em: EntityManager): Examination {
             val examination = Examination(
                 value = DEFAULT_VALUE,
-                valueModificator = DEFAULT_VALUE_MODIFICATOR
+                valueModificator = DEFAULT_VALUE_MODIFICATOR,
+                ignoreNumberValue = DEFAULT_IGNORE_NUMBER_VALUE
             )
 
             return examination
@@ -300,7 +309,8 @@ class ExaminationResourceIT {
         fun createUpdatedEntity(em: EntityManager): Examination {
             val examination = Examination(
                 value = UPDATED_VALUE,
-                valueModificator = UPDATED_VALUE_MODIFICATOR
+                valueModificator = UPDATED_VALUE_MODIFICATOR,
+                ignoreNumberValue = UPDATED_IGNORE_NUMBER_VALUE
             )
 
             return examination

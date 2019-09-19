@@ -32,7 +32,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190916210212",
+    "changelogDate": "20190919141411",
     "entityTableName": "owned_medicine",
     "dto": "no",
     "pagination": "pager",

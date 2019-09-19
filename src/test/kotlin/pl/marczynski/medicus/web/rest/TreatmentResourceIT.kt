@@ -108,6 +108,7 @@ class TreatmentResourceIT {
         val testTreatment = treatmentList[treatmentList.size - 1]
         assertThat(testTreatment.startDate).isEqualTo(DEFAULT_START_DATE)
         assertThat(testTreatment.endDate).isEqualTo(DEFAULT_END_DATE)
+        assertThat(testTreatment.title).isEqualTo(DEFAULT_TITLE)
         assertThat(testTreatment.description).isEqualTo(DEFAULT_DESCRIPTION)
         assertThat(testTreatment.descriptionScan).isEqualTo(DEFAULT_DESCRIPTION_SCAN)
         assertThat(testTreatment.descriptionScanContentType).isEqualTo(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)
@@ -165,6 +166,7 @@ class TreatmentResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(treatment.id?.toInt())))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].descriptionScanContentType").value(hasItem(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].descriptionScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN))))
@@ -219,6 +221,7 @@ class TreatmentResourceIT {
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
             .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.descriptionScanContentType").value(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE))
             .andExpect(jsonPath("$.descriptionScan").value(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN)))
@@ -248,6 +251,7 @@ class TreatmentResourceIT {
         em.detach(updatedTreatment)
         updatedTreatment.startDate = UPDATED_START_DATE
         updatedTreatment.endDate = UPDATED_END_DATE
+        updatedTreatment.title = UPDATED_TITLE
         updatedTreatment.description = UPDATED_DESCRIPTION
         updatedTreatment.descriptionScan = UPDATED_DESCRIPTION_SCAN
         updatedTreatment.descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
@@ -264,6 +268,7 @@ class TreatmentResourceIT {
         val testTreatment = treatmentList[treatmentList.size - 1]
         assertThat(testTreatment.startDate).isEqualTo(UPDATED_START_DATE)
         assertThat(testTreatment.endDate).isEqualTo(UPDATED_END_DATE)
+        assertThat(testTreatment.title).isEqualTo(UPDATED_TITLE)
         assertThat(testTreatment.description).isEqualTo(UPDATED_DESCRIPTION)
         assertThat(testTreatment.descriptionScan).isEqualTo(UPDATED_DESCRIPTION_SCAN)
         assertThat(testTreatment.descriptionScanContentType).isEqualTo(UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE)
@@ -335,6 +340,9 @@ class TreatmentResourceIT {
         private val UPDATED_END_DATE: LocalDate = LocalDate.now(ZoneId.systemDefault())
         private val SMALLER_END_DATE: LocalDate = LocalDate.ofEpochDay(-1L)
 
+        private const val DEFAULT_TITLE: String = "AAAAAAAAAA"
+        private const val UPDATED_TITLE = "BBBBBBBBBB"
+
         private const val DEFAULT_DESCRIPTION: String = "AAAAAAAAAA"
         private const val UPDATED_DESCRIPTION = "BBBBBBBBBB"
 
@@ -354,6 +362,7 @@ class TreatmentResourceIT {
             val treatment = Treatment(
                 startDate = DEFAULT_START_DATE,
                 endDate = DEFAULT_END_DATE,
+                title = DEFAULT_TITLE,
                 description = DEFAULT_DESCRIPTION,
                 descriptionScan = DEFAULT_DESCRIPTION_SCAN,
                 descriptionScanContentType = DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE
@@ -373,6 +382,7 @@ class TreatmentResourceIT {
             val treatment = Treatment(
                 startDate = UPDATED_START_DATE,
                 endDate = UPDATED_END_DATE,
+                title = UPDATED_TITLE,
                 description = UPDATED_DESCRIPTION,
                 descriptionScan = UPDATED_DESCRIPTION_SCAN,
                 descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE

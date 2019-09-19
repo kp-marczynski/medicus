@@ -7,7 +7,7 @@
             <dl class="row-md jh-entity-details">
                 <dt><span jhiTranslate="medicusApp.examination.value">Value</span></dt>
                 <dd>
-                    <span>{{examination.valueModificator}} {{examination.value}}</span>
+                    <span>{{examination.valueModificator}} <span *ngIf="examination.ignoreNumberValue">{{examination.value}}</span></span>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examination.examinationType">Examination Type</span></dt>
                 <dd>

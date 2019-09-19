@@ -18,9 +18,10 @@
       },
       "name": "Name",
       "unit": "Unit",
-      "minValue": "Min Value",
-      "maxValue": "Max Value",
-      "innerRange": "Inner Range",
+      "minGoodValue": "Min Good Value",
+      "maxGoodValue": "Max Good Value",
+      "minBadValue": "Min Bad Value",
+      "maxBadValue": "Max Bad Value",
       "user": "User",
       "examination": "Examination"
     }

@@ -1,11 +1,11 @@
-id;name;unit;min_value;max_value;inner_range
-1;mobile Fish;Home Loan Account Table Computer;5808;45924;true
-2;Savings Account alarm;Tasty Metal Bacon;93855;21233;false
-3;Officer;methodology Albania;43194;2306;false
-4;Investment Account Steel;Coordinator;23277;45606;false
-5;Savings Account syndicate Planner;Refined Rubber Chicken Table;6505;1326;true
-6;Planner cross-platform access;Public-key;24102;44015;true
-7;Investment Account;Games Regional Digitized;66252;75536;false
-8;Costa Rica Mayotte;Industrial;84228;77513;false
-9;e-enable Communications capacitor;Awesome;19598;52083;false
-10;software scale interactive;Louisiana Specialist Home Loan Account;27599;14092;false
+id;name;unit;min_good_value;max_good_value;min_bad_value;max_bad_value
+1;mobile Fish;Home Loan Account Table Computer;5808;45924;86617;33370
+2;Metal deposit;Producer;83244;93855;21233;77
+3;Officer;methodology Albania;43194;2306;29122;52477
+4;enable Gorgeous Frozen Pants;Common;78517;61838;19967;38246
+5;Planner Canyon;Credit Card Account Table Small Frozen Sausages;96563;56328;80839;38541
+6;Music;Nakfa;44015;68326;12203;60999
+7;backing up Salad;Digitized invoice;31171;42515;52006;20794
+8;Georgia Industrial;connect Markets Chief;59789;72727;92187;32654
+9;Georgia;Tasty Plastic Pizza scale;27134;53969;82873;58675
+10;Specialist Home Loan Account;Plastic;80219;16526;7455;1563

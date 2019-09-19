@@ -20,9 +20,10 @@
 <!--            <th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="medicusApp.examinationType.name">Name</span></th>
             <th><span jhiTranslate="medicusApp.examinationType.unit">Unit</span></th>
-            <th><span jhiTranslate="medicusApp.examinationType.minValue">Min Value</span></th>
-            <th><span jhiTranslate="medicusApp.examinationType.maxValue">Max Value</span></th>
-            <th><span jhiTranslate="medicusApp.examinationType.innerRange">Inner Range</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.minGoodValue">Min Good Value</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.maxGoodValue">Max Good Value</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.minBadValue">Min Bad Value</span></th>
+            <th><span jhiTranslate="medicusApp.examinationType.maxBadValue">Max Bad Value</span></th>
             <th></th>
             </tr>
             </thead>
@@ -31,9 +32,10 @@
 <!--                <td><a [routerLink]="['/examination-type', examinationType.id, 'view' ]">{{examinationType.id}}</a></td>-->
                 <td>{{examinationType.name}}</td>
                 <td>{{examinationType.unit}}</td>
-                <td>{{examinationType.minValue}}</td>
-                <td>{{examinationType.maxValue}}</td>
-                <td>{{examinationType.innerRange}}</td>
+                <td>{{examinationType.minGoodValue}}</td>
+                <td>{{examinationType.maxGoodValue}}</td>
+                <td>{{examinationType.minBadValue}}</td>
+                <td>{{examinationType.maxBadValue}}</td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

@@ -18,6 +18,7 @@
       },
       "value": "Value",
       "valueModificator": "Value Modificator",
+      "ignoreNumberValue": "Ignore Number Value",
       "examinationType": "Examination Type",
       "user": "User",
       "examinationPackage": "Examination Package"

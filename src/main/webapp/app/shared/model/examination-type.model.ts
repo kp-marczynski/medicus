@@ -5,9 +5,10 @@ export interface IExaminationType {
   id?: number;
   name?: string;
   unit?: string;
-  minValue?: number;
-  maxValue?: number;
-  innerRange?: boolean;
+  minGoodValue?: number;
+  maxGoodValue?: number;
+  minBadValue?: number;
+  maxBadValue?: number;
   user?: IUser;
   examinations?: IExamination[];
 }
@@ -17,12 +18,11 @@ export class ExaminationType implements IExaminationType {
     public id?: number,
     public name?: string,
     public unit?: string,
-    public minValue?: number,
-    public maxValue?: number,
-    public innerRange?: boolean,
+    public minGoodValue?: number,
+    public maxGoodValue?: number,
+    public minBadValue?: number,
+    public maxBadValue?: number,
     public user?: IUser,
     public examinations?: IExamination[]
-  ) {
-    this.innerRange = this.innerRange || false;
-  }
+  ) {}
 }

@@ -38,7 +38,7 @@ export class AppointmentUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     date: [null, [Validators.required]],
-    appointmentType: [null, [Validators.required]],
+    title: [null, [Validators.required]],
     description: [],
     descriptionScan: [],
     descriptionScanContentType: [],
@@ -101,7 +101,7 @@ export class AppointmentUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: appointment.id,
       date: appointment.date,
-      appointmentType: appointment.appointmentType,
+      title: appointment.title,
       description: appointment.description,
       descriptionScan: appointment.descriptionScan,
       descriptionScanContentType: appointment.descriptionScanContentType,
@@ -166,7 +166,7 @@ export class AppointmentUpdateComponent implements OnInit {
       ...new Appointment(),
       id: this.editForm.get(['id']).value,
       date: this.editForm.get(['date']).value,
-      appointmentType: this.editForm.get(['appointmentType']).value,
+      title: this.editForm.get(['title']).value,
       description: this.editForm.get(['description']).value,
       descriptionScanContentType: this.editForm.get(['descriptionScanContentType']).value,
       descriptionScan: this.editForm.get(['descriptionScan']).value,

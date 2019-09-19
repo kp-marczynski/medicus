@@ -19,9 +19,10 @@ export class ExaminationTypeUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     unit: [],
-    minValue: [],
-    maxValue: [],
-    innerRange: [],
+    minGoodValue: [],
+    maxGoodValue: [],
+    minBadValue: [],
+    maxBadValue: [],
     user: []
   });
 
@@ -43,9 +44,10 @@ export class ExaminationTypeUpdateComponent implements OnInit {
       id: examinationType.id,
       name: examinationType.name,
       unit: examinationType.unit,
-      minValue: examinationType.minValue,
-      maxValue: examinationType.maxValue,
-      innerRange: examinationType.innerRange,
+      minGoodValue: examinationType.minGoodValue,
+      maxGoodValue: examinationType.maxGoodValue,
+      minBadValue: examinationType.minBadValue,
+      maxBadValue: examinationType.maxBadValue,
       user: examinationType.user
     });
   }
@@ -70,9 +72,10 @@ export class ExaminationTypeUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       name: this.editForm.get(['name']).value,
       unit: this.editForm.get(['unit']).value,
-      minValue: this.editForm.get(['minValue']).value,
-      maxValue: this.editForm.get(['maxValue']).value,
-      innerRange: this.editForm.get(['innerRange']).value,
+      minGoodValue: this.editForm.get(['minGoodValue']).value,
+      maxGoodValue: this.editForm.get(['maxGoodValue']).value,
+      minBadValue: this.editForm.get(['minBadValue']).value,
+      maxBadValue: this.editForm.get(['maxBadValue']).value,
       user: this.editForm.get(['user']).value
     };
   }

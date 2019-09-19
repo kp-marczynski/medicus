@@ -29,6 +29,9 @@ class Treatment(
     @Column(name = "end_date")
     var endDate: LocalDate? = null,
 
+    @Column(name = "title")
+    var title: String? = null,
+
     @Lob
     @Type(type = "org.hibernate.type.TextType")
     @Column(name = "description")
@@ -79,6 +82,7 @@ class Treatment(
         "id=$id" +
         ", startDate='$startDate'" +
         ", endDate='$endDate'" +
+        ", title='$title'" +
         ", description='$description'" +
         ", descriptionScan='$descriptionScan'" +
         ", descriptionScanContentType='$descriptionScanContentType'" +

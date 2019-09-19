@@ -8,6 +8,7 @@ export interface ITreatment {
   id?: number;
   startDate?: Moment;
   endDate?: Moment;
+  title?: string;
   description?: any;
   descriptionScanContentType?: string;
   descriptionScan?: any;
@@ -22,6 +23,7 @@ export class Treatment implements ITreatment {
     public id?: number,
     public startDate?: Moment,
     public endDate?: Moment,
+    public title?: string,
     public description?: any,
     public descriptionScanContentType?: string,
     public descriptionScan?: any,

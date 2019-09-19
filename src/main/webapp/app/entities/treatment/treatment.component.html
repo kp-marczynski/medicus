@@ -20,6 +20,7 @@
 <!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="startDate"><span jhiTranslate="medicusApp.treatment.startDate">Start Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="endDate"><span jhiTranslate="medicusApp.treatment.endDate">End Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="title"><span jhiTranslate="medicusApp.treatment.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.treatment.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.treatment.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th><span jhiTranslate="medicusApp.treatment.medicine">Medicine</span></th>
@@ -31,6 +32,7 @@
 <!--                <td><a [routerLink]="['/treatment', treatment.id, 'view' ]">{{treatment.id}}</a></td>-->
                 <td>{{treatment.startDate | date:'mediumDate'}}</td>
                 <td>{{treatment.endDate | date:'mediumDate'}}</td>
+                <td>{{treatment.title}}</td>
                 <td>{{treatment.description}}</td>
                 <td>
                     <a *ngIf="treatment.descriptionScan" (click)="openFile(treatment.descriptionScanContentType, treatment.descriptionScan)" jhiTranslate="entity.action.open">open</a>

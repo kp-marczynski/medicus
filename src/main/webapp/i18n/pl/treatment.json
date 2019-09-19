@@ -18,6 +18,7 @@
       },
       "startDate": "Start Date",
       "endDate": "End Date",
+      "title": "Title",
       "description": "Description",
       "descriptionScan": "Description Scan",
       "user": "User",

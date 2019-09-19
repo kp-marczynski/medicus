@@ -17,7 +17,7 @@
         "title": "Appointment"
       },
       "date": "Date",
-      "appointmentType": "Appointment Type",
+      "title": "Title",
       "description": "Description",
       "descriptionScan": "Description Scan",
       "examinationPackage": "Examination Package",

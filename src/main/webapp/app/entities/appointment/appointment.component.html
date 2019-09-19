@@ -19,7 +19,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
 <!--            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.appointment.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="appointmentType"><span jhiTranslate="medicusApp.appointment.appointmentType">Appointment Type</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+                <th jhiSortBy="title"><span jhiTranslate="medicusApp.appointment.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.appointment.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.appointment.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
@@ -29,7 +29,7 @@
             <tr *ngFor="let appointment of appointments ;trackBy: trackId">
 <!--                <td><a [routerLink]="['/appointment', appointment.id, 'view' ]">{{appointment.id}}</a></td>-->
                 <td>{{appointment.date | date:'mediumDate'}}</td>
-                <td>{{appointment.appointmentType}}</td>
+                <td>{{appointment.title}}</td>
                 <td>{{appointment.description}}</td>
                 <td>
                     <a *ngIf="appointment.descriptionScan" (click)="openFile(appointment.descriptionScanContentType, appointment.descriptionScan)" jhiTranslate="entity.action.open">open</a>

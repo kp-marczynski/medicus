@@ -28,7 +28,7 @@ class ExaminationPackage(
     @Column(name = "title", nullable = false)
     var title: String? = null,
 
-    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(unique = true)
     var descriptionScan: File? = null,
 

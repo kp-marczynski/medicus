@@ -30,7 +30,7 @@ class Medicine(
     @Column(name = "indication")
     var indication: String? = null,
 
-    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(unique = true)
     var leaflet: File? = null,
 

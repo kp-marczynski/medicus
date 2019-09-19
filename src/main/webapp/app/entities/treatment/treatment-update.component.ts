@@ -107,11 +107,15 @@ export class TreatmentUpdateComponent implements OnInit {
       endDate: treatment.endDate,
       title: treatment.title,
       description: treatment.description,
-      descriptionScan: treatment.descriptionScan,
       user: treatment.user,
       medicines: treatment.medicines,
       visitedDoctors: treatment.visitedDoctors
     });
+    if (treatment.descriptionScan) {
+      this.editForm.patchValue({
+        descriptionScan: treatment.descriptionScan
+      });
+    }
   }
 
   byteSize(field) {

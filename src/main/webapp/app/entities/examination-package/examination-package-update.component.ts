@@ -90,10 +90,14 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       id: examinationPackage.id,
       date: examinationPackage.date,
       title: examinationPackage.title,
-      descriptionScan: examinationPackage.descriptionScan,
       user: examinationPackage.user,
       visitedDoctors: examinationPackage.visitedDoctors
     });
+    if (examinationPackage.descriptionScan) {
+      this.editForm.patchValue({
+        descriptionScan: examinationPackage.descriptionScan
+      });
+    }
     if (examinationPackage.appointment) {
       this.updateAppointment(examinationPackage);
     }

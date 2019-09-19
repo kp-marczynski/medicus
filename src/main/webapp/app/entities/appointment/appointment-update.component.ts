@@ -107,7 +107,6 @@ export class AppointmentUpdateComponent implements OnInit {
       date: appointment.date,
       title: appointment.title,
       description: appointment.description,
-      descriptionScan: appointment.descriptionScan,
       user: appointment.user,
       treatments: appointment.treatments,
       symptoms: appointment.symptoms,
@@ -115,6 +114,11 @@ export class AppointmentUpdateComponent implements OnInit {
       procedures: appointment.procedures,
       examinationPackages: appointment.examinationPackages
     });
+    if (appointment.descriptionScan) {
+      this.editForm.patchValue({
+        descriptionScan: appointment.descriptionScan
+      });
+    }
   }
 
   byteSize(field) {

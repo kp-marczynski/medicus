@@ -63,9 +63,13 @@ export class MedicineUpdateComponent implements OnInit {
       id: medicine.id,
       name: medicine.name,
       indication: medicine.indication,
-      leaflet: medicine.leaflet,
       user: medicine.user
     });
+    if (medicine.leaflet) {
+      this.editForm.patchValue({
+        leaflet: medicine.leaflet
+      });
+    }
   }
 
   byteSize(field) {

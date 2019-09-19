@@ -93,11 +93,15 @@ export class ProcedureUpdateComponent implements OnInit {
       date: procedure.date,
       title: procedure.title,
       description: procedure.description,
-      descriptionScan: procedure.descriptionScan,
       user: procedure.user,
       visitedDoctors: procedure.visitedDoctors,
       appointment: procedure.appointment ? new Appointment(procedure.appointment) : procedure.appointment
     });
+    if (procedure.descriptionScan) {
+      this.editForm.patchValue({
+        descriptionScan: procedure.descriptionScan
+      });
+    }
     if (procedure.appointment) {
       this.updateAppointment(procedure);
     }

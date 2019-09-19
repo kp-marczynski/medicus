@@ -14,26 +14,27 @@
     <property name="uuidType" value="uuid" dbms="h2, postgresql"/>
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141406_added_entity_ExaminationType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141407_added_entity_Examination.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141408_added_entity_Procedure.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141409_added_entity_Treatment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141410_added_entity_Medicine.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141411_added_entity_OwnedMedicine.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141412_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141413_added_entity_ExaminationPackage.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141414_added_entity_Symptom.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141415_added_entity_VisitedDoctor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150833_added_entity_ExaminationType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150834_added_entity_Examination.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150835_added_entity_Procedure.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150836_added_entity_Treatment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150837_added_entity_Medicine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150838_added_entity_OwnedMedicine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150839_added_entity_Appointment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150840_added_entity_ExaminationPackage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150841_added_entity_Symptom.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150842_added_entity_VisitedDoctor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150843_added_entity_File.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
-    <include file="config/liquibase/changelog/20190919141406_added_entity_constraints_ExaminationType.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141407_added_entity_constraints_Examination.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141408_added_entity_constraints_Procedure.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141409_added_entity_constraints_Treatment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141410_added_entity_constraints_Medicine.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141411_added_entity_constraints_OwnedMedicine.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141412_added_entity_constraints_Appointment.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141413_added_entity_constraints_ExaminationPackage.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141414_added_entity_constraints_Symptom.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190919141415_added_entity_constraints_VisitedDoctor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150833_added_entity_constraints_ExaminationType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150834_added_entity_constraints_Examination.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150835_added_entity_constraints_Procedure.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150836_added_entity_constraints_Treatment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150837_added_entity_constraints_Medicine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150838_added_entity_constraints_OwnedMedicine.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150839_added_entity_constraints_Appointment.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150840_added_entity_constraints_ExaminationPackage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150841_added_entity_constraints_Symptom.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190919150842_added_entity_constraints_VisitedDoctor.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

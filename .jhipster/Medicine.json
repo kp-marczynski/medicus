@@ -12,14 +12,17 @@
             "fieldName": "indication",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
-        },
-        {
-            "fieldName": "leaflet",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "medicine",
+            "relationshipName": "leaflet",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
@@ -42,7 +45,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190919141410",
+    "changelogDate": "20190919150837",
     "entityTableName": "medicine",
     "dto": "no",
     "pagination": "no",

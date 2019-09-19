@@ -24,8 +24,8 @@
                 <dt><span jhiTranslate="medicusApp.treatment.descriptionScan">Description Scan</span></dt>
                 <dd>
                     <div *ngIf="treatment.descriptionScan">
-                        <a (click)="openFile(treatment.descriptionScanContentType, treatment.descriptionScan)" jhiTranslate="entity.action.open">open</a>
-                        {{treatment.descriptionScanContentType}}, {{byteSize(treatment.descriptionScan)}}
+                        <a (click)="openFile(treatment.descriptionScan.contentContentType, treatment.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
+                        {{treatment.descriptionScan.contentContentType}}, {{byteSize(treatment.descriptionScan.content)}}
                     </div>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.treatment.medicine">Medicine</span></dt>
@@ -56,7 +56,7 @@
         </div>
     </div>
     <div class="col-md-6" *ngIf="treatment.descriptionScan">
-        <jhi-file-viewer [data]="treatment.descriptionScan" [contentType]="treatment.descriptionScanContentType"></jhi-file-viewer>
+        <jhi-file-viewer [data]="treatment.descriptionScan.content" [contentType]="treatment.descriptionScan.contentContentType"></jhi-file-viewer>
     </div>
 </div>
 <jhi-medicine [medicines]="treatment.medicines"></jhi-medicine>

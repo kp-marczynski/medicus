@@ -15,9 +15,9 @@
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span></dt>
                 <dd>
-                    <div *ngIf="examinationPackage.examinationPackageScan">
-                        <a (click)="openFile(examinationPackage.examinationPackageScanContentType, examinationPackage.examinationPackageScan)" jhiTranslate="entity.action.open">open</a>
-                        {{examinationPackage.examinationPackageScanContentType}}, {{byteSize(examinationPackage.examinationPackageScan)}}
+                    <div *ngIf="examinationPackage.descriptionScan">
+                        <a (click)="openFile(examinationPackage.descriptionScan.contentContentType, examinationPackage.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
+                        {{examinationPackage.descriptionScan.contentContentType}}, {{byteSize(examinationPackage.descriptionScan.content)}}
                     </div>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.examinationPackage.visitedDoctor">Visited Doctor</span></dt>
@@ -49,8 +49,8 @@
             </button>
         </div>
     </div>
-    <div class="col-md-6" *ngIf="examinationPackage.examinationPackageScan">
-        <jhi-file-viewer [data]="examinationPackage.examinationPackageScan" [contentType]="examinationPackage.examinationPackageScanContentType"></jhi-file-viewer>
+    <div class="col-md-6" *ngIf="examinationPackage.descriptionScan">
+        <jhi-file-viewer [data]="examinationPackage.descriptionScan.content" [contentType]="examinationPackage.descriptionScan.contentContentType"></jhi-file-viewer>
     </div>
 </div>
 <!--<jhi-visited-doctor [visitedDoctors]="examinationPackage.visitedDoctors"></jhi-visited-doctor>-->

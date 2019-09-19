@@ -24,7 +24,7 @@ describe('Service Tests', () => {
       httpMock = injector.get(HttpTestingController);
       currentDate = moment();
 
-      elemDefault = new ExaminationPackage(0, currentDate, 'AAAAAAA', 'image/png', 'AAAAAAA');
+      elemDefault = new ExaminationPackage(0, currentDate, 'AAAAAAA');
     });
 
     describe('Service methods', () => {

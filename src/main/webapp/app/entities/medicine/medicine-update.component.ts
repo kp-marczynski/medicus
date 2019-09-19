@@ -25,8 +25,11 @@ export class MedicineUpdateComponent implements OnInit {
     id: [],
     name: [null, [Validators.required]],
     indication: [],
-    leaflet: [],
-    leafletContentType: [],
+    leaflet: this.fb.group({
+      id: [],
+      content: [],
+      contentContentType: []
+    }),
     language: [],
     user: []
   });
@@ -60,7 +63,6 @@ export class MedicineUpdateComponent implements OnInit {
       name: medicine.name,
       indication: medicine.indication,
       leaflet: medicine.leaflet,
-      leafletContentType: medicine.leafletContentType,
       user: medicine.user
     });
   }
@@ -118,7 +120,6 @@ export class MedicineUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       name: this.editForm.get(['name']).value,
       indication: this.editForm.get(['indication']).value,
-      leafletContentType: this.editForm.get(['leafletContentType']).value,
       leaflet: this.editForm.get(['leaflet']).value,
       user: this.editForm.get(['user']).value
     };

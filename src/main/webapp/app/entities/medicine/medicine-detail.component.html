@@ -16,8 +16,8 @@
                 <dt><span jhiTranslate="medicusApp.medicine.leaflet">Leaflet</span></dt>
                 <dd>
                     <div *ngIf="medicine.leaflet">
-                        <a (click)="openFile(medicine.leafletContentType, medicine.leaflet)" jhiTranslate="entity.action.open">open</a>
-                        {{medicine.leafletContentType}}, {{byteSize(medicine.leaflet)}}
+                        <a (click)="openFile(medicine.leaflet.contentContentType, medicine.leaflet.content)" jhiTranslate="entity.action.open">open</a>
+                        {{medicine.leaflet.contentContentType}}, {{byteSize(medicine.leaflet.content)}}
                     </div>
                 </dd>
             </dl>
@@ -36,6 +36,6 @@
         </div>
     </div>
     <div class="col-md-6" *ngIf="medicine.leaflet">
-        <jhi-file-viewer [data]="medicine.leaflet" [contentType]="medicine.leafletContentType"></jhi-file-viewer>
+        <jhi-file-viewer [data]="medicine.leaflet.content" [contentType]="medicine.leaflet.contentContentType"></jhi-file-viewer>
     </div>
 </div>

@@ -20,8 +20,8 @@
                 <dt><span jhiTranslate="medicusApp.appointment.descriptionScan">Description Scan</span></dt>
                 <dd>
                     <div *ngIf="appointment.descriptionScan">
-                        <a (click)="openFile(appointment.descriptionScanContentType, appointment.descriptionScan)" jhiTranslate="entity.action.open">open</a>
-                        {{appointment.descriptionScanContentType}}, {{byteSize(appointment.descriptionScan)}}
+                        <a (click)="openFile(appointment.descriptionScan.contentContentType, appointment.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
+                        {{appointment.descriptionScan.contentContentType}}, {{byteSize(appointment.descriptionScan.content)}}
                     </div>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.appointment.treatment">Treatment</span></dt>

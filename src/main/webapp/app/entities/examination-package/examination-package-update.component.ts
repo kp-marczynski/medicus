@@ -35,8 +35,11 @@ export class ExaminationPackageUpdateComponent implements OnInit {
     id: [],
     date: [null, [Validators.required]],
     title: [null, [Validators.required]],
-    examinationPackageScan: [],
-    examinationPackageScanContentType: [],
+    descriptionScan: this.fb.group({
+      id: [],
+      content: [],
+      contentContentType: []
+    }),
     user: [],
     visitedDoctors: [],
     appointment: []
@@ -86,8 +89,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       id: examinationPackage.id,
       date: examinationPackage.date,
       title: examinationPackage.title,
-      examinationPackageScan: examinationPackage.examinationPackageScan,
-      examinationPackageScanContentType: examinationPackage.examinationPackageScanContentType,
+      descriptionScan: examinationPackage.descriptionScan,
       user: examinationPackage.user,
       visitedDoctors: examinationPackage.visitedDoctors
     });
@@ -160,8 +162,7 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       id: this.editForm.get(['id']).value,
       date: this.editForm.get(['date']).value,
       title: this.editForm.get(['title']).value,
-      examinationPackageScanContentType: this.editForm.get(['examinationPackageScanContentType']).value,
-      examinationPackageScan: this.editForm.get(['examinationPackageScan']).value,
+      descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
       visitedDoctors: this.editForm.get(['visitedDoctors']).value,
       appointment: this.editForm.get(['appointment']).value

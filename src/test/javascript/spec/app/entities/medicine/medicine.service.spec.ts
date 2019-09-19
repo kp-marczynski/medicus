@@ -20,7 +20,7 @@ describe('Service Tests', () => {
       service = injector.get(MedicineService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new Medicine(0, 'AAAAAAA', 'AAAAAAA', 'image/png', 'AAAAAAA');
+      elemDefault = new Medicine(0, 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {

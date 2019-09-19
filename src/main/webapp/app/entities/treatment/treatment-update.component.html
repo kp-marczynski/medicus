@@ -43,23 +43,23 @@
                     <textarea class="form-control" name="description" id="field_description"
                               formControlName="description"></textarea>
                 </div>
-                <div class="form-group">
-                    <label class="form-control-label" jhiTranslate="medicusApp.treatment.descriptionScan" for="field_descriptionScan">Description Scan</label>
+                <div class="form-group" formGroupName="descriptionScan">
+                    <label class="form-control-label" jhiTranslate="medicusApp.treatment.descriptionScan" for="field_content">Description Scan</label>
                     <div>
-                        <div *ngIf="editForm.get('descriptionScan').value" class="form-text text-danger clearfix">
-                            <a class="pull-left" (click)="openFile(editForm.get('descriptionScanContentType').value, editForm.get('descriptionScan').value)" jhiTranslate="entity.action.open">open</a><br>
-                            <span class="pull-left">{{editForm.get('descriptionScanContentType').value}}, {{byteSize(editForm.get('descriptionScan').value)}}</span>
-                            <button type="button" (click)="editForm.patchValue({descriptionScan: null});editForm.patchValue({descriptionScanContentType: null});"
+                        <div *ngIf="editForm.get('descriptionScan') && editForm.get('descriptionScan').get('content').value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('descriptionScan').get('contentContentType').value, editForm.get('descriptionScan').get('content').value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{editForm.get('descriptionScan').get('contentContentType').value}}, {{byteSize(editForm.get('descriptionScan').get('content').value)}}</span>
+                            <button type="button" (click)="editForm.patchValue({descriptionScan: null})"
                                     class="btn btn-secondary btn-xs pull-right">
                                 <fa-icon [icon]="'times'"></fa-icon>
                             </button>
                         </div>
-                        <input type="file" id="file_descriptionScan" (change)="setFileData($event, 'descriptionScan', false)" jhiTranslate="entity.action.addblob"/>
+                        <input type="file" id="file_descriptionScan" (change)="setFileData($event, 'content', false)" jhiTranslate="entity.action.addblob"/>
                     </div>
-                    <input type="hidden" class="form-control" name="descriptionScan" id="field_descriptionScan"
-                           formControlName="descriptionScan"/>
-                    <input type="hidden" class="form-control" name="descriptionScanContentType" id="field_descriptionScanContentType"
-                           formControlName="descriptionScanContentType" />
+                    <input type="hidden" class="form-control" name="content" id="field_content"
+                           formControlName="content"/>
+                    <input type="hidden" class="form-control" name="contentContentType" id="field_contentContentType"
+                           formControlName="contentContentType" />
                 </div>
                 <div class="form-group">
                     <label jhiTranslate="medicusApp.treatment.medicine" for="field_medicines">Medicine</label>

@@ -16,7 +16,7 @@ import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
 import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
-import {IExaminationPackage} from "app/shared/model/examination-package.model";
+import { IExaminationPackage } from 'app/shared/model/examination-package.model';
 
 @Component({
   selector: 'jhi-procedure-update',
@@ -37,8 +37,11 @@ export class ProcedureUpdateComponent implements OnInit {
     date: [null, [Validators.required]],
     title: [null, [Validators.required]],
     description: [],
-    descriptionScan: [],
-    descriptionScanContentType: [],
+    descriptionScan: this.fb.group({
+      id: [],
+      content: [],
+      contentContentType: []
+    }),
     user: [],
     visitedDoctors: [],
     appointment: []
@@ -90,7 +93,6 @@ export class ProcedureUpdateComponent implements OnInit {
       title: procedure.title,
       description: procedure.description,
       descriptionScan: procedure.descriptionScan,
-      descriptionScanContentType: procedure.descriptionScanContentType,
       user: procedure.user,
       visitedDoctors: procedure.visitedDoctors,
       appointment: procedure.appointment ? new Appointment(procedure.appointment) : procedure.appointment
@@ -165,7 +167,6 @@ export class ProcedureUpdateComponent implements OnInit {
       date: this.editForm.get(['date']).value,
       title: this.editForm.get(['title']).value,
       description: this.editForm.get(['description']).value,
-      descriptionScanContentType: this.editForm.get(['descriptionScanContentType']).value,
       descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
       visitedDoctors: this.editForm.get(['visitedDoctors']).value,

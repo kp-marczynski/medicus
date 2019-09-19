@@ -62,7 +62,7 @@
             "ownerSide": false
         }
     ],
-    "changelogDate": "20190919141415",
+    "changelogDate": "20190919150842",
     "entityTableName": "visited_doctor",
     "dto": "no",
     "pagination": "pager",

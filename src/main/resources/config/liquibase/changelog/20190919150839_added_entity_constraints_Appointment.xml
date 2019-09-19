@@ -6,8 +6,14 @@
     <!--
         Added the constraints for entity Appointment.
     -->
-    <changeSet id="20190919141412-2" author="jhipster">
+    <changeSet id="20190919150839-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="description_scan_id"
+                                 baseTableName="appointment"
+                                 constraintName="fk_appointment_description_scan_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="file"/>
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="appointment"
                                  constraintName="fk_appointment_user_id"

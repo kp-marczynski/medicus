@@ -19,14 +19,17 @@
             "fieldName": "description",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text"
-        },
-        {
-            "fieldName": "descriptionScan",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "procedure",
+            "relationshipName": "descriptionScan",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "user",
@@ -50,7 +53,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190919141408",
+    "changelogDate": "20190919150835",
     "entityTableName": "procedure",
     "dto": "no",
     "pagination": "pager",

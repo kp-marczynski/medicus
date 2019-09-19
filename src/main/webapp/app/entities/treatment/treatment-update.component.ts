@@ -42,8 +42,11 @@ export class TreatmentUpdateComponent implements OnInit {
     endDate: [],
     title: [],
     description: [],
-    descriptionScan: [],
-    descriptionScanContentType: [],
+    descriptionScan: this.fb.group({
+      id: [],
+      content: [],
+      contentContentType: []
+    }),
     user: [],
     medicines: [],
     visitedDoctors: []
@@ -104,7 +107,6 @@ export class TreatmentUpdateComponent implements OnInit {
       title: treatment.title,
       description: treatment.description,
       descriptionScan: treatment.descriptionScan,
-      descriptionScanContentType: treatment.descriptionScanContentType,
       user: treatment.user,
       medicines: treatment.medicines,
       visitedDoctors: treatment.visitedDoctors
@@ -166,7 +168,6 @@ export class TreatmentUpdateComponent implements OnInit {
       endDate: this.editForm.get(['endDate']).value,
       title: this.editForm.get(['title']).value,
       description: this.editForm.get(['description']).value,
-      descriptionScanContentType: this.editForm.get(['descriptionScanContentType']).value,
       descriptionScan: this.editForm.get(['descriptionScan']).value,
       user: this.editForm.get(['user']).value,
       medicines: this.editForm.get(['medicines']).value,

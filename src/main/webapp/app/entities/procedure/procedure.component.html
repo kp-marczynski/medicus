@@ -21,7 +21,7 @@
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.procedure.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="title"><span jhiTranslate="medicusApp.procedure.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.procedure.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span></th>
             <th *ngIf="standaloneView" jhiSortBy="appointment"><span jhiTranslate="medicusApp.procedure.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th></th>
             </tr>
@@ -33,8 +33,8 @@
                 <td>{{procedure.title}}</td>
                 <td>{{procedure.description}}</td>
                 <td>
-                    <a *ngIf="procedure.descriptionScan" (click)="openFile(procedure.descriptionScanContentType, procedure.descriptionScan)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="procedure.descriptionScan">{{procedure.descriptionScanContentType}}, {{byteSize(procedure.descriptionScan)}}</span>
+                    <a *ngIf="procedure.descriptionScan" (click)="openFile(procedure.descriptionScan.contentContentType, procedure.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="procedure.descriptionScan">{{procedure.descriptionScan.contentContentType}}, {{byteSize(procedure.descriptionScan.content)}}</span>
                 </td>
                 <td *ngIf="standaloneView">
                     <div *ngIf="procedure.appointment">

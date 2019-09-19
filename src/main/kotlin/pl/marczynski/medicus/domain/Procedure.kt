@@ -34,12 +34,9 @@ class Procedure(
     @Column(name = "description")
     var description: String? = null,
 
-    @Lob
-    @Column(name = "description_scan")
-    var descriptionScan: ByteArray? = null,
-
-    @Column(name = "description_scan_content_type")
-    var descriptionScanContentType: String? = null,
+    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JoinColumn(unique = true)
+    var descriptionScan: File? = null,
 
     @ManyToOne
     @JsonIgnoreProperties("procedures")
@@ -72,8 +69,6 @@ class Procedure(
         "id=$id" +
         ", date='$date'" +
         ", description='$description'" +
-        ", descriptionScan='$descriptionScan'" +
-        ", descriptionScanContentType='$descriptionScanContentType'" +
         "}"
 
     companion object {

@@ -50,7 +50,6 @@ entity Procedure {
 	date LocalDate required
     title String required
 	description TextBlob 
-    descriptionScan AnyBlob
 }
 
 @paginate(pager)
@@ -59,13 +58,11 @@ entity Treatment {
     endDate LocalDate
     title String
     description TextBlob
-    descriptionScan AnyBlob
 }
 
 entity Medicine {
 	name String required
     indication TextBlob
-  	leaflet AnyBlob
 }
 
 @paginate(pager)
@@ -79,14 +76,12 @@ entity Appointment {
 	date LocalDate required
     title String required
     description TextBlob
-    descriptionScan AnyBlob
 }
 
 @paginate(pager)
 entity ExaminationPackage {
 	date LocalDate required
     title String required
-    examinationPackageScan AnyBlob
 }
 
 @paginate(pager)
@@ -101,6 +96,18 @@ entity VisitedDoctor {
 	name String required
     specialization String required
 	opinion TextBlob
+}
+
+entity File {
+	content AnyBlob
+}
+
+relationship OneToOne {
+	Appointment{descriptionScan} to File
+    Treatment{descriptionScan} to File
+    Procedure{descriptionScan} to File
+    ExaminationPackage{descriptionScan} to File
+    Medicine{leaflet} to File
 }
 
 relationship OneToMany {

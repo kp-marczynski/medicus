@@ -28,12 +28,9 @@ class ExaminationPackage(
     @Column(name = "title", nullable = false)
     var title: String? = null,
 
-    @Lob
-    @Column(name = "examination_package_scan")
-    var examinationPackageScan: ByteArray? = null,
-
-    @Column(name = "examination_package_scan_content_type")
-    var examinationPackageScanContentType: String? = null,
+    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JoinColumn(unique = true)
+    var descriptionScan: File? = null,
 
     @OneToMany(mappedBy = "examinationPackage", fetch = FetchType.EAGER)
     var examinations: MutableSet<Examination>? = mutableSetOf(),
@@ -69,8 +66,6 @@ class ExaminationPackage(
         "id=$id" +
         ", date='$date'" +
         ", title='$title'" +
-        ", examinationPackageScan='$examinationPackageScan'" +
-        ", examinationPackageScanContentType='$examinationPackageScanContentType'" +
         "}"
 
     companion object {

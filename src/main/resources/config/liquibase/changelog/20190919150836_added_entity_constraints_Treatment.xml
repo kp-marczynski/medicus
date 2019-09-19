@@ -6,8 +6,14 @@
     <!--
         Added the constraints for entity Treatment.
     -->
-    <changeSet id="20190919141409-2" author="jhipster">
+    <changeSet id="20190919150836-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="description_scan_id"
+                                 baseTableName="treatment"
+                                 constraintName="fk_treatment_description_scan_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="file"/>
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="treatment"
                                  constraintName="fk_treatment_user_id"

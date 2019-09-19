@@ -14,14 +14,17 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "examinationPackageScan",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any"
         }
     ],
     "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "file",
+            "otherEntityRelationshipName": "examinationPackage",
+            "relationshipName": "descriptionScan",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "examination",
@@ -51,7 +54,7 @@
             "otherEntityField": "id"
         }
     ],
-    "changelogDate": "20190919141413",
+    "changelogDate": "20190919150840",
     "entityTableName": "examination_package",
     "dto": "no",
     "pagination": "pager",

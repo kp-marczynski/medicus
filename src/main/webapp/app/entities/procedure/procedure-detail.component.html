@@ -20,8 +20,8 @@
                 <dt><span jhiTranslate="medicusApp.procedure.descriptionScan">Description Scan</span></dt>
                 <dd>
                     <div *ngIf="procedure.descriptionScan">
-                        <a (click)="openFile(procedure.descriptionScanContentType, procedure.descriptionScan)" jhiTranslate="entity.action.open">open</a>
-                        {{procedure.descriptionScanContentType}}, {{byteSize(procedure.descriptionScan)}}
+                        <a (click)="openFile(procedure.descriptionScan.contentContentType, procedure.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
+                        {{procedure.descriptionScan.contentContentType}}, {{byteSize(procedure.descriptionScan.content)}}
                     </div>
                 </dd>
                 <dt><span jhiTranslate="medicusApp.procedure.visitedDoctor">Visited Doctor</span></dt>
@@ -54,6 +54,6 @@
         </div>
     </div>
     <div class="col-md-6" *ngIf="procedure.descriptionScan">
-        <jhi-file-viewer [data]="procedure.descriptionScan" [contentType]="procedure.descriptionScanContentType"></jhi-file-viewer>
+        <jhi-file-viewer [data]="procedure.descriptionScan.content" [contentType]="procedure.descriptionScan.contentContentType"></jhi-file-viewer>
     </div>
 </div>

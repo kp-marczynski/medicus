@@ -1,0 +1,22 @@
+{
+    "name": "File",
+    "fields": [
+        {
+            "fieldName": "content",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
+        }
+    ],
+    "relationships": [],
+    "changelogDate": "20190919150843",
+    "entityTableName": "file",
+    "dto": "no",
+    "pagination": "no",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": false,
+    "clientRootFolder": "",
+    "applications": [
+        "Medicus"
+    ]
+}

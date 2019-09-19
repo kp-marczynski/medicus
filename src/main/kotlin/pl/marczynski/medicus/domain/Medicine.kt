@@ -4,20 +4,10 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties
 import org.hibernate.annotations.Type
 
-import javax.persistence.Column
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
-import javax.persistence.Lob
-import javax.persistence.ManyToMany
-import javax.persistence.ManyToOne
-import javax.persistence.OneToMany
-import javax.persistence.SequenceGenerator
-import javax.persistence.Table
 import javax.validation.constraints.NotNull
 
 import java.io.Serializable
+import javax.persistence.*
 
 /**
  * A Medicine.
@@ -40,12 +30,9 @@ class Medicine(
     @Column(name = "indication")
     var indication: String? = null,
 
-    @Lob
-    @Column(name = "leaflet")
-    var leaflet: ByteArray? = null,
-
-    @Column(name = "leaflet_content_type")
-    var leafletContentType: String? = null,
+    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JoinColumn(unique = true)
+    var leaflet: File? = null,
 
     @ManyToOne
     @JsonIgnoreProperties("medicines")
@@ -76,8 +63,6 @@ class Medicine(
         "id=$id" +
         ", name='$name'" +
         ", indication='$indication'" +
-        ", leaflet='$leaflet'" +
-        ", leafletContentType='$leafletContentType'" +
         "}"
 
     companion object {

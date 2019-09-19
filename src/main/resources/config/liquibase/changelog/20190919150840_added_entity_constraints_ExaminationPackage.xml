@@ -6,8 +6,14 @@
     <!--
         Added the constraints for entity ExaminationPackage.
     -->
-    <changeSet id="20190919141413-2" author="jhipster">
+    <changeSet id="20190919150840-2" author="jhipster">
         
+        <addForeignKeyConstraint baseColumnNames="description_scan_id"
+                                 baseTableName="examination_package"
+                                 constraintName="fk_examination_package_description_scan_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="file"/>
+
         <addForeignKeyConstraint baseColumnNames="user_id"
                                  baseTableName="examination_package"
                                  constraintName="fk_examination_package_user_id"

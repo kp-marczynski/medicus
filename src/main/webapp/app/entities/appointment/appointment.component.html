@@ -21,7 +21,7 @@
             <th jhiSortBy="date"><span jhiTranslate="medicusApp.appointment.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="title"><span jhiTranslate="medicusApp.appointment.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
             <th jhiSortBy="description"><span jhiTranslate="medicusApp.appointment.description">Description</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-            <th jhiSortBy="descriptionScan"><span jhiTranslate="medicusApp.appointment.descriptionScan">Description Scan</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th><span jhiTranslate="medicusApp.appointment.descriptionScan">Description Scan</span></th>
             <th></th>
             </tr>
             </thead>
@@ -32,8 +32,8 @@
                 <td>{{appointment.title}}</td>
                 <td>{{appointment.description}}</td>
                 <td>
-                    <a *ngIf="appointment.descriptionScan" (click)="openFile(appointment.descriptionScanContentType, appointment.descriptionScan)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="appointment.descriptionScan">{{appointment.descriptionScanContentType}}, {{byteSize(appointment.descriptionScan)}}</span>
+                    <a *ngIf="appointment.descriptionScan" (click)="openFile(appointment.descriptionScan.contentContentType, appointment.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="appointment.descriptionScan">{{appointment.descriptionScan.contentContentType}}, {{byteSize(appointment.descriptionScan.content)}}</span>
                 </td>
                 <td class="text-right">
                     <div class="btn-group">

@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="col-md-6" *ngIf="appointment.descriptionScan">
-        <jhi-file-viewer [data]="appointment.descriptionScan" [contentType]="appointment.descriptionScanContentType"></jhi-file-viewer>
+        <jhi-file-viewer [data]="appointment.descriptionScan.content" [contentType]="appointment.descriptionScan.contentContentType"></jhi-file-viewer>
     </div>
 </div>
 <!--<jhi-visited-doctor [visitedDoctors]="appointment.visitedDoctors"></jhi-visited-doctor>-->

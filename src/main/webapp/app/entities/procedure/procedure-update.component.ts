@@ -17,6 +17,7 @@ import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor
 import { Appointment, IAppointment } from 'app/shared/model/appointment.model';
 import { AppointmentService } from 'app/entities/appointment/appointment.service';
 import { IExaminationPackage } from 'app/shared/model/examination-package.model';
+import { ContentFile } from 'app/shared/model/file.model';
 
 @Component({
   selector: 'jhi-procedure-update',
@@ -118,18 +119,16 @@ export class ProcedureUpdateComponent implements OnInit {
     return this.dataUtils.openFile(contentType, field);
   }
 
-  setFileData(event, field: string, isImage) {
+  setFileData(event, isImage) {
     return new Promise((resolve, reject) => {
       if (event && event.target && event.target.files && event.target.files[0]) {
         const file: File = event.target.files[0];
         if (isImage && !file.type.startsWith('image/')) {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
-          const filedContentType: string = field + 'ContentType';
           this.dataUtils.toBase64(file, base64Data => {
             this.editForm.patchValue({
-              [field]: base64Data,
-              [filedContentType]: file.type
+              descriptionScan: new ContentFile(null, file.type, base64Data)
             });
           });
         }

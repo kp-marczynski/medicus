@@ -4,6 +4,6 @@ export interface IFile {
   content?: any;
 }
 
-export class File implements IFile {
+export class ContentFile implements IFile {
   constructor(public id?: number, public contentContentType?: string, public content?: any) {}
 }

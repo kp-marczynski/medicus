@@ -11,6 +11,7 @@ import { IMedicine, Medicine } from 'app/shared/model/medicine.model';
 import { MedicineService } from './medicine.service';
 import { ITreatment } from 'app/shared/model/treatment.model';
 import { TreatmentService } from 'app/entities/treatment/treatment.service';
+import { ContentFile } from 'app/shared/model/file.model';
 
 @Component({
   selector: 'jhi-medicine-update',
@@ -75,18 +76,16 @@ export class MedicineUpdateComponent implements OnInit {
     return this.dataUtils.openFile(contentType, field);
   }
 
-  setFileData(event, field: string, isImage) {
+  setFileData(event, isImage) {
     return new Promise((resolve, reject) => {
       if (event && event.target && event.target.files && event.target.files[0]) {
         const file: File = event.target.files[0];
         if (isImage && !file.type.startsWith('image/')) {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
-          const filedContentType: string = field + 'ContentType';
           this.dataUtils.toBase64(file, base64Data => {
             this.editForm.patchValue({
-              [field]: base64Data,
-              [filedContentType]: file.type
+              leaflet: new ContentFile(null, file.type, base64Data)
             });
           });
         }

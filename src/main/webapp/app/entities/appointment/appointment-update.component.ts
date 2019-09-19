@@ -15,6 +15,7 @@ import { UserService } from 'app/core/user/user.service';
 import { ITreatment } from 'app/shared/model/treatment.model';
 import { TreatmentService } from 'app/entities/treatment/treatment.service';
 import { ISymptom } from 'app/shared/model/symptom.model';
+import { ContentFile } from 'app/shared/model/file.model';
 import { SymptomService } from 'app/entities/symptom/symptom.service';
 import { IVisitedDoctor } from 'app/shared/model/visited-doctor.model';
 import { VisitedDoctorService } from 'app/entities/visited-doctor/visited-doctor.service';
@@ -124,18 +125,16 @@ export class AppointmentUpdateComponent implements OnInit {
     return this.dataUtils.openFile(contentType, field);
   }
 
-  setFileData(event, field: string, isImage) {
+  setFileData(event, isImage) {
     return new Promise((resolve, reject) => {
       if (event && event.target && event.target.files && event.target.files[0]) {
         const file: File = event.target.files[0];
         if (isImage && !file.type.startsWith('image/')) {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
-          const filedContentType: string = field + 'ContentType';
           this.dataUtils.toBase64(file, base64Data => {
             this.editForm.patchValue({
-              [field]: base64Data,
-              [filedContentType]: file.type
+              descriptionScan: new ContentFile(null, file.type, base64Data)
             });
           });
         }

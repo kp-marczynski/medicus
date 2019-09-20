@@ -43,6 +43,6 @@ interface ProcedureRepository : JpaRepository<Procedure, Long> {
     @Query(value = "select distinct procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.user.login = ?#{principal.username} and procedure.appointment is null order by procedure.date")
     fun findAllWithoutAppointment(): MutableList<Procedure>
 
-    @Query("select procedure from Procedure procedure left join fetch procedure.visitedDoctors where procedure.id =:id")
+    @Query("select procedure from Procedure procedure left join fetch procedure.visitedDoctors left join fetch procedure.descriptionScan where procedure.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Procedure>
 }

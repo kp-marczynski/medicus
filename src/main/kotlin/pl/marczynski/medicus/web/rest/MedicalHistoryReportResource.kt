@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import pl.marczynski.medicus.domain.MedicalHistoryReport
 import pl.marczynski.medicus.repository.UserRepository
@@ -27,9 +28,9 @@ class MedicalHistoryReportResource(
      * @return the [ResponseEntity] with status `200 (OK)` and with body the report, or with status `404 (Not Found)`.
      */
     @GetMapping("/report")
-    fun getReport(): ResponseEntity<MedicalHistoryReport> {
+    fun getReport(@RequestParam language: String?): ResponseEntity<MedicalHistoryReport> {
         log.debug("REST request to get Medical History Report for user: {}", userRepository.findByUserIsCurrentUser().get().login)
-        val report = medicalHistoryReportService.getReport()
+        val report = medicalHistoryReportService.getReport(language)
         return ResponseEntity.ok(report)
     }
 }

@@ -122,7 +122,7 @@ class MedicineResource(
                 ENTITY_NAME, "notowner"
             )
         }
-        val medicine = medicineRepository.findById(id)
+        val medicine = medicineRepository.findOneWithEagerRelationships(id)
         return ResponseUtil.wrapOrNotFound(medicine)
     }
 

@@ -43,6 +43,6 @@ interface ExaminationPackageRepository : JpaRepository<ExaminationPackage, Long>
     @Query(value = "select distinct examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.user.login = ?#{principal.username} and examinationPackage.appointment is null order by examinationPackage.date")
     fun findAllWithoutAppointment(): MutableList<ExaminationPackage>
 
-    @Query("select examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors where examinationPackage.id =:id")
+    @Query("select examinationPackage from ExaminationPackage examinationPackage left join fetch examinationPackage.examinations left join fetch examinationPackage.visitedDoctors left join fetch examinationPackage.descriptionScan where examinationPackage.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<ExaminationPackage>
 }

@@ -40,8 +40,8 @@ class MedicalHistoryReportService(
 
     private val log = LoggerFactory.getLogger(javaClass)
 
-    fun getReport(): MedicalHistoryReport {
-        lang = userRepository.getCurrentUserLanguage().orElse("en")
+    fun getReport(language: String?): MedicalHistoryReport {
+        lang = language ?: "en"
         val document = Document()
         val out = ByteArrayOutputStream()
 

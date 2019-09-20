@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
 import org.springframework.data.repository.query.Param
 import org.springframework.stereotype.Repository
+import java.util.*
 
 /**
  * Spring Data  repository for the [Medicine] entity.
@@ -21,4 +22,7 @@ interface MedicineRepository : JpaRepository<Medicine, Long> {
 
     @Query("select case when count(res)> 0 then true else false end from Medicine res where res.id = :id and res.user.login = ?#{principal.username}")
     fun checkUserRightsById(@Param("id") id: Long): Boolean
+
+    @Query("select medicine from Medicine medicine left join fetch medicine.leaflet where medicine.id =:id")
+    fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Medicine>
 }

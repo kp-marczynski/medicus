@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Witamy, Java Hipsterze!",
-    "subtitle": "To jest twoja strona domowa",
+    "title": "Witamy w Medicus!",
+    "subtitle": "Twój osobisty asystent historii medycznej",
     "logged": {
       "message": "Jesteś zalogowany jako użytkownik \"{{username}}\"."
     },

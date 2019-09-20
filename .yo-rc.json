@@ -6,7 +6,10 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": ["en", "pl"],
+    "languages": [
+      "en",
+      "pl"
+    ],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "pl.marczynski.medicus",

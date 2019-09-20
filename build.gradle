@@ -15,6 +15,7 @@ buildscript {
         classpath "org.jetbrains.kotlin:kotlin-noarg:${kotlin_version}"
         classpath "org.jlleitschuh.gradle:ktlint-gradle:8.2.0"
         classpath "io.gitlab.arturbosch.detekt:detekt-gradle-plugin:${detekt_version}"
+        classpath "gradle.plugin.com.heroku.sdk:heroku-gradle:1.0.4"
         //jhipster-needle-gradle-buildscript-dependency - JHipster will add additional gradle build script plugins here
     }
 }
@@ -50,6 +51,7 @@ apply plugin: "propdeps"
 apply from: "gradle/docker.gradle"
 apply from: "gradle/sonar.gradle"
 apply from: 'gradle/kotlin.gradle'
+apply from: 'gradle/heroku.gradle'
 //jhipster-needle-gradle-apply-from - JHipster will add additional gradle scripts to be applied here
 
 if (project.hasProperty("prod")) {
@@ -265,6 +267,8 @@ dependencies {
     testImplementation "org.hamcrest:hamcrest-library"
     testImplementation "com.h2database:h2"
     liquibaseRuntime "com.h2database:h2"
+    compile "org.springframework.cloud:spring-cloud-localconfig-connector"
+    compile "org.springframework.cloud:spring-cloud-heroku-connector"
     //jhipster-needle-gradle-dependency - JHipster will add additional dependencies here
 }
 

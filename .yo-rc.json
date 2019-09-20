@@ -6,10 +6,7 @@
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
     "jhiPrefix": "jhi",
-    "languages": [
-      "en",
-      "pl"
-    ],
+    "languages": ["en", "pl"],
     "messageBroker": false,
     "nativeLanguage": "en",
     "packageName": "pl.marczynski.medicus",
@@ -47,7 +44,9 @@
         "name": "generator-jhipster-kotlin",
         "version": "1.1.0"
       }
-    ]
+    ],
+    "herokuAppName": "kpmarczynski-medicus",
+    "herokuDeployType": "jar"
   },
   "entities": [
     "ExaminationType",

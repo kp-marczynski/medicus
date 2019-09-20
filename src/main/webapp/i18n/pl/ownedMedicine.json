@@ -2,24 +2,24 @@
   "medicusApp": {
     "ownedMedicine": {
       "home": {
-        "title": "Owned Medicine",
-        "createLabel": "Dodaj Owned Medicine",
-        "createOrEditLabel": "Dodaj lub edytuj: Owned Medicine",
-        "notFound": "No Owned Medicines found"
+        "title": "Posiadany Lek",
+        "createLabel": "Dodaj Posiadany Lek",
+        "createOrEditLabel": "Dodaj lub edytuj Posiadany Lek",
+        "notFound": "Nie znaleziono żadnego Posiadanego Leku"
       },
-      "created": "Utworzono nowy obiekt typu Owned Medicine z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Owned Medicine z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Owned Medicine z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Posiadany Lek z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Posiadany Lek z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Posiadany Lek z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Owned Medicine {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Posiadany Lek {{ id }}?"
       },
       "detail": {
-        "title": "Owned Medicine"
+        "title": "Posiadany Lek"
       },
-      "doses": "Doses",
-      "expirationDate": "Expiration Date",
-      "medicine": "Medicine",
-      "user": "User"
+      "doses": "Liczba dawek",
+      "expirationDate": "Data przydatności do spożycia",
+      "medicine": "Lek",
+      "user": "Użytkownik"
     }
   }
 }

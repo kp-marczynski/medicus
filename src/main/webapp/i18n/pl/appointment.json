@@ -2,30 +2,30 @@
   "medicusApp": {
     "appointment": {
       "home": {
-        "title": "Appointment",
-        "createLabel": "Dodaj Appointment",
-        "createOrEditLabel": "Dodaj lub edytuj: Appointment",
-        "notFound": "No Appointments found"
+        "title": "Wizyty",
+        "createLabel": "Dodaj Wizytę",
+        "createOrEditLabel": "Dodaj lub edytuj Wizytę",
+        "notFound": "Nie znaleziono żadnej Wizyty"
       },
-      "created": "Utworzono nowy obiekt typu Appointment z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Appointment z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Appointment z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Wizyta z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Wizyta z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Wizyta z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Appointment {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Wizytę {{ id }}?"
       },
       "detail": {
-        "title": "Appointment"
+        "title": "Wizyta"
       },
-      "date": "Date",
-      "title": "Title",
-      "description": "Description",
-      "descriptionScan": "Description Scan",
-      "examinationPackage": "Examination Package",
-      "procedure": "Procedure",
-      "user": "User",
-      "treatment": "Treatment",
+      "date": "Data",
+      "title": "Tytuł",
+      "description": "Opis",
+      "descriptionScan": "Skan opisu",
+      "examinationPackage": "Pakiet Badań",
+      "procedure": "Zabieg",
+      "user": "Użytkownik",
+      "treatment": "Kuracja",
       "symptom": "Symptom",
-      "visitedDoctor": "Visited Doctor"
+      "visitedDoctor": "Odwiedzony lekarz"
     }
   }
 }

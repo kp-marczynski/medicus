@@ -2,26 +2,26 @@
   "medicusApp": {
     "examination": {
       "home": {
-        "title": "Examination",
-        "createLabel": "Dodaj Examination",
-        "createOrEditLabel": "Dodaj lub edytuj: Examination",
-        "notFound": "No Examinations found"
+        "title": "Badania",
+        "createLabel": "Dodaj Badanie",
+        "createOrEditLabel": "Dodaj lub edytuj Badanie",
+        "notFound": "Nie znaleziono żadnego Badania"
       },
-      "created": "Utworzono nowy obiekt typu Examination z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Examination z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Examination z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Badanie z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Badanie z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Badanie z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Examination {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Badanie {{ id }}?"
       },
       "detail": {
-        "title": "Examination"
+        "title": "Badanie"
       },
-      "value": "Value",
-      "valueModificator": "Value Modificator",
-      "ignoreNumberValue": "Ignore Number Value",
-      "examinationType": "Examination Type",
-      "user": "User",
-      "examinationPackage": "Examination Package"
+      "value": "Wartość",
+      "valueModificator": "Modyfikator wartości",
+      "ignoreNumberValue": "Ignoruj wartość liczbową",
+      "examinationType": "Typ badania",
+      "user": "Użytkownik",
+      "examinationPackage": "Pakiet Badań"
     }
   }
 }

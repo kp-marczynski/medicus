@@ -2,10 +2,10 @@
   "medicusApp": {
     "symptom": {
       "home": {
-        "title": "Symptom",
+        "title": "Symptomy",
         "createLabel": "Dodaj Symptom",
-        "createOrEditLabel": "Dodaj lub edytuj: Symptom",
-        "notFound": "No Symptoms found"
+        "createOrEditLabel": "Dodaj lub edytuj Symptom",
+        "notFound": "Nie znaleziono żadnego Symptomu"
       },
       "created": "Utworzono nowy obiekt typu Symptom z identyfikatorem {{ param }}",
       "updated": "Uaktualniono obiekt typu Symptom z identyfikatorem {{ param }}",
@@ -16,11 +16,11 @@
       "detail": {
         "title": "Symptom"
       },
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "description": "Description",
-      "user": "User",
-      "appointment": "Appointment"
+      "startDate": "Data rozpoczęcia",
+      "endDate": "Data zakończenia",
+      "description": "Opis",
+      "user": "Użytkownik",
+      "appointment": "Wizyta"
     }
   }
 }

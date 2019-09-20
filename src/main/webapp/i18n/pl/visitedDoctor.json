@@ -2,28 +2,28 @@
   "medicusApp": {
     "visitedDoctor": {
       "home": {
-        "title": "Visited Doctor",
-        "createLabel": "Dodaj Visited Doctor",
-        "createOrEditLabel": "Dodaj lub edytuj: Visited Doctor",
-        "notFound": "No Visited Doctors found"
+        "title": "Odwiedzenie Lekarze",
+        "createLabel": "Dodaj Odwiedzony Lekarz",
+        "createOrEditLabel": "Dodaj lub edytuj: Odwiedzony Lekarz",
+        "notFound": "Nie znaleziono żadnego Odwiedzonego Lekarza"
       },
-      "created": "Utworzono nowy obiekt typu Visited Doctor z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Visited Doctor z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Visited Doctor z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Odwiedzony Lekarz z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Odwiedzony Lekarz z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Odwiedzony Lekarz z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Visited Doctor {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Odwiedzony Lekarz {{ id }}?"
       },
       "detail": {
-        "title": "Visited Doctor"
+        "title": "Odwiedzony Lekarz"
       },
-      "name": "Name",
-      "specialization": "Specialization",
-      "opinion": "Opinion",
-      "user": "User",
-      "appointment": "Appointment",
-      "procedure": "Procedure",
-      "treatment": "Treatment",
-      "examinationPackage": "Examination Package"
+      "name": "Nazwa",
+      "specialization": "Specjalizacja",
+      "opinion": "Opinia",
+      "user": "Użytkownik",
+      "appointment": "Wizyta",
+      "procedure": "Zabieg",
+      "treatment": "Kuracja",
+      "examinationPackage": "Pakiet Badań"
     }
   }
 }

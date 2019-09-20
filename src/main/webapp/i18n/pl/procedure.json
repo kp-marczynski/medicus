@@ -2,27 +2,27 @@
   "medicusApp": {
     "procedure": {
       "home": {
-        "title": "Procedure",
-        "createLabel": "Dodaj Procedure",
-        "createOrEditLabel": "Dodaj lub edytuj: Procedure",
-        "notFound": "No Procedures found"
+        "title": "Zabiegi",
+        "createLabel": "Dodaj Zabieg",
+        "createOrEditLabel": "Dodaj lub edytuj Zabieg",
+        "notFound": "Nie znaleziono żadnego Zabiegu"
       },
-      "created": "Utworzono nowy obiekt typu Procedure z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Procedure z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Procedure z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Zabieg z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Zabieg z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Zabieg z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Procedure {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Zabieg {{ id }}?"
       },
       "detail": {
-        "title": "Procedure"
+        "title": "Zabieg"
       },
-      "date": "Date",
-      "title": "Title",
-      "description": "Description",
-      "descriptionScan": "Description Scan",
-      "user": "User",
-      "visitedDoctor": "Visited Doctor",
-      "appointment": "Appointment"
+      "date": "Data",
+      "title": "Tytuł",
+      "description": "Opis",
+      "descriptionScan": "Skan opisu",
+      "user": "Użytkownik",
+      "visitedDoctor": "Odwiedzony lekarz",
+      "appointment": "Wizyta"
     }
   }
 }

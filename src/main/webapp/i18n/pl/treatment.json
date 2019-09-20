@@ -2,29 +2,29 @@
   "medicusApp": {
     "treatment": {
       "home": {
-        "title": "Treatment",
-        "createLabel": "Dodaj Treatment",
-        "createOrEditLabel": "Dodaj lub edytuj: Treatment",
-        "notFound": "No Treatments found"
+        "title": "Kuracje",
+        "createLabel": "Dodaj Kuracja",
+        "createOrEditLabel": "Dodaj lub edytuj: Kuracja",
+        "notFound": "Nie znaleziono żadnej Kuracji"
       },
-      "created": "Utworzono nowy obiekt typu Treatment z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Treatment z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Treatment z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Kuracja z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Kuracja z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Kuracja z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Treatment {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Kuracja {{ id }}?"
       },
       "detail": {
-        "title": "Treatment"
+        "title": "Kuracja"
       },
-      "startDate": "Start Date",
-      "endDate": "End Date",
-      "title": "Title",
-      "description": "Description",
-      "descriptionScan": "Description Scan",
-      "user": "User",
-      "medicine": "Medicine",
-      "visitedDoctor": "Visited Doctor",
-      "appointment": "Appointment"
+      "startDate": "Data rozpoczęcia",
+      "endDate": "Data zakończenia",
+      "title": "Tytuł",
+      "description": "Opis",
+      "descriptionScan": "Skan opisu",
+      "user": "Użytkownik",
+      "medicine": "Lek",
+      "visitedDoctor": "Odzwiedzony lekarz",
+      "appointment": "Wizyta"
     }
   }
 }

@@ -2,28 +2,28 @@
   "medicusApp": {
     "examinationType": {
       "home": {
-        "title": "Examination Type",
-        "createLabel": "Dodaj Examination Type",
-        "createOrEditLabel": "Dodaj lub edytuj: Examination Type",
-        "notFound": "No Examination Types found"
+        "title": "Typy Badań",
+        "createLabel": "Dodaj Typ Badania",
+        "createOrEditLabel": "Dodaj lub edytuj Typ Badania",
+        "notFound": "Nie znaleziono żadnego Typu Badania"
       },
-      "created": "Utworzono nowy obiekt typu Examination Type z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Examination Type z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Examination Type z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Typ Badania z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Typ Badania z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Typ Badania z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Examination Type {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Typ Badania {{ id }}?"
       },
       "detail": {
-        "title": "Examination Type"
+        "title": "Typ Badania"
       },
-      "name": "Name",
-      "unit": "Unit",
-      "minGoodValue": "Min Good Value",
-      "maxGoodValue": "Max Good Value",
-      "minBadValue": "Min Bad Value",
-      "maxBadValue": "Max Bad Value",
-      "user": "User",
-      "examination": "Examination"
+      "name": "Nazwa",
+      "unit": "Jednostka",
+      "minGoodValue": "Minimalna dobra wartość",
+      "maxGoodValue": "Maksymalna dobra wartość",
+      "minBadValue": "Minimalna zła wartość",
+      "maxBadValue": "Maksymalna zła wartość",
+      "user": "Użytkownik",
+      "examination": "Badanie"
     }
   }
 }

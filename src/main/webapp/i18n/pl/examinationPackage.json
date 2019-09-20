@@ -2,27 +2,27 @@
   "medicusApp": {
     "examinationPackage": {
       "home": {
-        "title": "Examination Package",
-        "createLabel": "Dodaj Examination Package",
-        "createOrEditLabel": "Dodaj lub edytuj: Examination Package",
-        "notFound": "No Examination Packages found"
+        "title": "Pakiety Badań",
+        "createLabel": "Dodaj Pakiet Badań",
+        "createOrEditLabel": "Dodaj lub edytuj Pakiet Badań",
+        "notFound": "Nie znaleziono żadnego Pakietu Badań"
       },
-      "created": "Utworzono nowy obiekt typu Examination Package z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Examination Package z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Examination Package z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Pakiet Badań z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Pakiet Badań z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Pakiet Badań z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Examination Package {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Pakiet Badań {{ id }}?"
       },
       "detail": {
-        "title": "Examination Package"
+        "title": "Pakiet Badań"
       },
-      "date": "Date",
-      "title": "Title",
-      "examinationPackageScan": "Examination Package Scan",
+      "date": "Data",
+      "title": "Tytuł",
+      "examinationPackageScan": "Skan opisu",
       "examination": "Examination",
-      "user": "User",
-      "visitedDoctor": "Visited Doctor",
-      "appointment": "Appointment"
+      "user": "Użytkownik",
+      "visitedDoctor": "Odwiedzony lekarz",
+      "appointment": "Wizyta"
     }
   }
 }

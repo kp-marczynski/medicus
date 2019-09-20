@@ -20,7 +20,6 @@
 <!--                <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>-->
                 <th jhiSortBy="date"><span jhiTranslate="medicusApp.examinationPackage.date">Date</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th jhiSortBy="title"><span jhiTranslate="medicusApp.examinationPackage.title">Title</span> <fa-icon [icon]="'sort'"></fa-icon></th>
-                <th><span jhiTranslate="medicusApp.examinationPackage.examinationPackageScan">Examination Package Scan</span></th>
                 <th *ngIf="standaloneView" jhiSortBy="appointment"><span jhiTranslate="medicusApp.examinationPackage.appointment">Appointment</span> <fa-icon [icon]="'sort'"></fa-icon></th>
                 <th><span jhiTranslate="medicusApp.examinationPackage.examination">Examinations</span></th>
                 <th></th>
@@ -31,10 +30,6 @@
 <!--                <td><a [routerLink]="['/examination-package', examinationPackage.id, 'view' ]">{{examinationPackage.id}}</a></td>-->
                 <td>{{examinationPackage.date | date:'mediumDate'}}</td>
                 <td>{{examinationPackage.title}}</td>
-                <td>
-                    <a *ngIf="examinationPackage.descriptionScan" (click)="openFile(examinationPackage.descriptionScan.contentContentType, examinationPackage.descriptionScan.content)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="examinationPackage.descriptionScan">{{examinationPackage.descriptionScan.contentContentType}}, {{byteSize(examinationPackage.descriptionScan.content)}}</span>
-                </td>
                 <td *ngIf="standaloneView">
                     <div *ngIf="examinationPackage.appointment">
                         <a [routerLink]="['/appointment', examinationPackage.appointment.id, 'view' ]" >{{examinationPackage.appointment.date | date:'mediumDate'}} - {{examinationPackage.appointment.appointmentType}}</a>

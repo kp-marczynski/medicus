@@ -34,7 +34,7 @@ class Procedure(
     @Column(name = "description")
     var description: String? = null,
 
-    @OneToOne(optional = true, cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToOne(optional = false, cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(unique = true)
     var descriptionScan: File? = null,
 

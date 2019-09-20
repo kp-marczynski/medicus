@@ -53,7 +53,7 @@
             </button>
         </div>
     </div>
-    <div class="col-md-6" *ngIf="procedure.descriptionScan">
+    <div class="col-md-6" *ngIf="procedure.descriptionScan?.content">
         <jhi-file-viewer [data]="procedure.descriptionScan.content" [contentType]="procedure.descriptionScan.contentContentType"></jhi-file-viewer>
     </div>
 </div>

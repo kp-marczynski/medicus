@@ -107,6 +107,7 @@ export class AppointmentUpdateComponent implements OnInit {
       date: appointment.date,
       title: appointment.title,
       description: appointment.description,
+      descriptionScan: appointment.descriptionScan ? appointment.descriptionScan : new ContentFile(),
       user: appointment.user,
       treatments: appointment.treatments,
       symptoms: appointment.symptoms,
@@ -114,11 +115,6 @@ export class AppointmentUpdateComponent implements OnInit {
       procedures: appointment.procedures,
       examinationPackages: appointment.examinationPackages
     });
-    if (appointment.descriptionScan) {
-      this.editForm.patchValue({
-        descriptionScan: appointment.descriptionScan
-      });
-    }
   }
 
   byteSize(field) {
@@ -137,8 +133,9 @@ export class AppointmentUpdateComponent implements OnInit {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
           this.dataUtils.toBase64(file, base64Data => {
-            this.editForm.patchValue({
-              descriptionScan: new ContentFile(null, file.type, base64Data)
+            this.editForm.get('descriptionScan').patchValue({
+              content: base64Data,
+              contentContentType: file.type
             });
           });
         }

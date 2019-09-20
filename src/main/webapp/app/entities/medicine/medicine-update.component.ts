@@ -63,13 +63,9 @@ export class MedicineUpdateComponent implements OnInit {
       id: medicine.id,
       name: medicine.name,
       indication: medicine.indication,
+      leaflet: medicine.leaflet ? medicine.leaflet : new ContentFile(),
       user: medicine.user
     });
-    if (medicine.leaflet) {
-      this.editForm.patchValue({
-        leaflet: medicine.leaflet
-      });
-    }
   }
 
   byteSize(field) {
@@ -88,8 +84,9 @@ export class MedicineUpdateComponent implements OnInit {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
           this.dataUtils.toBase64(file, base64Data => {
-            this.editForm.patchValue({
-              leaflet: new ContentFile(null, file.type, base64Data)
+            this.editForm.get('leaflet').patchValue({
+              content: base64Data,
+              contentContentType: file.type
             });
           });
         }

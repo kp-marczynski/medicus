@@ -93,15 +93,11 @@ export class ProcedureUpdateComponent implements OnInit {
       date: procedure.date,
       title: procedure.title,
       description: procedure.description,
+      descriptionScan: procedure.descriptionScan ? procedure.descriptionScan : new ContentFile(),
       user: procedure.user,
       visitedDoctors: procedure.visitedDoctors,
       appointment: procedure.appointment ? new Appointment(procedure.appointment) : procedure.appointment
     });
-    if (procedure.descriptionScan) {
-      this.editForm.patchValue({
-        descriptionScan: procedure.descriptionScan
-      });
-    }
     if (procedure.appointment) {
       this.updateAppointment(procedure);
     }
@@ -131,8 +127,9 @@ export class ProcedureUpdateComponent implements OnInit {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
           this.dataUtils.toBase64(file, base64Data => {
-            this.editForm.patchValue({
-              descriptionScan: new ContentFile(null, file.type, base64Data)
+            this.editForm.get('descriptionScan').patchValue({
+              content: base64Data,
+              contentContentType: file.type
             });
           });
         }

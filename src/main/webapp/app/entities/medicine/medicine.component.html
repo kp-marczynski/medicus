@@ -20,7 +20,6 @@
 <!--            <th><span jhiTranslate="global.field.id">ID</span></th>-->
             <th><span jhiTranslate="medicusApp.medicine.name">Name</span></th>
             <th><span jhiTranslate="medicusApp.medicine.indication">Indication</span></th>
-            <th><span jhiTranslate="medicusApp.medicine.leaflet">Leaflet</span></th>
             <th></th>
             </tr>
             </thead>
@@ -29,10 +28,6 @@
 <!--                <td><a [routerLink]="['/medicine', medicine.id, 'view' ]">{{medicine.id}}</a></td>-->
                 <td>{{medicine.name}}</td>
                 <td>{{medicine.indication}}</td>
-                <td>
-                    <a *ngIf="medicine.leaflet" (click)="openFile(medicine.leaflet.contentContentType, medicine.leaflet.content)" jhiTranslate="entity.action.open">open</a>
-                    <span *ngIf="medicine.leaflet">{{medicine.leaflet.contentContentType}}, {{byteSize(medicine.leaflet.content)}}</span>
-                </td>
                 <td class="text-right">
                     <div class="btn-group">
                         <button type="submit"

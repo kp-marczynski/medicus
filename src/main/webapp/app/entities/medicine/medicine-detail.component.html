@@ -35,7 +35,7 @@
             </button>
         </div>
     </div>
-    <div class="col-md-6" *ngIf="medicine.leaflet">
+    <div class="col-md-6" *ngIf="medicine.leaflet?.content">
         <jhi-file-viewer [data]="medicine.leaflet.content" [contentType]="medicine.leaflet.contentContentType"></jhi-file-viewer>
     </div>
 </div>

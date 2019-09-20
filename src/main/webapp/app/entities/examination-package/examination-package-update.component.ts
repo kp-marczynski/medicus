@@ -90,14 +90,10 @@ export class ExaminationPackageUpdateComponent implements OnInit {
       id: examinationPackage.id,
       date: examinationPackage.date,
       title: examinationPackage.title,
+      descriptionScan: examinationPackage.descriptionScan ? examinationPackage.descriptionScan : new ContentFile(),
       user: examinationPackage.user,
       visitedDoctors: examinationPackage.visitedDoctors
     });
-    if (examinationPackage.descriptionScan) {
-      this.editForm.patchValue({
-        descriptionScan: examinationPackage.descriptionScan
-      });
-    }
     if (examinationPackage.appointment) {
       this.updateAppointment(examinationPackage);
     }
@@ -127,8 +123,9 @@ export class ExaminationPackageUpdateComponent implements OnInit {
           reject(`File was expected to be an image but was found to be ${file.type}`);
         } else {
           this.dataUtils.toBase64(file, base64Data => {
-            this.editForm.patchValue({
-              descriptionScan: new ContentFile(null, file.type, base64Data)
+            this.editForm.get('descriptionScan').patchValue({
+              content: base64Data,
+              contentContentType: file.type
             });
           });
         }

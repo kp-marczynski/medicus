@@ -31,7 +31,7 @@ interface AppointmentRepository : JpaRepository<Appointment, Long> {
     @Query(value = "select distinct appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms left join fetch appointment.procedures left join fetch appointment.examinationPackages where appointment.user.login = ?#{principal.username}")
     fun findAllWithEagerRelationships(): MutableList<Appointment>
 
-    @Query("select appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms left join fetch appointment.procedures left join fetch appointment.examinationPackages where appointment.id =:id")
+    @Query("select appointment from Appointment appointment left join fetch appointment.visitedDoctors left join fetch appointment.treatments left join fetch appointment.symptoms left join fetch appointment.procedures left join fetch appointment.examinationPackages left join fetch appointment.descriptionScan where appointment.id =:id")
     fun findOneWithEagerRelationships(@Param("id") id: Long): Optional<Appointment>
 
     @Query(

@@ -18,7 +18,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.util.Base64Utils
 import org.springframework.validation.Validator
 import javax.persistence.EntityManager
 
@@ -97,8 +96,6 @@ class MedicineResourceIT {
         val testMedicine = medicineList[medicineList.size - 1]
         assertThat(testMedicine.name).isEqualTo(DEFAULT_NAME)
         assertThat(testMedicine.indication).isEqualTo(DEFAULT_INDICATION)
-        assertThat(testMedicine.leaflet).isEqualTo(DEFAULT_LEAFLET)
-        assertThat(testMedicine.leafletContentType).isEqualTo(DEFAULT_LEAFLET_CONTENT_TYPE)
     }
 
     @Test
@@ -153,8 +150,6 @@ class MedicineResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(medicine.id?.toInt())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].indication").value(hasItem(DEFAULT_INDICATION)))
-            .andExpect(jsonPath("$.[*].leafletContentType").value(hasItem(DEFAULT_LEAFLET_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].leaflet").value(hasItem(Base64Utils.encodeToString(DEFAULT_LEAFLET))))
     }
 
     @Test
@@ -173,8 +168,6 @@ class MedicineResourceIT {
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.indication").value(DEFAULT_INDICATION))
-            .andExpect(jsonPath("$.leafletContentType").value(DEFAULT_LEAFLET_CONTENT_TYPE))
-            .andExpect(jsonPath("$.leaflet").value(Base64Utils.encodeToString(DEFAULT_LEAFLET)))
     }
 
     @Test
@@ -201,8 +194,6 @@ class MedicineResourceIT {
         em.detach(updatedMedicine)
         updatedMedicine.name = UPDATED_NAME
         updatedMedicine.indication = UPDATED_INDICATION
-        updatedMedicine.leaflet = UPDATED_LEAFLET
-        updatedMedicine.leafletContentType = UPDATED_LEAFLET_CONTENT_TYPE
 
         restMedicineMockMvc.perform(
             put("/api/medicines")
@@ -216,8 +207,6 @@ class MedicineResourceIT {
         val testMedicine = medicineList[medicineList.size - 1]
         assertThat(testMedicine.name).isEqualTo(UPDATED_NAME)
         assertThat(testMedicine.indication).isEqualTo(UPDATED_INDICATION)
-        assertThat(testMedicine.leaflet).isEqualTo(UPDATED_LEAFLET)
-        assertThat(testMedicine.leafletContentType).isEqualTo(UPDATED_LEAFLET_CONTENT_TYPE)
     }
 
     @Test
@@ -284,11 +273,6 @@ class MedicineResourceIT {
         private const val DEFAULT_INDICATION: String = "AAAAAAAAAA"
         private const val UPDATED_INDICATION = "BBBBBBBBBB"
 
-        private val DEFAULT_LEAFLET: ByteArray = createByteArray(1, "0")
-        private val UPDATED_LEAFLET: ByteArray = createByteArray(1, "1")
-        private const val DEFAULT_LEAFLET_CONTENT_TYPE: String = "image/jpg"
-        private const val UPDATED_LEAFLET_CONTENT_TYPE: String = "image/png"
-
         /**
          * Create an entity for this test.
          *
@@ -299,9 +283,7 @@ class MedicineResourceIT {
         fun createEntity(em: EntityManager): Medicine {
             val medicine = Medicine(
                 name = DEFAULT_NAME,
-                indication = DEFAULT_INDICATION,
-                leaflet = DEFAULT_LEAFLET,
-                leafletContentType = DEFAULT_LEAFLET_CONTENT_TYPE
+                indication = DEFAULT_INDICATION
             )
 
             return medicine
@@ -317,9 +299,7 @@ class MedicineResourceIT {
         fun createUpdatedEntity(em: EntityManager): Medicine {
             val medicine = Medicine(
                 name = UPDATED_NAME,
-                indication = UPDATED_INDICATION,
-                leaflet = UPDATED_LEAFLET,
-                leafletContentType = UPDATED_LEAFLET_CONTENT_TYPE
+                indication = UPDATED_INDICATION
             )
 
             return medicine

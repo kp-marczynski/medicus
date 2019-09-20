@@ -20,7 +20,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.util.Base64Utils
 import org.springframework.validation.Validator
 import javax.persistence.EntityManager
 import java.time.LocalDate
@@ -110,8 +109,6 @@ class TreatmentResourceIT {
         assertThat(testTreatment.endDate).isEqualTo(DEFAULT_END_DATE)
         assertThat(testTreatment.title).isEqualTo(DEFAULT_TITLE)
         assertThat(testTreatment.description).isEqualTo(DEFAULT_DESCRIPTION)
-        assertThat(testTreatment.descriptionScan).isEqualTo(DEFAULT_DESCRIPTION_SCAN)
-        assertThat(testTreatment.descriptionScanContentType).isEqualTo(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)
     }
 
     @Test
@@ -168,8 +165,6 @@ class TreatmentResourceIT {
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(DEFAULT_END_DATE.toString())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
-            .andExpect(jsonPath("$.[*].descriptionScanContentType").value(hasItem(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].descriptionScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN))))
     }
 
     @Suppress("unchecked")
@@ -223,8 +218,6 @@ class TreatmentResourceIT {
             .andExpect(jsonPath("$.endDate").value(DEFAULT_END_DATE.toString()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
-            .andExpect(jsonPath("$.descriptionScanContentType").value(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE))
-            .andExpect(jsonPath("$.descriptionScan").value(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN)))
     }
 
     @Test
@@ -253,8 +246,6 @@ class TreatmentResourceIT {
         updatedTreatment.endDate = UPDATED_END_DATE
         updatedTreatment.title = UPDATED_TITLE
         updatedTreatment.description = UPDATED_DESCRIPTION
-        updatedTreatment.descriptionScan = UPDATED_DESCRIPTION_SCAN
-        updatedTreatment.descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
 
         restTreatmentMockMvc.perform(
             put("/api/treatments")
@@ -270,8 +261,6 @@ class TreatmentResourceIT {
         assertThat(testTreatment.endDate).isEqualTo(UPDATED_END_DATE)
         assertThat(testTreatment.title).isEqualTo(UPDATED_TITLE)
         assertThat(testTreatment.description).isEqualTo(UPDATED_DESCRIPTION)
-        assertThat(testTreatment.descriptionScan).isEqualTo(UPDATED_DESCRIPTION_SCAN)
-        assertThat(testTreatment.descriptionScanContentType).isEqualTo(UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE)
     }
 
     @Test
@@ -346,11 +335,6 @@ class TreatmentResourceIT {
         private const val DEFAULT_DESCRIPTION: String = "AAAAAAAAAA"
         private const val UPDATED_DESCRIPTION = "BBBBBBBBBB"
 
-        private val DEFAULT_DESCRIPTION_SCAN: ByteArray = createByteArray(1, "0")
-        private val UPDATED_DESCRIPTION_SCAN: ByteArray = createByteArray(1, "1")
-        private const val DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE: String = "image/jpg"
-        private const val UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE: String = "image/png"
-
         /**
          * Create an entity for this test.
          *
@@ -363,9 +347,7 @@ class TreatmentResourceIT {
                 startDate = DEFAULT_START_DATE,
                 endDate = DEFAULT_END_DATE,
                 title = DEFAULT_TITLE,
-                description = DEFAULT_DESCRIPTION,
-                descriptionScan = DEFAULT_DESCRIPTION_SCAN,
-                descriptionScanContentType = DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE
+                description = DEFAULT_DESCRIPTION
             )
 
             return treatment
@@ -383,9 +365,7 @@ class TreatmentResourceIT {
                 startDate = UPDATED_START_DATE,
                 endDate = UPDATED_END_DATE,
                 title = UPDATED_TITLE,
-                description = UPDATED_DESCRIPTION,
-                descriptionScan = UPDATED_DESCRIPTION_SCAN,
-                descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
+                description = UPDATED_DESCRIPTION
             )
 
             return treatment

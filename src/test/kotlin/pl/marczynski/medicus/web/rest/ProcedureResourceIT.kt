@@ -20,7 +20,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.util.Base64Utils
 import org.springframework.validation.Validator
 import javax.persistence.EntityManager
 import java.time.LocalDate
@@ -109,8 +108,6 @@ class ProcedureResourceIT {
         assertThat(testProcedure.date).isEqualTo(DEFAULT_DATE)
         assertThat(testProcedure.title).isEqualTo(DEFAULT_TITLE)
         assertThat(testProcedure.description).isEqualTo(DEFAULT_DESCRIPTION)
-        assertThat(testProcedure.descriptionScan).isEqualTo(DEFAULT_DESCRIPTION_SCAN)
-        assertThat(testProcedure.descriptionScanContentType).isEqualTo(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)
     }
 
     @Test
@@ -185,8 +182,6 @@ class ProcedureResourceIT {
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
-            .andExpect(jsonPath("$.[*].descriptionScanContentType").value(hasItem(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].descriptionScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN))))
     }
 
     @Suppress("unchecked")
@@ -239,8 +234,6 @@ class ProcedureResourceIT {
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
-            .andExpect(jsonPath("$.descriptionScanContentType").value(DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE))
-            .andExpect(jsonPath("$.descriptionScan").value(Base64Utils.encodeToString(DEFAULT_DESCRIPTION_SCAN)))
     }
 
     @Test
@@ -268,8 +261,6 @@ class ProcedureResourceIT {
         updatedProcedure.date = UPDATED_DATE
         updatedProcedure.title = UPDATED_TITLE
         updatedProcedure.description = UPDATED_DESCRIPTION
-        updatedProcedure.descriptionScan = UPDATED_DESCRIPTION_SCAN
-        updatedProcedure.descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
 
         restProcedureMockMvc.perform(
             put("/api/procedures")
@@ -284,8 +275,6 @@ class ProcedureResourceIT {
         assertThat(testProcedure.date).isEqualTo(UPDATED_DATE)
         assertThat(testProcedure.title).isEqualTo(UPDATED_TITLE)
         assertThat(testProcedure.description).isEqualTo(UPDATED_DESCRIPTION)
-        assertThat(testProcedure.descriptionScan).isEqualTo(UPDATED_DESCRIPTION_SCAN)
-        assertThat(testProcedure.descriptionScanContentType).isEqualTo(UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE)
     }
 
     @Test
@@ -356,11 +345,6 @@ class ProcedureResourceIT {
         private const val DEFAULT_DESCRIPTION: String = "AAAAAAAAAA"
         private const val UPDATED_DESCRIPTION = "BBBBBBBBBB"
 
-        private val DEFAULT_DESCRIPTION_SCAN: ByteArray = createByteArray(1, "0")
-        private val UPDATED_DESCRIPTION_SCAN: ByteArray = createByteArray(1, "1")
-        private const val DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE: String = "image/jpg"
-        private const val UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE: String = "image/png"
-
         /**
          * Create an entity for this test.
          *
@@ -372,9 +356,7 @@ class ProcedureResourceIT {
             val procedure = Procedure(
                 date = DEFAULT_DATE,
                 title = DEFAULT_TITLE,
-                description = DEFAULT_DESCRIPTION,
-                descriptionScan = DEFAULT_DESCRIPTION_SCAN,
-                descriptionScanContentType = DEFAULT_DESCRIPTION_SCAN_CONTENT_TYPE
+                description = DEFAULT_DESCRIPTION
             )
 
             return procedure
@@ -391,9 +373,7 @@ class ProcedureResourceIT {
             val procedure = Procedure(
                 date = UPDATED_DATE,
                 title = UPDATED_TITLE,
-                description = UPDATED_DESCRIPTION,
-                descriptionScan = UPDATED_DESCRIPTION_SCAN,
-                descriptionScanContentType = UPDATED_DESCRIPTION_SCAN_CONTENT_TYPE
+                description = UPDATED_DESCRIPTION
             )
 
             return procedure

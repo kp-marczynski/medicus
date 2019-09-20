@@ -20,7 +20,6 @@ import org.springframework.http.converter.json.MappingJackson2HttpMessageConvert
 import org.springframework.test.web.servlet.MockMvc
 import org.springframework.test.web.servlet.setup.MockMvcBuilders
 import org.springframework.transaction.annotation.Transactional
-import org.springframework.util.Base64Utils
 import org.springframework.validation.Validator
 import javax.persistence.EntityManager
 import java.time.LocalDate
@@ -108,8 +107,6 @@ class ExaminationPackageResourceIT {
         val testExaminationPackage = examinationPackageList[examinationPackageList.size - 1]
         assertThat(testExaminationPackage.date).isEqualTo(DEFAULT_DATE)
         assertThat(testExaminationPackage.title).isEqualTo(DEFAULT_TITLE)
-        assertThat(testExaminationPackage.examinationPackageScan).isEqualTo(DEFAULT_EXAMINATION_PACKAGE_SCAN)
-        assertThat(testExaminationPackage.examinationPackageScanContentType).isEqualTo(DEFAULT_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE)
     }
 
     @Test
@@ -183,8 +180,6 @@ class ExaminationPackageResourceIT {
             .andExpect(jsonPath("$.[*].id").value(hasItem(examinationPackage.id?.toInt())))
             .andExpect(jsonPath("$.[*].date").value(hasItem(DEFAULT_DATE.toString())))
             .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
-            .andExpect(jsonPath("$.[*].examinationPackageScanContentType").value(hasItem(DEFAULT_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].examinationPackageScan").value(hasItem(Base64Utils.encodeToString(DEFAULT_EXAMINATION_PACKAGE_SCAN))))
     }
 
     @Suppress("unchecked")
@@ -236,8 +231,6 @@ class ExaminationPackageResourceIT {
             .andExpect(jsonPath("$.id").value(id.toInt()))
             .andExpect(jsonPath("$.date").value(DEFAULT_DATE.toString()))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
-            .andExpect(jsonPath("$.examinationPackageScanContentType").value(DEFAULT_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE))
-            .andExpect(jsonPath("$.examinationPackageScan").value(Base64Utils.encodeToString(DEFAULT_EXAMINATION_PACKAGE_SCAN)))
     }
 
     @Test
@@ -264,8 +257,6 @@ class ExaminationPackageResourceIT {
         em.detach(updatedExaminationPackage)
         updatedExaminationPackage.date = UPDATED_DATE
         updatedExaminationPackage.title = UPDATED_TITLE
-        updatedExaminationPackage.examinationPackageScan = UPDATED_EXAMINATION_PACKAGE_SCAN
-        updatedExaminationPackage.examinationPackageScanContentType = UPDATED_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE
 
         restExaminationPackageMockMvc.perform(
             put("/api/examination-packages")
@@ -279,8 +270,6 @@ class ExaminationPackageResourceIT {
         val testExaminationPackage = examinationPackageList[examinationPackageList.size - 1]
         assertThat(testExaminationPackage.date).isEqualTo(UPDATED_DATE)
         assertThat(testExaminationPackage.title).isEqualTo(UPDATED_TITLE)
-        assertThat(testExaminationPackage.examinationPackageScan).isEqualTo(UPDATED_EXAMINATION_PACKAGE_SCAN)
-        assertThat(testExaminationPackage.examinationPackageScanContentType).isEqualTo(UPDATED_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE)
     }
 
     @Test
@@ -348,11 +337,6 @@ class ExaminationPackageResourceIT {
         private const val DEFAULT_TITLE: String = "AAAAAAAAAA"
         private const val UPDATED_TITLE = "BBBBBBBBBB"
 
-        private val DEFAULT_EXAMINATION_PACKAGE_SCAN: ByteArray = createByteArray(1, "0")
-        private val UPDATED_EXAMINATION_PACKAGE_SCAN: ByteArray = createByteArray(1, "1")
-        private const val DEFAULT_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE: String = "image/jpg"
-        private const val UPDATED_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE: String = "image/png"
-
         /**
          * Create an entity for this test.
          *
@@ -363,9 +347,7 @@ class ExaminationPackageResourceIT {
         fun createEntity(em: EntityManager): ExaminationPackage {
             val examinationPackage = ExaminationPackage(
                 date = DEFAULT_DATE,
-                title = DEFAULT_TITLE,
-                examinationPackageScan = DEFAULT_EXAMINATION_PACKAGE_SCAN,
-                examinationPackageScanContentType = DEFAULT_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE
+                title = DEFAULT_TITLE
             )
 
             return examinationPackage
@@ -381,9 +363,7 @@ class ExaminationPackageResourceIT {
         fun createUpdatedEntity(em: EntityManager): ExaminationPackage {
             val examinationPackage = ExaminationPackage(
                 date = UPDATED_DATE,
-                title = UPDATED_TITLE,
-                examinationPackageScan = UPDATED_EXAMINATION_PACKAGE_SCAN,
-                examinationPackageScanContentType = UPDATED_EXAMINATION_PACKAGE_SCAN_CONTENT_TYPE
+                title = UPDATED_TITLE
             )
 
             return examinationPackage

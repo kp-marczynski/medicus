@@ -1,0 +1,6 @@
+{
+  "serverUnavailable" : {
+    "firstLine": "Server Unavailable",
+    "secondLine": "Please wait"
+  }
+}

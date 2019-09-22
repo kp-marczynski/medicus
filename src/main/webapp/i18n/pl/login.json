@@ -1,6 +1,6 @@
 {
   "login": {
-    "title": "Autoryzacja",
+    "title": "Logowanie",
     "form": {
       "password": "Hasło",
       "password.placeholder": "Twoje hasło",
